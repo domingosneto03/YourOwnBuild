@@ -6,7 +6,7 @@
 
 * [ER: Requirements Specification](https://git.fe.up.pt/lbaw/lbaw2324/lbaw23104/-/wikis/er)
 * [EBD: Database Specification](ebd)
-* [EAP: Architecture Specification and Prototype](eap)
+* [EAP: Architecture Specification and Prototype](https://git.fe.up.pt/lbaw/lbaw2324/lbaw23104/-/wikis/eap)
 * [PA: Product and Presentation](pa)
 
 ## Artefacts Checklist
