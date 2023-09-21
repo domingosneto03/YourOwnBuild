@@ -18,7 +18,6 @@
 * Group member 1 Domingos Neto, up202108728@up.pt
 * Group member 2 Tomás Câmara, up202108665@up.pt
 * Group member 3 Gonçalo Matos, up202108761@up.pt
-* Group member 4 name, email
 
 ***
-GROUP21gg, DD/MM/2021
+GROUP4gg, 21/09/2023
