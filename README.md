@@ -1,6 +1,6 @@
-# Product name (e.g. MediaLibrary)
+# YourOwnBuild
 
-> Project vision.
+> YourOwnBuild is set to be a crucial asset to assist you in planning your computer project. However, it's not just a project management tool. In fact, it is a platform designed to empower individuals in the informatics field, streamlining project creation, management, and collaboration. With its user-friendly features and diverse user roles, YourOwnBuild is going to revolutionize the way informatic projects are planned and executed.
 
 ## Project Components
 
