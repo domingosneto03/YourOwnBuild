@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS project;
 DROP TABLE IF EXISTS member;
 DROP TABLE IF EXISTS admins;
+DROP TABLE IF EXISTS blocked;
 DROP TABLE IF EXISTS notifications;
 DROP TABLE IF EXISTS priority;
 DROP TABLE IF EXISTS responsible;
@@ -43,8 +44,8 @@ DROP TRIGGER IF EXISTS trigger_check_task_dates ON task;
 DROP TRIGGER IF EXISTS trigger_default_project_coordinator ON project;
 DROP TRIGGER IF EXISTS tr_notify_users_on_leave ON member;
 
-DROP INDEX IF EXISTS user_notification;
-DROP INDEX IF EXISTS user_comment;
+DROP INDEX IF EXISTS idx_user_notification;
+DROP INDEX IF EXISTS idx_user_comment;
 DROP INDEX IF EXISTS search_project_idx;
 DROP INDEX IF EXISTS search_task_idx;
 DROP INDEX IF EXISTS search_user_idx;
@@ -110,6 +111,11 @@ CREATE TABLE member (
 );
 
 CREATE TABLE admins (
+    id SERIAL PRIMARY KEY,
+    id_user INT NOT NULL REFERENCES users(id)
+);
+
+CREATE TABLE blocked (
     id SERIAL PRIMARY KEY,
     id_user INT NOT NULL REFERENCES users(id)
 );
