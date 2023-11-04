@@ -135,6 +135,12 @@ INSERT INTO admins (id_user)
 VALUES 
 (1);
 
+-- Populating blocked table
+INSERT INTO blocked (id_user)
+VALUES 
+(35),
+(37);
+
 -- Populating notification table
 INSERT INTO notifications (id_user, date)
 VALUES 
