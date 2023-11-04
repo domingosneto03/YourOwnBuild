@@ -32,16 +32,20 @@ DROP FUNCTION IF EXISTS project_search_update;
 DROP FUNCTION IF EXISTS task_search_update;
 DROP FUNCTION IF EXISTS user_search_update;
 DROP FUNCTION IF EXISTS comment_search_update;
+DROP FUNCTION IF EXISTS check_task_dates;
+DROP FUNCTION IF EXISTS check_project_invitation;
 
-DROP TRIGGER IF EXISTS project_search_update;
-DROP TRIGGER IF EXISTS task_search_update;
-DROP TRIGGER IF EXISTS user_search_update;
-DROP TRIGGER IF EXISTS comment_search_update;
-
+DROP TRIGGER IF EXISTS project_search_update_trigger ON project;
+DROP TRIGGER IF EXISTS task_search_update_trigger ON task;
+DROP TRIGGER IF EXISTS user_search_update_trigger ON users;
+DROP TRIGGER IF EXISTS comment_search_update_trigger ON comment;
+DROP TRIGGER IF EXISTS trigger_check_task_dates ON task;
+DROP TRIGGER IF EXISTS trigger_default_project_coordinator ON project;
+DROP TRIGGER IF EXISTS tr_notify_users_on_leave ON member;
 
 DROP INDEX IF EXISTS user_notification;
 DROP INDEX IF EXISTS user_comment;
-DROP INDEX IF EXISTS search_group_idx;
+DROP INDEX IF EXISTS search_project_idx;
 DROP INDEX IF EXISTS search_task_idx;
 DROP INDEX IF EXISTS search_user_idx;
 DROP INDEX IF EXISTS search_comment_idx;
@@ -75,12 +79,11 @@ CREATE TABLE users (
 CREATE TABLE task (
     id SERIAL PRIMARY KEY,
     id_creator INT NOT NULL REFERENCES users(id),
-    id_priority INT NOT NULL REFERENCES priority(id),
     name VARCHAR(255) NOT NULL,
     label VARCHAR(255) NOT NULL,
     is_completed BOOLEAN NOT NULL DEFAULT false,
     date_created DATE NOT NULL,
-    due_date DATE NOT NULL CHECK (due_date >= date_created),
+    due_date DATE NOT NULL CHECK (due_date >= date_created)
 );
 
 CREATE TABLE comment (
@@ -115,13 +118,13 @@ CREATE TABLE notifications (
     id SERIAL PRIMARY KEY,
     id_user INT NOT NULL REFERENCES users(id),
     date TIMESTAMP NOT NULL,
-    seen BOOLEAN NOT NULL DEFAULT false,
+    seen BOOLEAN NOT NULL DEFAULT false
 );
 
 CREATE TABLE priority (
     id SERIAL PRIMARY KEY,
     id_task INT NOT NULL REFERENCES task(id),
-    priority_type priority_types NOT NULL,
+    priority_type priority_types NOT NULL
 );
 
 CREATE TABLE responsible (
@@ -145,7 +148,7 @@ CREATE TABLE creator (
 CREATE TABLE invited (
     id_user INT NOT NULL REFERENCES users(id),
     id_project INT NOT NULL REFERENCES project(id),
-    PRIMARY KEY (id_user, id_project),
+    PRIMARY KEY (id_user, id_project)
 );
 
 CREATE TABLE request_join (
@@ -157,7 +160,7 @@ CREATE TABLE request_join (
 CREATE TABLE user_comment (
     id_user INT NOT NULL REFERENCES users(id),
     id_comment INT NOT NULL REFERENCES comment(id),
-    PRIMARY KEY (id_user, id_comment),
+    PRIMARY KEY (id_user, id_comment)
 );
 
 CREATE TABLE task_notification (
@@ -185,22 +188,22 @@ CREATE TABLE project_notification (
 );
 
 --IDX01
-CREATE INDEX user_notification ON notification USING btree (id_user);  
+CREATE INDEX idx_user_notification ON notifications USING btree (id_user);  
 
-CLUSTER notification USING user_notification;
+CLUSTER notifications USING idx_user_notification;
 
 --IDX02
-CREATE INDEX user_comment ON comment USING btree (id_task);   
+CREATE INDEX idx_user_comment ON comment USING btree (id_task);   
 
-CLUSTER comment USING user_comment;
+CLUSTER comment USING idx_user_comment;
 
 --IDX03
 -- Add column to group to store computed ts_vectors.
-ALTER TABLE group
+ALTER TABLE project
 ADD COLUMN tsvectors TSVECTOR;
 
 -- Create a function to automatically update ts_vectors.
-CREATE FUNCTION group_search_update() RETURNS TRIGGER AS $$
+CREATE FUNCTION project_search_update() RETURNS TRIGGER AS $$
 BEGIN
  IF TG_OP = 'INSERT' THEN
         NEW.tsvectors = (
@@ -221,14 +224,14 @@ END $$
 LANGUAGE plpgsql;
 
 -- Create a trigger before insert or update on group.
-CREATE TRIGGER group_search_update
- BEFORE INSERT OR UPDATE ON group
+CREATE TRIGGER project_search_update_trigger
+ BEFORE INSERT OR UPDATE ON project
  FOR EACH ROW
- EXECUTE PROCEDURE group_search_update();
+ EXECUTE PROCEDURE project_search_update();
 
 
 -- Finally, create a GIN index for ts_vectors.
-CREATE INDEX search_group_idx ON group USING GIN (tsvectors);
+CREATE INDEX search_project_idx ON project USING GIN (tsvectors);
 
 --IDX04
 -- Add column to task to store computed ts_vectors.
@@ -257,7 +260,7 @@ END $$
 LANGUAGE plpgsql;
 
 -- Create a trigger before insert or update on task.
-CREATE TRIGGER task_search_update
+CREATE TRIGGER task_search_update_trigger
  BEFORE INSERT OR UPDATE ON task
  FOR EACH ROW
  EXECUTE PROCEDURE task_search_update();
@@ -268,7 +271,7 @@ CREATE INDEX search_task_idx ON task USING GIN (tsvectors);
 
 --IDX05
 -- Add column to user to store computed ts_vectors.
-ALTER TABLE user
+ALTER TABLE users
 ADD COLUMN tsvectors TSVECTOR;
 
 -- Create a function to automatically update ts_vectors.
@@ -291,14 +294,14 @@ END $$
 LANGUAGE plpgsql;
 
 -- Create a trigger before insert or update on user.
-CREATE TRIGGER user_search_update
- BEFORE INSERT OR UPDATE ON user
+CREATE TRIGGER user_search_update_trigger
+ BEFORE INSERT OR UPDATE ON users
  FOR EACH ROW
  EXECUTE PROCEDURE user_search_update();
 
 
 -- Finally, create a GIN index for ts_vectors.
-CREATE INDEX search_user_idx ON user USING GIN (tsvectors);
+CREATE INDEX search_user_idx ON users USING GIN (tsvectors);
 
 --IDX06
 -- Add column to comment to store computed ts_vectors.
@@ -325,7 +328,7 @@ END $$
 LANGUAGE plpgsql;
 
 -- Create a trigger before insert or update on comment.
-CREATE TRIGGER comment_search_update
+CREATE TRIGGER comment_search_update_trigger
  BEFORE INSERT OR UPDATE ON comment
  FOR EACH ROW
  EXECUTE PROCEDURE comment_search_update();
@@ -362,7 +365,7 @@ BEGIN
     IF NOT EXISTS (SELECT 1 FROM creator WHERE id_project = NEW.id) THEN
         -- If not, insert the creator with the role of Coordinator
         INSERT INTO creator(id_user, id_project, role)
-        VALUES (NEW.id_user, NEW.id, 'Coordinator');
+        VALUES (NEW.id_user, NEW.id, 'coordinator');
     END IF;
     RETURN NEW;
 END;
@@ -408,7 +411,7 @@ BEGIN
   SELECT id_user, 
          'User with ID ' || OLD.id_user || ' has left the group.', 
          NOW()
-  FROM group_users
+  FROM member
   WHERE id_group = OLD.id_group AND id_user != OLD.id_user;
 
   RETURN NULL; -- Since it's an AFTER DELETE trigger, we don't need to return anything
@@ -418,7 +421,7 @@ $$ LANGUAGE plpgsql;
 
 -- Step 2: Create the trigger
 CREATE TRIGGER tr_notify_users_on_leave
-AFTER DELETE ON group_users
+AFTER DELETE ON member
 FOR EACH ROW
 EXECUTE FUNCTION notify_users_on_leave();
 
@@ -433,16 +436,14 @@ VALUES ($project_name, $project_description, $project_visibility, NOW());
 
 -- Add the creator of the project as the default coordinator in the `member` table with `is_promoted` set to `true`
 INSERT INTO member (id_user, id_project, is_promoted, member_types)
-VALUES ($creator_id, currval('project_id_seq'), true, 'Coordinator');
+VALUES ($creator_id, currval('project_id_seq'), true, 'coordinator');
 
 -- Add a record in the `creator` table linking the user to the project
 INSERT INTO creator (id_user, id_project)
 VALUES ($creator_id, currval('project_id_seq'));
 
 -- Send a notification to the creator confirming the successful creation of the project
-INSERT INTO notification (id_user, date, seen)
+INSERT INTO notifications (id_user, date, seen)
 VALUES ($creator_id, NOW(), false);
 
 END TRANSACTION;
-
-
