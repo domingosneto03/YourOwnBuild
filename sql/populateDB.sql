@@ -1,5 +1,5 @@
 -- Populating user table
-INSERT INTO user (name, username, password, email, bio)
+INSERT INTO users (name, username, password, email, bio)
 VALUES 
 ('Alice', 'alice123', 'pass1234', 'alice@example.com', 'I am a project manager.'),
 ('Bob', 'bob456', 'bobpass', 'bob@example.com', 'I love coding!'),
@@ -38,7 +38,7 @@ VALUES
 ('Iris', 'iris789', 'irispass', 'iris@example.com', 'Hiking and outdoor activities.'),
 ('Jake', 'jake123', 'jakepass', 'jake@example.com', 'Science and astronomy.'),
 ('Kylie', 'kylie456', 'kyliepass', 'kylie@example.com', 'Fashion and design.'),
-('Liam', 'liam789', 'liampass', 'liam@example.com', 'Animals and wildlife.'),
+('Liam', 'liam69', 'liampass', 'liam69@example.com', 'Animals and wildlife.'),
 ('Megan', 'megan123', 'meganpass', 'megan@example.com', 'Travel and adventure.'),
 ('Nate', 'nate456', 'natepass', 'nate@example.com', 'Soccer and sports.');
 
@@ -57,123 +57,86 @@ VALUES
 ( 'Quality Assurance', 'Ensure product quality through testing.', '2023-01-10');
 
 -- Populating task table
-INSERT INTO task (id_creator, id_priority, name, label, date_created, due_date)
+INSERT INTO task (id_creator, name, label, date_created, due_date)
 VALUES 
-(1, 1, 'Landing Page Design', 'Design', '2023-10-21', '2023-11-10'),
-(2, 1, 'Backend API', 'Development', '2023-09-17', '2023-10-15'),
-(3, 2, 'Content Writing', 'Content', '2023-08-05', '2023-09-02'),
-(4, 2, 'Database Optimization', 'Development', '2023-07-18', '2023-08-12'),
-(5, 3, 'Testing and QA', 'Quality Assurance', '2023-06-30', '2023-07-28'),
-(6, 1, 'Marketing Campaign', 'Marketing', '2023-05-22', '2023-06-10');
-(7, 3, 'User Interface Design', 'Design', '2023-04-15', '2023-05-12'),
-(8, 3, 'Mobile App Development', 'Development', '2023-03-08', '2023-04-05'),
-(9, 2, 'Data Analysis', 'Analysis', '2023-02-02', '2023-03-01'),
-(10, 1, 'Social Media Marketing', 'Marketing', '2023-01-15', '2023-02-10'),
-(11, 1, 'Content Management', 'Content', '2022-12-20', '2023-01-18'),
-(12, 2, 'Inventory Tracking', 'Inventory', '2022-11-05', '2022-12-02'),
-(13, 1, 'Customer Support', 'Support', '2022-10-10', '2022-11-07'),
-(14, 3, 'Event Planning', 'Planning', '2022-09-14', '2022-10-12'),
-(15, 1, 'Quality Assurance Testing', 'Quality Assurance', '2022-08-12', '2022-09-09'),
-(16, 2, 'Product Design', 'Design', '2022-07-15', '2022-08-10'),
-(17, 2, 'Sales Strategy', 'Sales', '2022-06-18', '2022-07-15'),
-(18, 1, 'Product Launch', 'Launch', '2022-05-22', '2022-06-19'),
-(19, 3, 'Market Research', 'Research', '2022-04-26', '2022-05-24'),
-(20, 1, 'Budget Planning', 'Finance', '2022-03-29', '2022-04-26'),
-(21, 3, 'Web Development', 'Development', '2022-02-10', '2022-03-10'),
-(22, 1, 'Video Production', 'Media', '2022-01-18', '2022-02-15'),
-(23, 2, 'SEO Optimization', 'SEO', '2021-12-20', '2022-01-17'),
-(24, 2, 'Employee Training', 'Training', '2021-11-22', '2021-12-19'),
-(25, 3, 'Data Migration', 'Data', '2021-10-25', '2021-11-22'),
-(26, 1, 'Customer Surveys', 'Surveys', '2021-09-27', '2021-10-25'),
-(27, 2, 'Project Management', 'Management', '2021-08-30', '2021-09-27'),
-(28, 1, 'Product Prototyping', 'Prototyping', '2021-07-31', '2021-08-28'),
-(29, 3, 'Social Media Campaign', 'Marketing', '2021-07-02', '2021-07-30'),
-(30, 1, 'Document Translation', 'Translation', '2021-06-05', '2021-07-03');
+(1, 'Landing Page Design', 'Design', '2023-10-21', '2023-11-10'),
+(1, 'Backend API', 'Development', '2023-09-17', '2023-10-15'),
+(1, 'Content Writing', 'Content', '2023-08-05', '2023-09-02'),
+(5, 'Database Optimization', 'Development', '2023-07-18', '2023-08-12'),
+(6, 'Testing and QA', 'Quality Assurance', '2023-06-30', '2023-07-28'),
+(6, 'Marketing Campaign', 'Marketing', '2023-05-22', '2023-06-10'),
+(10, 'User Interface Design', 'Design', '2023-04-15', '2023-05-12'),
+(8, 'Mobile App Development', 'Development', '2023-03-08', '2023-04-05'),
+(9, 'Data Analysis', 'Analysis', '2023-02-02', '2023-03-01'),
+(12, 'Social Media Marketing', 'Marketing', '2023-01-15', '2023-02-10'),
+(11, 'Content Management', 'Content', '2023-12-20', '2024-01-18'),
+(23, 'Inventory Tracking', 'Inventory', '2023-11-05', '2023-12-02'),
+(14, 'Customer Support', 'Support', '2023-10-10', '2023-11-07');
+
 
 -- Populating priority table
 INSERT INTO priority (id_task, priority_type)
 VALUES 
-(1, 'High'),
-(2, 'Medium'),
-(3, 'Low'),
-(4, 'High'),
-(5, 'Medium'),
-(6, 'Low'),
-(7, 'High'),
-(8, 'Medium'),
-(9, 'Low'),
-(10, 'High'),
-(11, 'Medium'),
-(12, 'Low'),
-(13, 'High'),
-(14, 'Medium'),
-(15, 'Low'),
-(16, 'High'),
-(17, 'Medium'),
-(18, 'Low'),
-(19, 'High'),
-(20, 'Medium'),
-(21, 'Low'),
-(22, 'High'),
-(23, 'Medium'),
-(24, 'Low'),
-(25, 'High'),
-(26, 'Medium'),
-(27, 'Low'),
-(28, 'High'),
-(29, 'Medium'),
-(30, 'Low');
+(1, 'high'),
+(2, 'medium'),
+(3, 'low'),
+(4, 'high'),
+(5, 'medium'),
+(6, 'low'),
+(7, 'high'),
+(8, 'medium'),
+(9, 'low'),
+(10, 'high'),
+(11, 'medium'),
+(12, 'low'),
+(13, 'high');
 
 -- Populating comment table
 INSERT INTO comment (id_task, content, date)
 VALUES 
 (1, 'The design looks good.', '2023-10-22'),
 (2, 'API is now functional.', '2023-09-29'),
-(3, 'The analysis is complete.', '2023-08-10'),
-(4, 'Optimized the database queries.', '2023-07-22'),
+(2, 'The analysis is complete.', '2023-08-10'),
+(2, 'Optimized the database queries.', '2023-07-22'),
 (5, 'Completed testing phase.', '2023-06-15'),
 (6, 'Planning the event schedule.', '2023-05-01'),
 (7, 'Working on graphic designs.', '2023-04-14'),
 (8, 'Outreach activities are ongoing.', '2023-03-20'),
-(9, 'Quality assurance checks done.', '2023-02-12'),
-(10, 'Finalizing product prototype.', '2023-01-25'),
-(11, 'Social media campaign launch.', '2022-12-30'),
-(12, 'Research paper editing.', '2022-11-11'),
-(13, 'Testing the mobile app.', '2022-10-14'),
-(14, 'Preparing for a product launch.', '2022-09-19'),
-(15, 'Data analysis in progress.', '2022-08-27');
+(8, 'Quality assurance checks done.', '2023-02-12'),
+(13, 'Testing the mobile app.', '2022-10-14');
 
 -- Populating member table
 INSERT INTO member (id_user, id_project, member_type)
 VALUES 
 (1, 1, 'project_member'),
 (2, 1, 'project_member'),
-(3, 2, 'coordinator'),
+(3, 1, 'coordinator'),
 (4, 2, 'project_member'),
-(5, 3, 'project_member'),
-(6, 3, 'project_member'),
-(7, 4, 'coordinator'),
-(8, 4, 'project_member'),
-(9, 5, 'coordinator'),
-(10, 5, 'project_member'),
-(11, 6, 'project_member'),
-(12, 7, 'coordinator'),
-(13, 8, 'project_member'),
-(14, 9, 'project_member'),
-(15, 10, 'project_member'),
-(16, 10, 'coordinator'),
-(17, 11, 'project_member'),
-(18, 12, 'project_member'),
-(19, 13, 'project_member'),
-(20, 13, 'project_member');
+(5, 2, 'project_member'),
+(7, 2, 'coordinator'),
+(8, 3, 'project_member'),
+(10, 3, 'project_member'),
+(9, 3, 'coordinator'),
+(11, 4, 'project_member'),
+(13, 4, 'project_member'),
+(12, 4, 'coordinator'),
+(14, 5, 'project_member'),
+(15, 5, 'project_member'),
+(25, 5, 'coordinator'),
+(17, 6, 'coordinator'),
+(21, 7, 'coordinator'),
+(30, 8, 'coordinator'),
+(8, 9, 'coordinator'),
+(20, 10, 'coordinator');
+
 
 -- Populating admin table
-INSERT INTO admin (id_user)
+INSERT INTO admins (id_user)
 VALUES 
 (1);
 
 -- Populating notification table
-INSERT INTO notification (id_user, date)
+INSERT INTO notifications (id_user, date)
 VALUES 
 (1, '2023-10-21'),
 (2, '2023-09-16'),
@@ -224,23 +187,21 @@ VALUES
 -- Populating task_notification table
 INSERT INTO task_notification (id, id_task, notification_type)
 VALUES 
-(1, 1, 'New Task'),
-(2, 2, 'Task Completed');
+(1, 1, 'new_task'),
+(2, 2, 'task_completed');
 
 -- Populating comment_notification table
 INSERT INTO comment_notification (id, id_comment, notification_type)
 VALUES 
-(1, 1, 'New Comment'),
-(2, 2, 'Comment Reply');
+(1, 1, 'new_comment');
 
 -- Populating user_notification table
 INSERT INTO user_notification (id, id_user, notification_type)
 VALUES 
-(1, 1, 'Mentioned'),
-(2, 2, 'Assigned');
+(1, 1, 'join_accepted');
 
 -- Populating project_notification table
 INSERT INTO project_notification (id, id_project, notification_type)
 VALUES 
-(1, 1, 'New Project'),
-(2, 2, 'Project Update');
+(1, 1, 'member_joined');
+
