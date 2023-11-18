@@ -14,6 +14,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    
+    // Specify the database table to be used
+    protected $table = 'users2';
 
     // Don't add create and update timestamps in database.
     public $timestamps  = false;

@@ -152,7 +152,7 @@ paths:
 
 ############################################ PROFILE ############################################
 
-######### USER PROFILE #########
+######### VIEW USER PROFILE #########
 
   /users/{id}:
     get:
@@ -172,5 +172,50 @@ paths:
       responses:
         '200':
           description: 'Ok. Show view profile UI'
- 
 
+######### EDIT USER PROFILE #########
+
+    put:
+      operationId: R202
+      summary: 'R202: Update User Profile'
+      description: 'Allows the owner of profile to edit their information. Access: OWN'
+      tags:
+        - 'M02: Users'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                bio:
+                  type: string
+                username:
+                  type: string
+      responses:
+        '200':
+          description: 'Profile updated successfully.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'User profile updated successfully.'
+        '400':
+          description: 'Invalid input data or format.'
+        '401':
+          description: 'User not authenticated or does not have permission to update this profile.'
+        '404':
+          description: 'User profile not found.'
