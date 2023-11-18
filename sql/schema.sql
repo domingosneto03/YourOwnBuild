@@ -418,7 +418,6 @@ AFTER DELETE ON member
 FOR EACH ROW
 EXECUTE FUNCTION notify_users_on_leave();
 
-/*
 --TRIGGER05
 -- Step 1: Define the trigger function
 CREATE OR REPLACE FUNCTION block_user() RETURNS TRIGGER AS $$
@@ -437,6 +436,23 @@ CREATE TRIGGER trigger_block_user
 AFTER INSERT ON admin_action
 FOR EACH ROW
 EXECUTE FUNCTION block_user();
+
+/*
+--TRANSACTION01
+BEGIN TRANSACTION;
+
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+
+-- Insert the new project into the `project` table
+INSERT INTO project (name, description, is_public, date_created)
+VALUES ($project_name, $project_description, $project_visibility, NOW());
+
+-- Retrieve the ID of the newly created project
+SELECT currval('project_id_seq') INTO $project_id;
+
+-- Add the creator of the project as the default coordinator in the `member` table
+INSERT INTO member (id_user, id_project, role)
+VALUES ($creator_id, $project_id, 'coordinator');
 
 -- Send a notification to the creator confirming the successful creation of the project
 INSERT INTO notifications (id_user, date, seen)
