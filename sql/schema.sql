@@ -5,7 +5,7 @@
 DROP TABLE IF EXISTS users2 CASCADE;
 DROP TABLE IF EXISTS task CASCADE; 
 DROP TABLE IF EXISTS comment CASCADE; 
-DROP TABLE IF EXISTS project CASCADE;
+DROP TABLE IF EXISTS project1 CASCADE;
 DROP TABLE IF EXISTS member CASCADE;
 DROP TABLE IF EXISTS notifications CASCADE;
 DROP TABLE IF EXISTS responsible CASCADE;
@@ -34,12 +34,12 @@ DROP FUNCTION IF EXISTS make_project_creator_coordinator CASCADE;
 DROP FUNCTION IF EXISTS notify_users_on_leave CASCADE;
 DROP FUNCTION IF EXISTS block_user CASCADE;
 
-DROP TRIGGER IF EXISTS project_search_update_trigger ON project CASCADE;
+DROP TRIGGER IF EXISTS project_search_update_trigger ON project1 CASCADE;
 DROP TRIGGER IF EXISTS task_search_update_trigger ON task CASCADE;
 DROP TRIGGER IF EXISTS user_search_update_trigger ON users2 CASCADE;
 DROP TRIGGER IF EXISTS comment_search_update_trigger ON comment CASCADE;
 DROP TRIGGER IF EXISTS trigger_check_task_dates ON task CASCADE;
-DROP TRIGGER IF EXISTS trigger_default_project_coordinator ON project CASCADE;
+DROP TRIGGER IF EXISTS trigger_default_project_coordinator ON project1 CASCADE;
 DROP TRIGGER IF EXISTS tr_notify_users_on_leave ON member CASCADE;
 DROP TRIGGER IF EXISTS trigger_block_user ON admin_action CASCADE;
 DROP TRIGGER IF EXISTS trigger_check_project_invitation ON member CASCADE;
@@ -80,7 +80,7 @@ CREATE TABLE users2 (
     is_blocked BOOLEAN NOT NULL DEFAULT false
 );
 
-CREATE TABLE project (
+CREATE TABLE project1 (
     id SERIAL PRIMARY KEY,
     id_creator INT NOT NULL REFERENCES users2(id),
     name VARCHAR(255) NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE project (
 CREATE TABLE task (
     id SERIAL PRIMARY KEY,
     id_creator INT NOT NULL REFERENCES users2(id),
-    id_project INT NOT NULL REFERENCES project(id),
+    id_project INT NOT NULL REFERENCES project1(id),
     name VARCHAR(255) NOT NULL,
     label VARCHAR(255) NOT NULL,
     is_completed BOOLEAN NOT NULL DEFAULT false,
@@ -112,7 +112,7 @@ CREATE TABLE comment (
 CREATE TABLE member (
     id SERIAL PRIMARY KEY,
     id_user INT NOT NULL REFERENCES users2(id),
-    id_project INT NOT NULL REFERENCES project(id),
+    id_project INT NOT NULL REFERENCES project1(id),
     role member_types NOT NULL
 );
 
@@ -131,13 +131,13 @@ CREATE TABLE responsible (
 
 CREATE TABLE invited (
     id_user INT NOT NULL REFERENCES users2(id),
-    id_project INT NOT NULL REFERENCES project(id),
+    id_project INT NOT NULL REFERENCES project1(id),
     PRIMARY KEY (id_user, id_project)
 );
 
 CREATE TABLE request_join (
     id_user INT NOT NULL REFERENCES users2(id),
-    id_project INT NOT NULL REFERENCES project(id),
+    id_project INT NOT NULL REFERENCES project1(id),
     PRIMARY KEY (id_user, id_project)
 );
 
@@ -161,7 +161,7 @@ CREATE TABLE user_notification (
 
 CREATE TABLE project_notification (
     id INT PRIMARY KEY REFERENCES notifications (id),
-    id_project INT NOT NULL REFERENCES project(id),
+    id_project INT NOT NULL REFERENCES project1(id),
     notification_type project_notification_types NOT NULL
 );
 
@@ -188,7 +188,7 @@ CREATE INDEX idx_priority_task ON task (is_completed, priority);
 
 --IDX03
 -- Add column to group to store computed ts_vectors.
-ALTER TABLE project
+ALTER TABLE project1
 ADD COLUMN tsvectors TSVECTOR;
 
 -- Create a function to automatically update ts_vectors.
@@ -214,13 +214,13 @@ LANGUAGE plpgsql;
 
 -- Create a trigger before insert or update on group.
 CREATE TRIGGER project_search_update_trigger
- BEFORE INSERT OR UPDATE ON project
+ BEFORE INSERT OR UPDATE ON project1
  FOR EACH ROW
  EXECUTE PROCEDURE project_search_update();
 
 
 -- Finally, create a GIN index for ts_vectors.
-CREATE INDEX search_project_idx ON project USING GIN (tsvectors);
+CREATE INDEX search_project_idx ON project1 USING GIN (tsvectors);
 
 --IDX04
 -- Add column to task to store computed ts_vectors.
@@ -360,7 +360,7 @@ $$ LANGUAGE plpgsql;
 
 --Create the Trigger
 CREATE TRIGGER trigger_default_project_coordinator
-    AFTER INSERT ON project
+    AFTER INSERT ON project1
     FOR EACH ROW
     EXECUTE FUNCTION make_project_creator_coordinator();
 
@@ -370,10 +370,10 @@ CREATE FUNCTION check_project_invitation() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     -- Check if the project is private
-    IF (SELECT is_public FROM project WHERE id = NEW.id_project) = false THEN
+    IF (SELECT is_public FROM project1 WHERE id = NEW.id_project) = false THEN
 
         -- Check if the user being added is NOT the project creator
-        IF NEW.id_user <> (SELECT id_creator FROM project WHERE id = NEW.id_project) THEN
+        IF NEW.id_user <> (SELECT id_creator FROM project1 WHERE id = NEW.id_project) THEN
             
             -- If not the creator, check for an invitation
             IF NOT EXISTS (SELECT 1 FROM invited WHERE id_user = NEW.id_user AND id_project = NEW.id_project) THEN
@@ -444,7 +444,7 @@ BEGIN TRANSACTION;
 SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
 -- Insert the new project into the `project` table
-INSERT INTO project (name, description, is_public, date_created)
+INSERT INTO project1 (name, description, is_public, date_created)
 VALUES ($project_name, $project_description, $project_visibility, NOW());
 
 -- Retrieve the ID of the newly created project

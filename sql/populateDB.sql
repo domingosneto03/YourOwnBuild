@@ -45,7 +45,7 @@ VALUES
   ('michael_green', 'michaelpass', 'michael.green@example.com', 'Michael Green', 'A UI/UX designer', false, false),
   ('rebecca_ward', 'rebeccapass', 'rebecca.ward@example.com', 'Rebecca Ward', 'A software developer', false, false);
 
-INSERT INTO project (id_creator, name, description, is_public, date_created)
+INSERT INTO project1 (id_creator, name, description, is_public, date_created)
 VALUES
   (1, 'Project Alpha', 'A simple project for testing', true, '2023-01-15'),
   (2, 'Project Beta', 'An experimental project with new features', true, '2023-02-20'),
