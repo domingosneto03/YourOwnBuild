@@ -1,213 +1,294 @@
--- Populating user table
-INSERT INTO users (name, username, password, email, bio)
-VALUES 
-('Alice', 'alice123', 'pass1234', 'alice@example.com', 'I am a project manager.'),
-('Bob', 'bob456', 'bobpass', 'bob@example.com', 'I love coding!'),
-('Charlie', 'charlie789', 'charliepass', 'charlie@example.com', 'Design enthusiast.'),
-('David', 'david234', 'davidpass', 'david@example.com', 'Music lover.'),
-('Eva', 'eva567', 'evapass', 'eva@example.com', 'Outdoor enthusiast.'),
-('Frank', 'frank890', 'frankpass', 'frank@example.com', 'Gamer and developer.'),
-('Grace', 'grace1234', 'gracepass', 'grace@example.com', 'Bookworm and writer.'),
-('Helen', 'helen567', 'helenpass', 'helen@example.com', 'Art and photography.'),
-('Ivy', 'ivy890', 'ivypass', 'ivy@example.com', 'Science and tech enthusiast.'),
-('Karen', 'karen456', 'karenpass', 'karen@example.com', 'Travel and adventure.'),
-('Jack', 'jack123', 'jackpass', 'jack@example.com', 'Fitness and nutrition.'),
-('Liam', 'liam789', 'liampass', 'liam@example.com', 'Film and cinema lover.'),
-('Mia', 'mia123', 'miapass', 'mia@example.com', 'Fashion and style.'),
-('Noah', 'noah456', 'noahpass', 'noah@example.com', 'Coding and robotics.'),
-('Olivia', 'olivia789', 'oliviapass', 'olivia@example.com', 'Music and instruments.'),
-('Peter', 'peter123', 'peterpass', 'peter@example.com', 'Outdoor sports.'),
-('Quinn', 'quinn456', 'quinnpass', 'quinn@example.com', 'Photography and art.'),
-('Rachel', 'rachel789', 'rachelpass', 'rachel@example.com', 'Science and research.'),
-('Sam', 'sam123', 'sampass', 'sam@example.com', 'Food and cooking.'),
-('Tom', 'tom456', 'tompass', 'tom@example.com', 'History and archaeology.'),
-('Ursula', 'ursula123', 'ursulapass', 'ursula@example.com', 'Nature and hiking enthusiast.'),
-('Victor', 'victor456', 'victorpass', 'victor@example.com', 'Chess and strategy games.'),
-('Wendy', 'wendy789', 'wendypass', 'wendy@example.com', 'Writing and literature.'),
-('Xander', 'xander123', 'xanderpass', 'xander@example.com', 'Computers and coding.'),
-('Zane', 'zane789', 'zanepass', 'zane@example.com', 'Fitness and bodybuilding.'),
-('Yara', 'yara456', 'yarapass', 'yara@example.com', 'Art and painting.'),
-('Ava', 'ava123', 'avapass', 'ava@example.com', 'Yoga and meditation.'),
-('Ben', 'ben456', 'benpass', 'ben@example.com', 'Automobiles and racing.'),
-('Cara', 'cara789', 'carapass', 'cara@example.com', 'Dance and choreography.'),
-('Dylan', 'dylan123', 'dylanpass', 'dylan@example.com', 'History and archaeology.'),
-('Ella', 'ella456', 'ellapass', 'ella@example.com', 'Music and singing.'),
-('Felix', 'felix789', 'felixpass', 'felix@example.com', 'Gardening and plants.'),
-('Gina', 'gina123', 'ginapass', 'gina@example.com', 'Movies and film.'),
-('Hank', 'hank456', 'hankpass', 'hank@example.com', 'Cooking and culinary arts.'),
-('Iris', 'iris789', 'irispass', 'iris@example.com', 'Hiking and outdoor activities.'),
-('Jake', 'jake123', 'jakepass', 'jake@example.com', 'Science and astronomy.'),
-('Kylie', 'kylie456', 'kyliepass', 'kylie@example.com', 'Fashion and design.'),
-('Liam', 'liam69', 'liampass', 'liam69@example.com', 'Animals and wildlife.'),
-('Megan', 'megan123', 'meganpass', 'megan@example.com', 'Travel and adventure.'),
-('Nate', 'nate456', 'natepass', 'nate@example.com', 'Soccer and sports.');
+INSERT INTO users2 (username, password, email, name, bio, is_admin, is_blocked)
+VALUES
+  ('john_doe', 'securepass', 'john.doe@example.com', 'John Doe', 'A software developer', false, false),
+  ('alice_smith', 'password123', 'alice.smith@example.com', 'Alice Smith', 'A graphic designer', false, false),
+  ('bob_jones', 'pass456', 'bob.jones@example.com', 'Bob Jones', 'An accountant', false, false),
+  ('emma_white', 'secretword', 'emma.white@example.com', 'Emma White', 'A marketing specialist', false, false),
+  ('mike_miller', 'mikempass', 'mike.miller@example.com', 'Mike Miller', 'A project manager', false, false),
+  ('sara_jackson', 'sarapass', 'sara.jackson@example.com', 'Sara Jackson', 'A data scientist', false, false),
+  ('peter_adams', 'peterpass', 'peter.adams@example.com', 'Peter Adams', 'A UX designer', false, false),
+  ('lisa_carter', 'lisapass', 'lisa.carter@example.com', 'Lisa Carter', 'A social media manager', false, false),
+  ('kevin_brown', 'kevinpass', 'kevin.brown@example.com', 'Kevin Brown', 'A financial analyst', false, false),
+  ('natalie_green', 'nataliepass', 'natalie.green@example.com', 'Natalie Green', 'An HR specialist', false, false),
+  ('steven_hill', 'stevenpass', 'steven.hill@example.com', 'Steven Hill', 'A content writer', false, false),
+  ('julia_wilson', 'juliapass', 'julia.wilson@example.com', 'Julia Wilson', 'A software engineer', false, false),
+  ('ryan_smith', 'ryanpass', 'ryan.smith@example.com', 'Ryan Smith', 'A product manager', false, false),
+  ('amanda_clark', 'amandapass', 'amanda.clark@example.com', 'Amanda Clark', 'An event planner', false, false),
+  ('daniel_roberts', 'danielpass', 'daniel.roberts@example.com', 'Daniel Roberts', 'A business analyst', false, false),
+  ('olivia_davis', 'oliviapass', 'olivia.davis@example.com', 'Olivia Davis', 'A UI designer', false, false),
+  ('matthew_hall', 'matthewpass', 'matthew.hall@example.com', 'Matthew Hall', 'A sales representative', false, false),
+  ('emily_jones', 'emilypass', 'emily.jones@example.com', 'Emily Jones', 'A project coordinator', false, false),
+  ('jason_martin', 'jasonpass', 'jason.martin@example.com', 'Jason Martin', 'A software architect', false, false),
+  ('linda_morris', 'lindapass', 'linda.morris@example.com', 'Linda Morris', 'An office manager', false, false),
+  ('brian_wilson', 'brianpass', 'brian.wilson@example.com', 'Brian Wilson', 'A network engineer', false, false),
+  ('natalie_cruz', 'nataliepass', 'natalie.cruz@example.com', 'Natalie Cruz', 'A communications specialist', false, false),
+  ('robert_garcia', 'robertpass', 'robert.garcia@example.com', 'Robert Garcia', 'A software tester', false, false),
+  ('michelle_lee', 'michellepass', 'michelle.lee@example.com', 'Michelle Lee', 'A systems analyst', false, false),
+  ('brandon_king', 'brandonpass', 'brandon.king@example.com', 'Brandon King', 'A web developer', false, false),
+  ('susan_miller', 'susanpass', 'susan.miller@example.com', 'Susan Miller', 'An executive assistant', false, false),
+  ('jacob_richardson', 'jacobpass', 'jacob.richardson@example.com', 'Jacob Richardson', 'A database administrator', false, false),
+  ('emma_scott', 'emmapass', 'emma.scott@example.com', 'Emma Scott', 'A customer support representative', false, false),
+  ('alexander_hill', 'alexpass', 'alexander.hill@example.com', 'Alexander Hill', 'A mobile app developer', false, false),
+  ('sophia_wright', 'sophiapass', 'sophia.wright@example.com', 'Sophia Wright', 'An IT consultant', false, false),
+  ('david_hernandez', 'davidpass', 'david.hernandez@example.com', 'David Hernandez', 'A front-end developer', false, false),
+  ('amy_martin', 'amypass', 'amy.martin@example.com', 'Amy Martin', 'A user experience specialist', false, false),
+  ('bryan_anderson', 'bryanpass', 'bryan.anderson@example.com', 'Bryan Anderson', 'A software architect', false, false),
+  ('christina_smith', 'christinapass', 'christina.smith@example.com', 'Christina Smith', 'A marketing coordinator', false, false),
+  ('eric_collins', 'ericpass', 'eric.collins@example.com', 'Eric Collins', 'A project manager', false, false),
+  ('laura_ward', 'laurapass', 'laura.ward@example.com', 'Laura Ward', 'An art director', false, false),
+  ('timothy_davis', 'timothypass', 'timothy.davis@example.com', 'Timothy Davis', 'A technical writer', false, false),
+  ('melissa_ross', 'melissapass', 'melissa.ross@example.com', 'Melissa Ross', 'An HR manager', false, false),
+  ('nathan_wood', 'nathanpass', 'nathan.wood@example.com', 'Nathan Wood', 'A systems administrator', false, false),
+  ('sophie_harris', 'sophiepass', 'sophie.harris@example.com', 'Sophie Harris', 'A content strategist', false, false),
+  ('jeremy_thompson', 'jeremypass', 'jeremy.thompson@example.com', 'Jeremy Thompson', 'A software engineer', false, false),
+  ('natalie_brown', 'nataliepass', 'natalie.brown@example.com', 'Natalie Brown', 'A social media specialist', false, false),
+  ('michael_green', 'michaelpass', 'michael.green@example.com', 'Michael Green', 'A UI/UX designer', false, false),
+  ('rebecca_ward', 'rebeccapass', 'rebecca.ward@example.com', 'Rebecca Ward', 'A software developer', false, false);
 
--- Populating project table
-INSERT INTO project (name, description, date_created)
-VALUES 
-('Website Development', 'Develop a new company website.', '2023-10-20'),
-('Mobile App', 'Develop a mobile application for e-commerce.', '2023-09-15'),
-('Data Analysis Project', 'Analyze customer data for insights.', '2023-08-05'),
-('Marketing Campaign', 'Plan and execute a marketing campaign.', '2023-07-12'),
-('Inventory Management', 'Develop a system for inventory tracking.', '2023-06-25'),
-('Research Paper', 'Conduct research and write a research paper.', '2023-05-18'),
-('Event Planning', 'Plan and organize a company event.', '2023-04-29'),
-('Graphic Design Project', 'Create branding materials and graphics.', '2023-03-14'),
-('Community Outreach', 'Engage in community outreach programs.', '2023-02-27'),
-( 'Quality Assurance', 'Ensure product quality through testing.', '2023-01-10');
+INSERT INTO project (id_creator, name, description, is_public, date_created)
+VALUES
+  (1, 'Project Alpha', 'A simple project for testing', false, '2023-01-15'),
+  (2, 'Project Beta', 'An experimental project with new features', false, '2023-02-20'),
+  (3, 'Project Gamma', 'A small project to demonstrate functionality', false, '2023-03-10'),
+  (4, 'Project Delta', 'A project to explore different technologies', false, '2023-04-05'),
+  (5, 'Project Epsilon', 'A collaborative project among team members', false, '2023-05-18'),
+  (6, 'Project Zeta', 'A side project for additional testing', false, '2023-06-23'),
+  (7, 'Project Eta', 'A non-public project with specific goals', false, '2023-07-30'),
+  (8, 'Project Theta', 'A project for internal use only', false, '2023-08-12'),
+  (9, 'Project Iota', 'A short-term project with a focused scope', false, '2023-09-05'),
+  (10, 'Project Kappa', 'A restricted-access project for special tasks', false, '2023-10-02');
 
--- Populating task table
-INSERT INTO task (id_creator, name, label, date_created, due_date)
-VALUES 
-(1, 'Landing Page Design', 'Design', '2023-10-21', '2023-11-10'),
-(1, 'Backend API', 'Development', '2023-09-17', '2023-10-15'),
-(1, 'Content Writing', 'Content', '2023-08-05', '2023-09-02'),
-(5, 'Database Optimization', 'Development', '2023-07-18', '2023-08-12'),
-(6, 'Testing and QA', 'Quality Assurance', '2023-06-30', '2023-07-28'),
-(6, 'Marketing Campaign', 'Marketing', '2023-05-22', '2023-06-10'),
-(10, 'User Interface Design', 'Design', '2023-04-15', '2023-05-12'),
-(8, 'Mobile App Development', 'Development', '2023-03-08', '2023-04-05'),
-(9, 'Data Analysis', 'Analysis', '2023-02-02', '2023-03-01'),
-(12, 'Social Media Marketing', 'Marketing', '2023-01-15', '2023-02-10'),
-(11, 'Content Management', 'Content', '2023-12-20', '2024-01-18'),
-(23, 'Inventory Tracking', 'Inventory', '2023-11-05', '2023-12-02'),
-(14, 'Customer Support', 'Support', '2023-10-10', '2023-11-07');
+INSERT INTO member (id_user, id_project, role)
+VALUES
+  (1, 1, 'coordinator'),
+  (11, 1, 'project_member'),
+  (12, 1, 'project_member'),
+  (13, 1, 'project_member'),
+  (2, 2, 'coordinator'),
+  (14, 2, 'project_member'),
+  (15, 2, 'project_member'),
+  (16, 2, 'project_member'),
+  (3, 3, 'coordinator'),
+  (17, 3, 'project_member'),
+  (18, 3, 'project_member'),
+  (19, 3, 'project_member'),
+  (4, 4, 'coordinator'),
+  (20, 4, 'project_member'),
+  (21, 4, 'project_member'),
+  (22, 4, 'project_member'),
+  (5, 5, 'coordinator'),
+  (23, 5, 'project_member'),
+  (24, 5, 'project_member'),
+  (25, 5, 'project_member'),
+  (6, 6, 'coordinator'),
+  (26, 6, 'project_member'),
+  (7, 7, 'coordinator'),
+  (27, 7, 'project_member'),
+  (8, 8, 'coordinator'),
+  (28, 8, 'project_member'),
+  (9, 9, 'coordinator'),
+  (29, 9, 'project_member'),
+  (10, 10, 'coordinator'),
+  (30, 10, 'project_member');
 
+INSERT INTO task (id_creator, id_project, name, label, is_completed, date_created, due_date, priority)
+VALUES
+  (1, 1, 'Task 1', 'Label A', false, '2023-01-15', '2023-02-01', 'high'),
+  (1, 1, 'Task 2', 'Label B', false, '2023-02-20', '2023-03-10', 'medium'),
+  (12, 1, 'Task 3', 'Label C', false, '2023-03-10', '2023-04-05', 'low'),
+  (2, 2, 'Task 4', 'Label A', false, '2023-04-05', '2023-05-18', 'medium'),
+  (14, 2, 'Task 5', 'Label B', false, '2023-05-18', '2023-06-23', 'high'),
+  (15, 2, 'Task 6', 'Label C', false, '2023-06-23', '2023-07-30', 'low'),
+  (3, 3, 'Task 7', 'Label A', false, '2023-07-30', '2023-08-12', 'medium'),
+  (3, 3, 'Task 8', 'Label B', false, '2023-08-12', '2023-09-05', 'high'),
+  (3, 3, 'Task 9', 'Label C', false, '2023-09-05', '2023-10-02', 'low'),
+  (4, 4, 'Task 10', 'Label A', false, '2023-10-02', '2023-11-08', 'medium'),
+  (21, 4, 'Task 11', 'Label B', false, '2023-11-08', '2023-12-15', 'high'),
+  (22, 4, 'Task 12', 'Label C', false, '2023-11-15', '2023-12-02', 'low'),
+  (5, 5, 'Task 13', 'Label A', false, '2023-01-02', '2023-02-28', 'medium'),
+  (25, 5, 'Task 14', 'Label B', false, '2023-02-28', '2023-03-18', 'high'),
+  (25, 5, 'Task 15', 'Label C', false, '2023-03-18', '2023-04-25', 'low'),
+  (6, 6, 'Task 16', 'Label A', false, '2023-04-25', '2023-05-30', 'medium'),
+  (6, 6, 'Task 17', 'Label B', false, '2023-05-30', '2023-06-10', 'high'),
+  (6, 6, 'Task 18', 'Label C', false, '2023-06-10', '2023-07-15', 'low'),
+  (7, 7, 'Task 19', 'Label A', false, '2023-07-15', '2023-08-22', 'medium'),
+  (27, 7, 'Task 20', 'Label B', false, '2023-08-22', '2023-09-05', 'high'),
+  (27, 7, 'Task 21', 'Label C', false, '2023-09-05', '2023-10-12', 'low'),
+  (8, 8, 'Task 22', 'Label A', false, '2023-10-12', '2023-11-18', 'medium'),
+  (8, 8, 'Task 23', 'Label B', false, '2023-11-18', '2023-12-25', 'high'),
+  (28, 8, 'Task 24', 'Label C', false, '2023-12-25', '2024-01-05', 'low'),
+  (9, 9, 'Task 25', 'Label A', false, '2024-01-05', '2024-02-15', 'medium'),
+  (9, 9, 'Task 26', 'Label B', false, '2024-02-15', '2024-03-01', 'high'),
+  (9, 9, 'Task 27', 'Label C', false, '2024-03-01', '2024-04-10', 'low'),
+  (10, 10, 'Task 28', 'Label A', false, '2024-04-10', '2024-05-20', 'medium'),
+  (10, 10, 'Task 29', 'Label B', false, '2024-05-20', '2024-06-05', 'high'),
+  (30, 10, 'Task 30', 'Label C', false, '2024-06-05', '2024-07-15', 'low'); 
 
--- Populating priority table
-INSERT INTO priority (id_task, priority_type)
-VALUES 
-(1, 'high'),
-(2, 'medium'),
-(3, 'low'),
-(4, 'high'),
-(5, 'medium'),
-(6, 'low'),
-(7, 'high'),
-(8, 'medium'),
-(9, 'low'),
-(10, 'high'),
-(11, 'medium'),
-(12, 'low'),
-(13, 'high');
+INSERT INTO comment (id_user, id_task, content, date)
+VALUES
+  (1, 1, 'Comment 1 for Task 1', '2023-01-20'),
+  (2, 4, 'Comment 2 for Task 4', '2023-04-08'),
+  (3, 7, 'Comment 3 for Task 7', '2023-07-15'),
+  (4, 10, 'Comment 4 for Task 10', '2023-10-25'),
+  (5, 13, 'Comment 5 for Task 13', '2023-02-14'),
+  (6, 16, 'Comment 6 for Task 16', '2023-05-02'),
+  (7, 19, 'Comment 7 for Task 19', '2023-08-18'),
+  (8, 22, 'Comment 8 for Task 22', '2023-11-05'),
+  (9, 25, 'Comment 9 for Task 25', '2024-02-22'),
+  (10, 28, 'Comment 10 for Task 28', '2024-05-10');
+  
 
--- Populating comment table
-INSERT INTO comment (id_task, content, date)
-VALUES 
-(1, 'The design looks good.', '2023-10-22'),
-(2, 'API is now functional.', '2023-09-29'),
-(2, 'The analysis is complete.', '2023-08-10'),
-(2, 'Optimized the database queries.', '2023-07-22'),
-(5, 'Completed testing phase.', '2023-06-15'),
-(6, 'Planning the event schedule.', '2023-05-01'),
-(7, 'Working on graphic designs.', '2023-04-14'),
-(8, 'Outreach activities are ongoing.', '2023-03-20'),
-(8, 'Quality assurance checks done.', '2023-02-12'),
-(13, 'Testing the mobile app.', '2022-10-14');
+INSERT INTO admin_action (id_admin, id_user, is_blocking, justification)
+VALUES
+  (31, 34, true, 'User 34 violated community guidelines.'),
+  (32, 35, false, 'User 35 had a temporary suspension lifted.'),
+  (33, 36, true, 'User 36 engaged in inappropriate behavior.');
 
--- Populating member table
-INSERT INTO member (id_user, id_project, member_type)
-VALUES 
-(1, 1, 'project_member'),
-(2, 1, 'project_member'),
-(3, 1, 'coordinator'),
-(4, 2, 'project_member'),
-(5, 2, 'project_member'),
-(7, 2, 'coordinator'),
-(8, 3, 'project_member'),
-(10, 3, 'project_member'),
-(9, 3, 'coordinator'),
-(11, 4, 'project_member'),
-(13, 4, 'project_member'),
-(12, 4, 'coordinator'),
-(14, 5, 'project_member'),
-(15, 5, 'project_member'),
-(25, 5, 'coordinator'),
-(17, 6, 'coordinator'),
-(21, 7, 'coordinator'),
-(30, 8, 'coordinator'),
-(8, 9, 'coordinator'),
-(20, 10, 'coordinator');
-
-
--- Populating admin table
-INSERT INTO admins (id_user)
-VALUES 
-(1);
-
--- Populating blocked table
-INSERT INTO blocked (id_user)
-VALUES 
-(35),
-(37);
-
--- Populating notification table
-INSERT INTO notifications (id_user, date)
-VALUES 
-(1, '2023-10-21'),
-(2, '2023-09-16'),
-(3, '2023-08-05'),
-(4, '2023-07-12'),
-(5, '2023-06-25'),
-(6, '2023-05-18'),
-(7, '2023-04-29'),
-(8, '2023-03-14'),
-(9, '2023-02-27'),
-(10, '2023-01-10');
-
--- Populating responsible table
 INSERT INTO responsible (id_user, id_task)
-VALUES 
-(1, 1),
-(2, 2);
+VALUES
+  (1, 1),
+  (11, 2),
+  (12, 3),
+  (2, 4),
+  (14, 5),
+  (15, 6),
+  (3, 7),
+  (17, 8),
+  (18, 9),
+  (4, 10),
+  (11, 11),
+  (21, 12),
+  (22, 13),
+  (12, 14),
+  (24, 15),
+  (25, 16),
+  (13, 17),
+  (28, 18),
+  (29, 19),
+  (14, 20);
 
--- Populating everyone table
-INSERT INTO everyone (id_user, id_notification)
-VALUES 
-(1, 1),
-(2, 2);
-
--- Populating creator table
-INSERT INTO creator (id_user, id_project)
-VALUES 
-(1, 1),
-(2, 2);
-
--- Populating invited table
 INSERT INTO invited (id_user, id_project)
-VALUES 
-(3, 1),
-(3, 2);
+VALUES
+  (11, 1),
+  (12, 1),
+  (13, 1),
+  (14, 2),
+  (15, 2),
+  (16, 2),
+  (17, 3),
+  (18, 3),
+  (19, 3),
+  (20, 4),
+  (21, 4),
+  (22, 4),
+  (23, 5),
+  (24, 5),
+  (25, 5),
+  (26, 6),
+  (27, 7),
+  (28, 8),
+  (29, 9),
+  (30, 10);
 
--- Populating request_join table
 INSERT INTO request_join (id_user, id_project)
-VALUES 
-(3, 2);
+VALUES
+  (37, 1),
+  (38, 2),
+  (39, 3),
+  (37, 4),
+  (38, 5);
 
--- Populating user_comment table
-INSERT INTO user_comment (id_user, id_comment)
-VALUES 
-(3, 1),
-(2, 2);
+INSERT INTO notifications (id_user, date, seen)
+VALUES
+  (1, '2023-01-15 08:00:00', false),
+  (2, '2023-02-20 10:30:00', false),
+  (3, '2023-03-10 15:45:00', false),
+  (4, '2023-04-05 12:20:00', false),
+  (5, '2023-05-18 09:15:00', false),
+  (6, '2023-06-23 11:30:00', false),
+  (7, '2023-07-30 14:10:00', false),
+  (8, '2023-08-12 16:50:00', false),
+  (9, '2023-09-05 18:25:00', false),
+  (10, '2023-10-02 20:40:00', false),
+  (11, '2023-11-08 22:15:00', false),
+  (12, '2023-12-15 23:55:00', false),
+  (13, '2024-01-02 08:30:00', false),
+  (14, '2024-02-28 10:00:00', false),
+  (15, '2024-03-18 12:40:00', false),
+  (16, '2024-04-25 14:05:00', false),
+  (17, '2024-05-30 16:20:00', false),
+  (18, '2024-06-10 18:35:00', false),
+  (19, '2024-07-15 21:00:00', false),
+  (20, '2024-08-22 22:45:00', false),
+  (21, '2024-09-05 00:10:00', false),
+  (22, '2024-10-12 01:25:00', false),
+  (23, '2024-11-18 03:40:00', false),
+  (24, '2024-12-25 05:15:00', false),
+  (25, '2025-01-05 07:30:00', false),
+  (26, '2025-02-15 09:55:00', false),
+  (27, '2025-03-01 11:20:00', false),
+  (28, '2025-04-10 13:45:00', false),
+  (29, '2025-05-20 15:10:00', false),
+  (30, '2025-06-05 17:25:00', false),
+  (31, '2024-09-05 00:20:00', false),
+  (32, '2024-10-12 01:35:00', false),
+  (33, '2024-11-18 03:50:00', false),
+  (34, '2024-12-25 05:25:00', false),
+  (35, '2025-01-05 07:40:00', false),
+  (36, '2025-02-15 10:05:00', false),
+  (37, '2025-03-01 11:30:00', false),
+  (38, '2025-04-10 13:55:00', false),
+  (39, '2025-05-20 16:10:00', false),
+  (40, '2025-06-05 18:25:00', false);
 
--- Populating task_notification table
-INSERT INTO task_notification (id, id_task, notification_type)
-VALUES 
-(1, 1, 'new_task'),
-(2, 2, 'task_completed');
-
--- Populating comment_notification table
 INSERT INTO comment_notification (id, id_comment, notification_type)
-VALUES 
-(1, 1, 'new_comment');
+VALUES
+  (1, 1, 'new_comment'),
+  (2, 2, 'new_comment'),
+  (3, 3, 'new_comment'),
+  (4, 4, 'new_comment'),
+  (5, 5, 'new_comment'),
+  (6, 6, 'new_comment'),
+  (7, 7, 'new_comment'),
+  (8, 8, 'new_comment'),
+  (9, 9, 'new_comment'),
+  (10, 10, 'new_comment');
 
--- Populating user_notification table
-INSERT INTO user_notification (id, id_user, notification_type)
-VALUES 
-(1, 1, 'join_accepted');
-
--- Populating project_notification table
 INSERT INTO project_notification (id, id_project, notification_type)
-VALUES 
-(1, 1, 'member_joined');
+VALUES
+  (11, 1, 'member_joined'),
+  (12, 1, 'member_left'),
+  (13, 2, 'new_coordinator'),
+  (14, 2, 'request_join'),
+  (15, 3, 'member_joined'),
+  (16, 3, 'member_left'),
+  (17, 1, 'new_coordinator'),
+  (18, 1, 'request_join'),
+  (19, 4, 'member_joined'),
+  (20, 4, 'member_left'),
+  (21, 4, 'new_coordinator'),
+  (22, 5, 'request_join'),
+  (23, 5, 'member_joined'),
+  (24, 5, 'member_left'),
+  (25, 5, 'new_coordinator'),
+  (26, 6, 'request_join'),
+  (27, 7, 'member_joined'),
+  (28, 8, 'member_left'),
+  (29, 8, 'new_coordinator'),
+  (30, 10, 'request_join');
 
+INSERT INTO user_notification (id, id_user, notification_type)
+VALUES
+  (31, 1, 'join_accepted'),
+  (32, 2, 'invitation_accepted'),
+  (33, 3, 'join_accepted'),
+  (34, 4, 'invitation_accepted'),
+  (35, 5, 'join_accepted');
+
+INSERT INTO task_notification (id, id_task, notification_type)
+VALUES
+  (36, 1, 'new_task'),
+  (37, 2, 'task_completed'),
+  (38, 3, 'deadline_proximity'),
+  (39, 4, 'new_task'),
+  (40, 5, 'task_completed');
