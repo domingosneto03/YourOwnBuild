@@ -6,7 +6,7 @@ info:
   description: 'Web Resources Specification (A7) for YourOwnBuild'
 
 servers:
-- url: https://lbaw.fe.up.pt/
+- url: https://lbaw23104.lbaw.fe.up.pt/
   description: Production server
 
 externalDocs:
