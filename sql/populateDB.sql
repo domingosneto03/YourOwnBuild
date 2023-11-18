@@ -47,48 +47,38 @@ VALUES
 
 INSERT INTO project (id_creator, name, description, is_public, date_created)
 VALUES
-  (1, 'Project Alpha', 'A simple project for testing', false, '2023-01-15'),
-  (2, 'Project Beta', 'An experimental project with new features', false, '2023-02-20'),
-  (3, 'Project Gamma', 'A small project to demonstrate functionality', false, '2023-03-10'),
-  (4, 'Project Delta', 'A project to explore different technologies', false, '2023-04-05'),
-  (5, 'Project Epsilon', 'A collaborative project among team members', false, '2023-05-18'),
-  (6, 'Project Zeta', 'A side project for additional testing', false, '2023-06-23'),
-  (7, 'Project Eta', 'A non-public project with specific goals', false, '2023-07-30'),
-  (8, 'Project Theta', 'A project for internal use only', false, '2023-08-12'),
-  (9, 'Project Iota', 'A short-term project with a focused scope', false, '2023-09-05'),
-  (10, 'Project Kappa', 'A restricted-access project for special tasks', false, '2023-10-02');
+  (1, 'Project Alpha', 'A simple project for testing', true, '2023-01-15'),
+  (2, 'Project Beta', 'An experimental project with new features', true, '2023-02-20'),
+  (3, 'Project Gamma', 'A small project to demonstrate functionality', true, '2023-03-10'),
+  (4, 'Project Delta', 'A project to explore different technologies', true, '2023-04-05'),
+  (5, 'Project Epsilon', 'A collaborative project among team members', true, '2023-05-18'),
+  (6, 'Project Zeta', 'A side project for additional testing', true, '2023-06-23'),
+  (7, 'Project Eta', 'A non-public project with specific goals', true, '2023-07-30'),
+  (8, 'Project Theta', 'A project for internal use only', true, '2023-08-12'),
+  (9, 'Project Iota', 'A short-term project with a focused scope', true, '2023-09-05'),
+  (10, 'Project Kappa', 'A restricted-access project for special tasks', true, '2023-10-02');
 
 INSERT INTO member (id_user, id_project, role)
 VALUES
-  (1, 1, 'coordinator'),
   (11, 1, 'project_member'),
   (12, 1, 'project_member'),
   (13, 1, 'project_member'),
-  (2, 2, 'coordinator'),
   (14, 2, 'project_member'),
   (15, 2, 'project_member'),
   (16, 2, 'project_member'),
-  (3, 3, 'coordinator'),
   (17, 3, 'project_member'),
   (18, 3, 'project_member'),
   (19, 3, 'project_member'),
-  (4, 4, 'coordinator'),
   (20, 4, 'project_member'),
   (21, 4, 'project_member'),
   (22, 4, 'project_member'),
-  (5, 5, 'coordinator'),
   (23, 5, 'project_member'),
   (24, 5, 'project_member'),
   (25, 5, 'project_member'),
-  (6, 6, 'coordinator'),
   (26, 6, 'project_member'),
-  (7, 7, 'coordinator'),
   (27, 7, 'project_member'),
-  (8, 8, 'coordinator'),
   (28, 8, 'project_member'),
-  (9, 9, 'coordinator'),
   (29, 9, 'project_member'),
-  (10, 10, 'coordinator'),
   (30, 10, 'project_member');
 
 INSERT INTO task (id_creator, id_project, name, label, is_completed, date_created, due_date, priority)

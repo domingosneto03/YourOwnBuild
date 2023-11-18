@@ -30,7 +30,7 @@ DROP FUNCTION IF EXISTS user_search_update CASCADE;
 DROP FUNCTION IF EXISTS comment_search_update CASCADE;
 DROP FUNCTION IF EXISTS check_task_dates CASCADE;
 DROP FUNCTION IF EXISTS check_project_invitation CASCADE;
-DROP FUNCTION IF EXISTS default_project_coordinator CASCADE;
+DROP FUNCTION IF EXISTS make_project_creator_coordinator CASCADE;
 DROP FUNCTION IF EXISTS notify_users_on_leave CASCADE;
 DROP FUNCTION IF EXISTS block_user CASCADE;
 
@@ -80,6 +80,14 @@ CREATE TABLE users2 (
     is_blocked BOOLEAN NOT NULL DEFAULT false
 );
 
+CREATE TABLE project (
+    id SERIAL PRIMARY KEY,
+    id_creator INT NOT NULL REFERENCES users2(id),
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    is_public BOOLEAN NOT NULL DEFAULT false,
+    date_created DATE NOT NULL
+);
 
 CREATE TABLE task (
     id SERIAL PRIMARY KEY,
@@ -99,15 +107,6 @@ CREATE TABLE comment (
     id_task INT NOT NULL REFERENCES task(id),
     content TEXT NOT NULL,
     date TIMESTAMP NOT NULL
-);
-
-CREATE TABLE project (
-    id SERIAL PRIMARY KEY,
-    id_creator INT NOT NULL REFERENCES users2(id),
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    is_public BOOLEAN NOT NULL DEFAULT false,
-    date_created DATE NOT NULL
 );
 
 CREATE TABLE member (
@@ -269,13 +268,13 @@ CREATE FUNCTION user_search_update() RETURNS TRIGGER AS $$
 BEGIN
  IF TG_OP = 'INSERT' THEN
         NEW.tsvectors = (
-         setweight(to_tsvector('english', NEW.name), 'A') ||
+         setweight(to_tsvector('english', NEW.name), 'A')
         );
  END IF;
  IF TG_OP = 'UPDATE' THEN
          IF (NEW.name <> OLD.name) THEN
            NEW.tsvectors = (
-             setweight(to_tsvector('english', NEW.label), 'A') ||
+             setweight(to_tsvector('english', NEW.label), 'A')
            );
          END IF;
  END IF;
@@ -303,13 +302,13 @@ CREATE FUNCTION comment_search_update() RETURNS TRIGGER AS $$
 BEGIN
  IF TG_OP = 'INSERT' THEN
         NEW.tsvectors = (
-         setweight(to_tsvector('english', NEW.content), 'A') ||
+         setweight(to_tsvector('english', NEW.content), 'A')
         );
  END IF;
  IF TG_OP = 'UPDATE' THEN
          IF (NEW.content <> OLD.content) THEN
            NEW.tsvectors = (
-             setweight(to_tsvector('english', NEW.label), 'A') ||
+             setweight(to_tsvector('english', NEW.label), 'A')
            );
          END IF;
  END IF;
@@ -348,41 +347,45 @@ CREATE TRIGGER trigger_check_task_dates
 
 --TRIGGER02
 -- Create the function
-CREATE FUNCTION default_project_coordinator() RETURNS TRIGGER AS
-$BODY$
+CREATE OR REPLACE FUNCTION make_project_creator_coordinator() RETURNS TRIGGER AS $$
 BEGIN
-    -- Check if the creator entry exists for the new project
-    IF NOT EXISTS (SELECT 1 FROM creator WHERE id_project = NEW.id) THEN
-        -- If not, insert the creator with the role of Coordinator
-        INSERT INTO creator(id_user, id_project, role)
-        VALUES (NEW.id_user, NEW.id, 'coordinator');
-    END IF;
+    -- Insert a new entry into the member table
+    -- Set the role of the project creator to 'coordinator'
+    INSERT INTO member (id_user, id_project, role)
+    VALUES (NEW.id_creator, NEW.id, 'coordinator');
+
     RETURN NEW;
 END;
-$BODY$
-LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
--- Create the trigger
+--Create the Trigger
 CREATE TRIGGER trigger_default_project_coordinator
     AFTER INSERT ON project
     FOR EACH ROW
-    EXECUTE PROCEDURE default_project_coordinator();
+    EXECUTE FUNCTION make_project_creator_coordinator();
 
 --TRIGGER03
 -- Create the function
 CREATE FUNCTION check_project_invitation() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    -- If the project is not public, check for an invitation
+    -- Check if the project is private
     IF (SELECT is_public FROM project WHERE id = NEW.id_project) = false THEN
-        IF NOT EXISTS (SELECT 1 FROM invited WHERE id_user = NEW.id_user AND id_project = NEW.id_project) THEN
-            RAISE EXCEPTION 'User must receive an invitation to join a private project';
+
+        -- Check if the user being added is NOT the project creator
+        IF NEW.id_user <> (SELECT id_creator FROM project WHERE id = NEW.id_project) THEN
+            
+            -- If not the creator, check for an invitation
+            IF NOT EXISTS (SELECT 1 FROM invited WHERE id_user = NEW.id_user AND id_project = NEW.id_project) THEN
+                RAISE EXCEPTION 'User must receive an invitation to join a private project';
+            END IF;
         END IF;
     END IF;
     RETURN NEW;
 END;
 $BODY$
 LANGUAGE plpgsql;
+
 
 -- Create the trigger
 CREATE TRIGGER trigger_check_project_invitation
@@ -415,6 +418,7 @@ AFTER DELETE ON member
 FOR EACH ROW
 EXECUTE FUNCTION notify_users_on_leave();
 
+/*
 --TRIGGER05
 -- Step 1: Define the trigger function
 CREATE OR REPLACE FUNCTION block_user() RETURNS TRIGGER AS $$
@@ -439,3 +443,4 @@ INSERT INTO notifications (id_user, date, seen)
 VALUES ($creator_id, NOW(), false);
 
 END TRANSACTION;
+*/
