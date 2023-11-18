@@ -14,13 +14,19 @@ externalDocs:
   url: https://git.fe.up.pt/lbaw/lbaw2324/lbaw23104/-/wikis/eap
 
 tags:
-  - name: 'M01: Authentication and Individual Profile'
-  - name: 'M02: Works'
-  - name: 'M03: Reviews and Wish list'
-  - name: 'M04: Loans'
-  - name: 'M05: User Administration and Static pages'
+  - name: 'M01: Authentication'
+  - name: 'M02: Users'
+  - name: 'M03: Search'
+  - name: 'M04: Administration'
+  - name: 'M05: Comments'
+  - name: 'M05: Projects'
+  - name: 'M05: Tasks'
 
 paths:
+
+############################################ AUTHENTICATION ############################################
+
+######### LOGIN #########
 
   /login:
     get:
@@ -28,7 +34,7 @@ paths:
       summary: 'R101: Login Form'
       description: 'Provide login form. Access: PUB'
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - 'M01: Authentication'
       responses:
         '200':
           description: 'Ok. Show log-in UI'
@@ -37,7 +43,7 @@ paths:
       summary: 'R102: Login Action'
       description: 'Processes the login form submission. Access: PUB'
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - 'M01: Authentication'
  
       requestBody:
         required: true
@@ -69,6 +75,8 @@ paths:
                   description: 'Failed authentication. Redirect to login form.'
                   value: '/login'
  
+######### LOGOUT #########
+
   /logout:
 
     post:
@@ -76,7 +84,7 @@ paths:
       summary: 'R103: Logout Action'
       description: 'Logout the current authenticated used. Access: USR, ADM'
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - 'M01: Authentication'
       responses:
         '302':
           description: 'Redirect after processing logout.'
@@ -89,13 +97,15 @@ paths:
                   description: 'Successful logout. Redirect to login form.'
                   value: '/login'
 
+######### REGISTER #########
+
   /register:
     get:
       operationId: R104
       summary: 'R104: Register Form'
       description: 'Provide new user registration form. Access: PUB'
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - 'M01: Authentication'
       responses:
         '200':
           description: 'Ok. Show sign-up UI'
@@ -105,7 +115,7 @@ paths:
       summary: 'R105: Register Action'
       description: 'Processes the new user registration form submission. Access: PUB'
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - 'M01: Authentication'
 
       requestBody:
         required: true
@@ -140,13 +150,17 @@ paths:
                   description: 'Failed authentication. Redirect to login form.'
                   value: '/login'
 
+############################################ PROFILE ############################################
+
+######### USER PROFILE #########
+
   /users/{id}:
     get:
-      operationId: R106
-      summary: 'R106: View user profile'
+      operationId: R201
+      summary: 'R201: View user profile'
       description: 'Show the individual user profile. Access: USR'
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - 'M02: Users'
 
       parameters:
         - in: path
@@ -160,79 +174,3 @@ paths:
           description: 'Ok. Show view profile UI'
  
 
-  /api/works:
-    get:
-      operationId: R202
-      summary: 'R202: Search Works API'
-      description: 'Searches for works and returns the results as JSON. Access: PUB.'
-
-      tags: 
-        - 'M02: Works'
-
-      parameters:
-        - in: query
-          name: query
-          description: String to use for full-text search
-          schema:
-            type: string
-          required: false
-        - in: query
-          name: item
-          description: Category of the works
-          schema:
-            type: string
-          required: false
-        - in: query
-          name: loaned
-          description: Boolean with the loaned flag value
-          schema:
-            type: boolean
-          required: false
-        - in: query
-          name: owner
-          description: Boolean with the owner flag value
-          schema:
-            type: boolean
-          required: false
-        - in: query
-          name: classification
-          description: Integer corresponding to the work classification
-          schema:
-            type: integer
-          required: false
-
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    title:
-                      type: string
-                    obs:
-                      type: string
-                    year:
-                      type: string
-                    owner:
-                      type: string
-                    type:
-                      type: string
-                example:
-                  - id: 1
-                    title: Rihanna - Unapologetic
-                    obs: Good pop music album.
-                    year: 2012
-                    owner: Joana Lima
-                    type: MP3
-                  - id: 15
-                    title: Mr. Bean
-                    obs: The best comedy movie.
-                    year: 1995
-                    owner: Manuel Teixeira
-                    type: DVD
