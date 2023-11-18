@@ -2,16 +2,16 @@ openapi: 3.0.0
 
 info:
   version: '1.0'
-  title: 'LBAW MediaLibrary Web API'
-  description: 'Web Resources Specification (A7) for MediaLibrary'
+  title: 'LBAW YourOwnBuild Web API'
+  description: 'Web Resources Specification (A7) for YourOwnBuild'
 
 servers:
-- url: http://lbaw.fe.up.pt
+- url: https://lbaw23104.lbaw.fe.up.pt/
   description: Production server
 
 externalDocs:
   description: Find more info here.
-  url: https://web.fe.up.pt/~ssn/wiki/teach/lbaw/medialib/a07
+  url: https://git.fe.up.pt/lbaw/lbaw2324/lbaw23104/-/wikis/eap
 
 tags:
   - name: 'M01: Authentication and Individual Profile'
