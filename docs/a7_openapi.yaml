@@ -19,8 +19,8 @@ tags:
   - name: 'M03: Search'
   - name: 'M04: Administration'
   - name: 'M05: Comments'
-  - name: 'M05: Projects'
-  - name: 'M05: Tasks'
+  - name: 'M06: Projects'
+  - name: 'M07: Tasks'
 
 paths:
 
@@ -259,5 +259,161 @@ paths:
           description: 'Unauthorized. User not authenticated or lacks permission to delete the profile.'
         '404':
           description: 'Not Found. User profile not found.'
+        '500':
+          description: 'Internal Server Error. Error occurred while processing the request.'
+
+############################################ SEARCH ############################################
+
+######### text #########
+
+
+
+
+
+############################################ ADMINISTRATION ############################################
+
+######### text #########
+
+
+
+
+
+############################################ COMMENTS ############################################
+
+######### CREATE COMMENT #########
+
+  /comment/create:
+    post:
+      operationId: R501
+      summary: 'R501: Create Comment'
+      description: 'Creates a new comment on a specified task. Access: USR'
+      tags:
+        - 'M05: Comments'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_user:
+                  type: integer
+                  description: 'The ID of the user creating the comment.'
+                id_task:
+                  type: integer
+                  description: 'The ID of the task to which the comment belongs.'
+                content:
+                  type: string
+                  description: 'The content of the comment.'
+              required:
+                - id_user
+                - id_task
+                - content
+      responses:
+        '201':
+          description: 'Created. The comment was successfully created.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: 'The ID of the newly created comment.'
+                  message:
+                    type: string
+                    description: 'A confirmation message.'
+        '400':
+          description: 'Bad Request. Invalid input data or format.'
+        '401':
+          description: 'Unauthorized. User not authenticated.'
+        '404':
+          description: 'Not Found. Specified task or user does not exist.'
+        '500':
+          description: 'Internal Server Error. Error occurred while processing the request.'
+
+######### DELETE COMMENT #########
+
+  /comment/delete:
+    post:
+      operationId: R502
+      summary: 'R502: Delete Comment'
+      description: 'Deletes a specified comment. Access: OWN, ADM'
+      tags:
+        - 'M05: Comments'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_comment:
+                  type: integer
+                  description: 'The ID of the comment to be deleted.'
+              required:
+                - id_comment
+      responses:
+        '200':
+          description: 'OK. Comment successfully deleted.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Comment deleted successfully.'
+        '400':
+          description: 'Bad Request. Invalid comment ID.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks permission.'
+        '404':
+          description: 'Not Found. Comment not found.'
+        '500':
+          description: 'Internal Server Error. Error occurred while processing the request.'
+
+######### EDIT COMMENT #########
+
+  /comment/edit:
+    put:
+      operationId: R503
+      summary: 'R503: Edit Comment'
+      description: 'Edits an existing comment. Access: OWN'
+      tags:
+        - 'M05: Comments'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_comment:
+                  type: integer
+                  description: 'The ID of the comment to be edited.'
+                new_content:
+                  type: string
+                  description: 'The new content of the comment.'
+              required:
+                - id_comment
+                - new_content
+      responses:
+        '200':
+          description: 'OK. Comment successfully updated.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Comment updated successfully.'
+        '400':
+          description: 'Bad Request. Invalid input data.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks permission.'
+        '404':
+          description: 'Not Found. Comment not found.'
         '500':
           description: 'Internal Server Error. Error occurred while processing the request.'
