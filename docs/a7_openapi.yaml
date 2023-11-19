@@ -55,7 +55,7 @@ paths:
                 email:          # <!--- form field name
                   type: string
                 password:    # <!--- form field name
-                  type: string
+                  type: password
               required:
                 - email
                 - password
@@ -415,5 +415,318 @@ paths:
           description: 'Unauthorized. User not authenticated or lacks permission.'
         '404':
           description: 'Not Found. Comment not found.'
+        '500':
+          description: 'Internal Server Error. Error occurred while processing the request.'
+
+############################################ PROJECTS ############################################
+
+######### CREATE PROJECT #########
+
+  /project/create:
+    post:
+      operationId: R601
+      summary: 'R601: Create Project'
+      description: 'Creates a new project. Access: USR'
+      tags:
+        - 'M06: Projects'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the project.'
+                description:
+                  type: string
+                  description: 'A brief description of the project.'
+                is_public:
+                  type: boolean
+                  description: 'Indicates if the project is public or private.'
+                id_creator:
+                  type: integer
+                  description: 'The ID of the user creating the project.'
+              required:
+                - name
+                - is_public
+                - id_creator
+      responses:
+        '201':
+          description: 'Created. The project was successfully created.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: 'The ID of the newly created project.'
+                  message:
+                    type: string
+                    example: 'Project created successfully.'
+        '400':
+          description: 'Bad Request. Invalid input data or format.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks permission.'
+        '500':
+          description: 'Internal Server Error. Error occurred while processing the request.'
+
+######### EDIT PROJECT #########
+
+  /project/edit:
+    put:
+      operationId: R602
+      summary: 'R602: Edit Project'
+      description: 'Edits an existing project. Access: OWN'
+      tags:
+        - 'M06: Projects'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The ID of the project to be edited.'
+                name:
+                  type: string
+                  description: 'The new name of the project.'
+                description:
+                  type: string
+                  description: 'The new description of the project.'
+                is_public:
+                  type: boolean
+                  description: 'Indicates if the project is public or private.'
+              required:
+                - id
+      responses:
+        '200':
+          description: 'OK. Project successfully updated.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Project updated successfully.'
+        '400':
+          description: 'Bad Request. Invalid input data or project ID.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks permission.'
+        '404':
+          description: 'Not Found. Project not found.'
+        '500':
+          description: 'Internal Server Error. Error occurred while processing the request.'
+
+######### DELETE PROJECT #########
+
+  /project/delete:
+    post:
+      operationId: R603
+      summary: 'R603: Delete Project'
+      description: 'Deletes a specified project. Access: OWN, ADM'
+      tags:
+        - 'M06: Projects'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The ID of the project to be deleted.'
+              required:
+                - id
+      responses:
+        '200':
+          description: 'OK. Project successfully deleted.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Project deleted successfully.'
+        '400':
+          description: 'Bad Request. Invalid project ID.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks permission.'
+        '404':
+          description: 'Not Found. Project not found.'
+        '500':
+          description: 'Internal Server Error. Error occurred while processing the request.'
+
+############################################ TASKS ############################################
+
+######### CREATE TASK #########
+
+  /task/create:
+    post:
+      operationId: R701
+      summary: 'R701: Create Task'
+      description: 'Creates a new task in a project. Access: USR, ADM'
+      tags:
+        - 'M07: Tasks'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the task.'
+                label:
+                  type: string
+                  description: 'A label for the task for quick identification.'
+                id_project:
+                  type: integer
+                  description: 'The ID of the project to which the task belongs.'
+                id_creator:
+                  type: integer
+                  description: 'The ID of the user creating the task.'
+                due_date:
+                  type: string
+                  format: 'date'
+                  description: 'The due date for the task.'
+                priority:
+                  type: string
+                  enum: ['low', 'medium', 'high']
+                  description: 'The priority of the task.'
+              required:
+                - name
+                - label
+                - id_project
+                - id_creator
+                - due_date
+                - priority
+      responses:
+        '201':
+          description: 'Created. The task was successfully created.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: 'The ID of the newly created task.'
+                  message:
+                    type: string
+                    example: 'Task created successfully.'
+        '400':
+          description: 'Bad Request. Invalid input data or format.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks permission.'
+        '404':
+          description: 'Not Found. Project not found.'
+        '500':
+          description: 'Internal Server Error. Error occurred while processing the request.'
+
+######### EDIT TASK #########
+
+  /task/edit:
+    put:
+      operationId: R702
+      summary: 'R702: Edit Task'
+      description: 'Edits an existing task in a project. Access: OWN, ADM'
+      tags:
+        - 'M07: Tasks'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The ID of the task to be edited.'
+                name:
+                  type: string
+                  description: 'The new name of the task.'
+                label:
+                  type: string
+                  description: 'A new label for the task for quick identification.'
+                due_date:
+                  type: string
+                  format: 'date'
+                  description: 'The new due date for the task.'
+                priority:
+                  type: string
+                  enum: ['low', 'medium', 'high']
+                  description: 'The new priority of the task.'
+                is_completed:
+                  type: boolean
+                  description: 'Indicates if the task is completed.'
+              required:
+                - id
+      responses:
+        '200':
+          description: 'OK. Task successfully updated.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Task updated successfully.'
+        '400':
+          description: 'Bad Request. Invalid input data or task ID.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks permission.'
+        '404':
+          description: 'Not Found. Task not found.'
+        '500':
+          description: 'Internal Server Error. Error occurred while processing the request.'
+
+######### DELETE TASK #########
+
+  /task/delete:
+    post:
+      operationId: R703
+      summary: 'R703: Delete Task'
+      description: 'Deletes a specified task from a project. Access: OWN, ADM'
+      tags:
+        - 'M07: Tasks'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The ID of the task to be deleted.'
+              required:
+                - id
+      responses:
+        '200':
+          description: 'OK. Task successfully deleted.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Task deleted successfully.'
+        '400':
+          description: 'Bad Request. Invalid task ID.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks permission.'
+        '404':
+          description: 'Not Found. Task not found.'
         '500':
           description: 'Internal Server Error. Error occurred while processing the request.'
