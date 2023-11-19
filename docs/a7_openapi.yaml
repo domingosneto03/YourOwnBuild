@@ -272,10 +272,95 @@ paths:
 
 ############################################ ADMINISTRATION ############################################
 
-######### text #########
+######### BLOCK USER #########
 
+  /admin/user/block:
+    post:
+      operationId: R401
+      summary: 'R401: Block User'
+      description: 'Blocks a specified user. Access: ADM'
+      tags:
+        - 'M04: Administration'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_user:
+                  type: integer
+                  description: 'The ID of the user to be blocked.'
+                id_admin:
+                  type: integer
+                  description: 'The ID of the admin.'
+                reason:
+                  type: string
+                  description: 'The reason for blocking the user.'
+              required:
+                - id_user
+                - id_admin
+                - reason
+      responses:
+        '200':
+          description: 'OK. User successfully blocked.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'User blocked successfully.'
+        '400':
+          description: 'Bad Request. Invalid user ID or input format.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks admin privileges.'
+        '404':
+          description: 'Not Found. User not found.'
+        '500':
+          description: 'Internal Server Error. Error occurred while processing the request.'
 
+######### UNBLOCK USER #########
 
+  /admin/user/unblock:
+    post:
+      operationId: R402
+      summary: 'R402: Unblock User'
+      description: 'Unblocks a previously blocked user. Access: ADM'
+      tags:
+        - 'M04: Administration'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_user:
+                  type: integer
+                  description: 'The ID of the user to be unblocked.'
+              required:
+                - id_user
+      responses:
+        '200':
+          description: 'OK. User successfully unblocked.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'User unblocked successfully.'
+        '400':
+          description: 'Bad Request. Invalid user ID.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks admin privileges.'
+        '404':
+          description: 'Not Found. User not found.'
+        '500':
+          description: 'Internal Server Error. Error occurred while processing the request.'
 
 
 ############################################ COMMENTS ############################################
