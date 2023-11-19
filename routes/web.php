@@ -53,3 +53,9 @@ Route::controller(RegisterController::class)->group(function () {
     Route::get('/register', 'showRegistrationForm')->name('register');
     Route::post('/register', 'register');
 });
+
+// Homepage
+Route::controller(HomepageController::class)->group(function () {
+    Route::get('/homepage', 'showHomepage')->name('homepage');
+    // Route::post('/homepage', 'register');
+});
