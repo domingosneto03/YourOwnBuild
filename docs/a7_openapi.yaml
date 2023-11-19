@@ -205,6 +205,7 @@ paths:
                   type: string
                 email:
                   type: string
+                  format: email
                 bio:
                   type: string
                 username:
@@ -227,4 +228,36 @@ paths:
         '404':
           description: 'User profile not found.'
 
-######### EDIT USER PROFILE #########
+######### DELETE USER PROFILE #########
+
+  /users/delete:
+    post:
+      operationId: R204
+      summary: 'R204: Delete User'
+      description: 'Deletes the specified user. Access: OWN, ADM'
+      tags:
+        - 'M02: Users'
+      
+      requestBody:
+        required: true
+        content:
+          application/json:
+             schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+              required: 
+                - id
+
+      responses:
+        '204':
+          description: 'No Content. User profile successfully deleted.'
+        '400':
+          description: 'Bad Request. Invalid user ID.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks permission to delete the profile.'
+        '404':
+          description: 'Not Found. User profile not found.'
+        '500':
+          description: 'Internal Server Error. Error occurred while processing the request.'
