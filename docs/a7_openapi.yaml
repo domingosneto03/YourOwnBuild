@@ -32,7 +32,7 @@ paths:
     get:
       operationId: R101
       summary: 'R101: Login Form'
-      description: 'Provide login form. Access: PUB'
+      description: 'Provide login form. Access: VST'
       tags:
         - 'M01: Authentication'
       responses:
@@ -41,25 +41,24 @@ paths:
     post:
       operationId: R102
       summary: 'R102: Login Action'
-      description: 'Processes the login form submission. Access: PUB'
+      description: 'Processes the login form submission. Access: VST'
       tags:
         - 'M01: Authentication'
- 
       requestBody:
         required: true
         content:
-          application/x-www-form-urlencoded:
+          application/x-www-form-urllencoded:
             schema:
-              type: object
               properties:
-                email:          # <!--- form field name
+                email:
                   type: string
-                password:    # <!--- form field name
-                  type: password
+                  format: email
+                password:
+                  type: string
+                  format: password
               required:
-                - email
-                - password
- 
+                  - email
+                  - password
       responses:
         '302':
           description: 'Redirect after processing the login credentials.'
@@ -69,9 +68,9 @@ paths:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful authentication. Redirect to user profile.'
-                  value: '/users/{id}'
-                302Error:
+                  description: 'Successful authentication. Redirect to homepage.'
+                  value: '/home'
+                302Failure:
                   description: 'Failed authentication. Redirect to login form.'
                   value: '/login'
  
@@ -103,7 +102,7 @@ paths:
     get:
       operationId: R104
       summary: 'R104: Register Form'
-      description: 'Provide new user registration form. Access: PUB'
+      description: 'Provide new user registration form. Access: VST'
       tags:
         - 'M01: Authentication'
       responses:
@@ -113,7 +112,7 @@ paths:
     post:
       operationId: R105
       summary: 'R105: Register Action'
-      description: 'Processes the new user registration form submission. Access: PUB'
+      description: 'Processes the new user registration form submission. Access: VST'
       tags:
         - 'M01: Authentication'
 
@@ -126,14 +125,23 @@ paths:
               properties:
                 name:
                   type: string
+                username:
+                  type: string
                 email:
                   type: string
-                picture:
+                  format: email
+                password:
                   type: string
-                  format: binary
+                  format: password
+                confirm_password:
+                  type: string
+                  format: password
               required:
+                - name
+                - username
                 - email
                 - password
+                - confirm_password
 
       responses:
         '302':
@@ -144,12 +152,13 @@ paths:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful authentication. Redirect to user profile.'
-                  value: '/users/{id}'
+                  description: 'Successful authentication. Redirect to homepage.'
+                  value: '/home'
                 302Failure:
                   description: 'Failed authentication. Redirect to login form.'
                   value: '/login'
 
+      
 ############################################ PROFILE ############################################
 
 ######### VIEW USER PROFILE #########
@@ -264,11 +273,167 @@ paths:
 
 ############################################ SEARCH ############################################
 
-######### text #########
+######### SEARCH PROJECT #########
 
+  /api/project/search:
+    get:
+      operationId: R301
+      summary: 'R301: Search Project'
+      description: 'Search project by name. Access: USR ADM'
+      tags: 
+        - 'M03: Search'
+      parameters:
+        - in: query
+          name: search
+          description: 'Search project by name'
+          schema:
+            type: string
+            required: true
+      
+      responses:
+        '200':
+          description: 'Success. Return project.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string
+        '404':
+          description: 'Project not found.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Project not found.'
 
+######### SEARCH USER #########
 
+  /api/users/search:
+    get:
+      operationId: R302
+      summary: 'R302: Search User'
+      description: 'Search user by name. Access: USR ADM'
+      tags: 
+        - 'M03: Search'
+      parameters:
+        - in: query
+          name: search
+          description: 'search user by name or username'
+          schema:
+            type: string
+            required: true
+      
+      responses:
+        '200':
+          description: 'Success. Return user.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string
+                  username:
+                    type: string
+        '404':
+          description: 'User not found.'
+          content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'User not found.'
+  
+######### SEARCH TASK #########
 
+  /api/task/search:
+    get:
+      operationId: R303
+      summary: 'R301: Search Task'
+      description: 'Search task. Access: USR ADM'
+      tags: 
+        - 'M03: Search'
+      parameters:
+        - in: query
+          name: search
+          description: 'search task by name'
+          schema:
+            type: string
+            required: true
+      
+      responses:
+        '200':
+          description: 'Success. Return task.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string
+        '404':
+          description: 'Task not found.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Task not found.'
+
+######### SEARCH COMMENT #########
+
+  /api/comment/search:
+    get:
+      operationId: R304
+      summary: 'R301: Search Comment'
+      description: 'Search comment. Access: USR ADM'
+      tags: 
+        - 'M03: Search'
+      parameters:
+        - in: query
+          name: search
+          description: 'search comment'
+          schema:
+            type: string
+            required: true
+      
+      responses:
+        '200':
+          description: 'Success. Return comment.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  content:
+                    type: string
+        '404':
+          description: 'Comment not found.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Comment not found.'
 
 ############################################ ADMINISTRATION ############################################
 
