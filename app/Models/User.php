@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Project;
+use App\Models\Task;
+use App\Models\Comment;
+use App\Models\Member;
+use App\Models\Notification;
 
 // Added to define Eloquent relationships.
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -27,9 +32,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'username',
         'name',
         'email',
         'password',
+        'bio',
     ];
 
     /**
@@ -52,11 +59,40 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    /**
-     * Get the cards for a user.
-     */
-    public function cards(): HasMany
+    // Get the projects created by the user.
+    public function projectsCreated(): HasMany
     {
-        return $this->hasMany(Card::class);
+        return $this->hasMany(Project::class, 'id_creator');
     }
+
+    // Get the tasks created by the user.
+    public function tasksCreated(): HasMany
+    {
+        return $this->hasMany(Task::class, 'id_creator');
+    }
+
+    // Get the comments made by the user.
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'id_user');
+    }
+
+    // Get the project memberships of the user.
+    public function projectMemberships(): HasMany
+    {
+        return $this->hasMany(Member::class, 'id_user');
+    }
+
+    // Get the notifications for the user.
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class, 'id_user');
+    }
+
+    // Get the tasks the user is responsible for.
+    public function responsibleTasks(): HasMany
+    {
+        return $this->hasMany(Task::class, 'id_user', 'id');
+    }
+
 }
