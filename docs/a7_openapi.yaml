@@ -332,47 +332,6 @@ paths:
         '500':
           description: 'Internal Server Error. Error occurred while processing the request.'
 
-######### DELETE COMMENT #########
-
-  /comment/delete:
-    post:
-      operationId: R502
-      summary: 'R502: Delete Comment'
-      description: 'Deletes a specified comment. Access: OWN, ADM'
-      tags:
-        - 'M05: Comments'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_comment:
-                  type: integer
-                  description: 'The ID of the comment to be deleted.'
-              required:
-                - id_comment
-      responses:
-        '200':
-          description: 'OK. Comment successfully deleted.'
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: 'Comment deleted successfully.'
-        '400':
-          description: 'Bad Request. Invalid comment ID.'
-        '401':
-          description: 'Unauthorized. User not authenticated or lacks permission.'
-        '404':
-          description: 'Not Found. Comment not found.'
-        '500':
-          description: 'Internal Server Error. Error occurred while processing the request.'
-
 ######### EDIT COMMENT #########
 
   /comment/edit:
@@ -411,6 +370,47 @@ paths:
                     example: 'Comment updated successfully.'
         '400':
           description: 'Bad Request. Invalid input data.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks permission.'
+        '404':
+          description: 'Not Found. Comment not found.'
+        '500':
+          description: 'Internal Server Error. Error occurred while processing the request.'
+
+######### DELETE COMMENT #########
+
+  /comment/delete:
+    post:
+      operationId: R502
+      summary: 'R502: Delete Comment'
+      description: 'Deletes a specified comment. Access: OWN, ADM'
+      tags:
+        - 'M05: Comments'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_comment:
+                  type: integer
+                  description: 'The ID of the comment to be deleted.'
+              required:
+                - id_comment
+      responses:
+        '200':
+          description: 'OK. Comment successfully deleted.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Comment deleted successfully.'
+        '400':
+          description: 'Bad Request. Invalid comment ID.'
         '401':
           description: 'Unauthorized. User not authenticated or lacks permission.'
         '404':
