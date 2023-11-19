@@ -271,21 +271,137 @@ paths:
         '500':
           description: 'Internal Server Error. Error occurred while processing the request.'
 
-############################################ HOMEPAGE ############################################
-
-######### text #########
-
-
-
-
-
 ############################################ SEARCH ############################################
 
-######### text #########
+######### SEARCH PROJECT #########
 
+  /api/project/search:
+    get:
+      operationId: R301
+      summary: 'R301: Search Project'
+      description: 'Search project. Access: USR ADM'
+      tags: 
+        - 'M03: Search'
+      parameters:
+        - in: query
+          name: search
+          description: 'search project'
+          schema:
+            type: string
+            required: true
+      
+      responses:
+        '200':
+          description: 'Success. Return project.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string
+        '404':
+          description: 'Project not found.'
 
+######### SEARCH USER #########
 
+  /api/users/search:
+    get:
+      operationId: R302
+      summary: 'R302: Search User'
+      description: 'Search user. Access: USR ADM'
+      tags: 
+        - 'M03: Search'
+      parameters:
+        - in: query
+          name: search
+          description: 'search user'
+          schema:
+            type: string
+            required: true
+      
+      responses:
+        '200':
+          description: 'Success. Return user.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string
+                  username:
+                    type: string
+        '404':
+          description: 'User not found.'
+  
+######### SEARCH TASK #########
 
+  /api/task/search:
+    get:
+      operationId: R303
+      summary: 'R301: Search Task'
+      description: 'Search task. Access: USR ADM'
+      tags: 
+        - 'M03: Search'
+      parameters:
+        - in: query
+          name: search
+          description: 'search task'
+          schema:
+            type: string
+            required: true
+      
+      responses:
+        '200':
+          description: 'Success. Return task.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string
+        '404':
+          description: 'Task not found.'
+
+######### SEARCH COMMENT #########
+
+  /api/comment/search:
+    get:
+      operationId: R304
+      summary: 'R301: Search Comment'
+      description: 'Search comment. Access: USR ADM'
+      tags: 
+        - 'M03: Search'
+      parameters:
+        - in: query
+          name: search
+          description: 'search comment'
+          schema:
+            type: string
+            required: true
+      
+      responses:
+        '200':
+          description: 'Success. Return comment.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  content:
+                    type: string
+        '404':
+          description: 'Comment not found.'
 
 ############################################ ADMINISTRATION ############################################
 
