@@ -13,31 +13,36 @@ class Invited extends Model
     // Specify the database table to be used
     protected $table = 'invited';
 
-    // Don't add create and update timestamps in database.
+    // Indicates if the model should be timestamped.
     public $timestamps = false;
 
-    /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
-    protected $primaryKey = null;
-
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
+    // Indicates if the model should increment its primary key.
     public $incrementing = false;
 
+    /**
+     * The primary key associated with the table.
+     *
+     * @var array<string>
+     */
+    protected $primaryKey = ['id_user', 'id_project'];
 
-    // Get the user associated with the invitation.
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'id_user',
+        'id_project',
+    ];
+
+    // Get the user who is invited.
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    // Get the project associated with the invitation.
+    // Get the project to which the user is invited.
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class, 'id_project');

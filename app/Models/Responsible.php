@@ -13,30 +13,40 @@ class Responsible extends Model
     // Specify the database table to be used
     protected $table = 'responsible';
 
-    // Don't add create and update timestamps in database.
+    // Indicates if the model should be timestamped.
     public $timestamps = false;
 
-    /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
-    protected $primaryKey = null;
-
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
+    // Indicates if the model should increment its primary key.
     public $incrementing = false;
 
-    // Get the user that is responsible for the task.
+    /**
+     * The primary key associated with the table.
+     *
+     * @var array<string>
+     */
+    protected $primaryKey = ['id_user', 'id_task'];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'id_user',
+        'id_task',
+    ];
+
+    /**
+     * Get the user associated with the responsibility.
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    // Get the task for which the user is responsible.
+    /**
+     * Get the task associated with the responsibility.
+     */
     public function task(): BelongsTo
     {
         return $this->belongsTo(Task::class, 'id_task');

@@ -4,12 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\Task;
-use App\Models\Member;
-use App\Models\ProjectNotification;
-use App\Models\Invited;
-use App\Models\RequestJoin;
 
 class Project extends Model
 {
