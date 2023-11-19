@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 // Added to define Eloquent relationships.
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -90,4 +91,9 @@ class User extends Authenticatable
         return $this->hasMany(Task::class, 'id_user', 'id');
     }
 
+    // The projects that the user is a member of.
+    public function memberProjects(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class, 'member', 'id_user', 'id_project');
+    }
 }

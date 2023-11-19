@@ -51,13 +51,13 @@
                 <div class="project-card">
                     <div class="card-header">
                         <h3>{{ $project->name }}</h3>
-                        <p>Coordinator Name: {{ $project->coordinator->name }}</p>
+                        <p>Creator Name: {{ $project->creator->name }}</p>
                     </div>
                     <div class="card-body">
                         <p>{{ $project->description }}</p>
                     </div>
                     <div class="card-footer">
-                        <span>{{ $project->tasks_count }} tasks</span>
+                        <span>{{ count($project->members) }} members</span>
                     </div>
                 </div>
             @endforeach
