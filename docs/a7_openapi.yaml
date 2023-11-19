@@ -360,7 +360,7 @@ paths:
   /api/task/search:
     get:
       operationId: R303
-      summary: 'R301: Search Task'
+      summary: 'R303: Search Task'
       description: 'Search task. Access: USR ADM'
       tags: 
         - 'M03: Search'
@@ -400,7 +400,7 @@ paths:
   /api/comment/search:
     get:
       operationId: R304
-      summary: 'R301: Search Comment'
+      summary: 'R304: Search Comment'
       description: 'Search comment. Access: USR ADM'
       tags: 
         - 'M03: Search'
