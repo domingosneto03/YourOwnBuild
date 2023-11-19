@@ -405,7 +405,7 @@ paths:
 
 ######### CREATE COMMENT #########
 
-  /comment/create:
+  api/comment/create:
     post:
       operationId: R501
       summary: 'R501: Create Comment'
@@ -457,7 +457,7 @@ paths:
 
 ######### EDIT COMMENT #########
 
-  /comment/edit:
+  api/comment/edit:
     put:
       operationId: R503
       summary: 'R503: Edit Comment'
@@ -502,7 +502,7 @@ paths:
 
 ######### DELETE COMMENT #########
 
-  /comment/delete:
+  api/comment/delete:
     post:
       operationId: R502
       summary: 'R502: Delete Comment'
@@ -543,12 +543,45 @@ paths:
 
 ############################################ PROJECTS ############################################
 
+######### PROJECT PAGE #########
+
+  /project/{id}/:
+    get:
+      operationId: R601
+      summary: 'R601: Get Project Page'
+      description: 'Retrieves the page for a specific project. Access: USR'
+      tags:
+        - 'M06: Projects'
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: 'The unique identifier of the project.'
+      responses:
+        '200':
+          description: 'OK. Project page successfully retrieved.'
+          content:
+            text/html:
+              schema:
+                type: string
+                example: '<html>Project Page HTML here</html>'
+        '400':
+          description: 'Bad Request. Invalid project ID.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks permission to view the project.'
+        '404':
+          description: 'Not Found. Project not found.'
+        '500':
+          description: 'Internal Server Error. Error occurred while retrieving the project page.'
+
 ######### CREATE PROJECT #########
 
-  /project/create:
+  api/project/create:
     post:
-      operationId: R601
-      summary: 'R601: Create Project'
+      operationId: R602
+      summary: 'R602: Create Project'
       description: 'Creates a new project. Access: USR'
       tags:
         - 'M06: Projects'
@@ -598,10 +631,10 @@ paths:
 
 ######### EDIT PROJECT #########
 
-  /project/edit:
+  api/project/edit:
     put:
-      operationId: R602
-      summary: 'R602: Edit Project'
+      operationId: R603
+      summary: 'R603: Edit Project'
       description: 'Edits an existing project. Access: OWN'
       tags:
         - 'M06: Projects'
@@ -648,10 +681,10 @@ paths:
 
 ######### DELETE PROJECT #########
 
-  /project/delete:
+  api/project/delete:
     post:
-      operationId: R603
-      summary: 'R603: Delete Project'
+      operationId: R604
+      summary: 'R604: Delete Project'
       description: 'Deletes a specified project. Access: OWN, ADM'
       tags:
         - 'M06: Projects'
@@ -691,7 +724,7 @@ paths:
 
 ######### CREATE TASK #########
 
-  /task/create:
+  api/task/create:
     post:
       operationId: R701
       summary: 'R701: Create Task'
@@ -757,7 +790,7 @@ paths:
 
 ######### EDIT TASK #########
 
-  /task/edit:
+  api/task/edit:
     put:
       operationId: R702
       summary: 'R702: Edit Task'
@@ -815,7 +848,7 @@ paths:
 
 ######### DELETE TASK #########
 
-  /task/delete:
+  api/task/delete:
     post:
       operationId: R703
       summary: 'R703: Delete Task'
