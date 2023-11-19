@@ -184,25 +184,37 @@ paths:
 
 ######### EDIT USER PROFILE #########
 
-  /users/edit:
+  /users/{id}/edit:
     get:
       operationId: R202
-      summary: 'R202: View user edit profile'
-      description: 'Show the edit user profile. Access: OWN'
+      summary: 'R202: View User Edit Profile'
+      description: 'Retrieve the form for editing a users profile. Access: OWN'
       tags:
         - 'M02: Users'
-
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: 'The unique identifier of the user.'
       responses:
         '200':
-          description: 'Ok. Show edit profile UI'
+          description: 'Ok. Show edit profile UI.'
 
     put:
       operationId: R203
       summary: 'R203: Update User Profile'
-      description: 'Allows the owner of profile to edit their information. Access: OWN'
+      description: 'Allows a user to edit their profile information. Access: OWN'
       tags:
         - 'M02: Users'
-
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: 'The unique identifier of the user.'
       requestBody:
         required: true
         content:
@@ -237,28 +249,23 @@ paths:
         '404':
           description: 'User profile not found.'
 
+
 ######### DELETE USER PROFILE #########
 
-  /users/delete:
+  /users/{id}/delete:
     post:
       operationId: R204
       summary: 'R204: Delete User'
       description: 'Deletes the specified user. Access: OWN, ADM'
       tags:
         - 'M02: Users'
-      
-      requestBody:
-        required: true
-        content:
-          application/json:
-             schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-              required: 
-                - id
-
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: 'The unique identifier of the user to be deleted.'
       responses:
         '204':
           description: 'No Content. User profile successfully deleted.'
@@ -270,6 +277,7 @@ paths:
           description: 'Not Found. User profile not found.'
         '500':
           description: 'Internal Server Error. Error occurred while processing the request.'
+
 
 ############################################ SEARCH ############################################
 
@@ -570,7 +578,7 @@ paths:
 
 ######### CREATE COMMENT #########
 
-  api/comment/create:
+  /comment/create:
     post:
       operationId: R501
       summary: 'R501: Create Comment'
@@ -622,7 +630,7 @@ paths:
 
 ######### EDIT COMMENT #########
 
-  api/comment/edit:
+  /comment/edit:
     put:
       operationId: R503
       summary: 'R503: Edit Comment'
@@ -667,7 +675,7 @@ paths:
 
 ######### DELETE COMMENT #########
 
-  api/comment/delete:
+  /comment/delete:
     post:
       operationId: R502
       summary: 'R502: Delete Comment'
@@ -743,10 +751,27 @@ paths:
 
 ######### CREATE PROJECT #########
 
-  api/project/create:
-    post:
+  /project/create:
+    get:
       operationId: R602
-      summary: 'R602: Create Project'
+      summary: 'R602: Get Create Project Form'
+      description: 'Retrieves a form for creating a new project. Access: USR'
+      tags:
+        - 'M06: Projects'
+      responses:
+        '200':
+          description: 'OK. Create project form retrieved.'
+          content:
+            text/html:
+              schema:
+                type: string
+                example: '<html><form>Form HTML here</form></html>'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks permission.'
+
+    post:
+      operationId: R603
+      summary: 'R603: Create Project'
       description: 'Creates a new project. Access: USR'
       tags:
         - 'M06: Projects'
@@ -787,22 +812,24 @@ paths:
                   message:
                     type: string
                     example: 'Project created successfully.'
-        '400':
-          description: 'Bad Request. Invalid input data or format.'
-        '401':
-          description: 'Unauthorized. User not authenticated or lacks permission.'
-        '500':
-          description: 'Internal Server Error. Error occurred while processing the request.'
+
 
 ######### EDIT PROJECT #########
 
-  api/project/edit:
+  /project/{id_project}/edit:
     put:
-      operationId: R603
-      summary: 'R603: Edit Project'
+      operationId: R604
+      summary: 'R604: Edit Project'
       description: 'Edits an existing project. Access: OWN'
       tags:
         - 'M06: Projects'
+      parameters:
+        - in: path
+          name: id_project
+          required: true
+          schema:
+            type: integer
+          description: 'The unique identifier of the project to be edited.'
       requestBody:
         required: true
         content:
@@ -810,9 +837,6 @@ paths:
             schema:
               type: object
               properties:
-                id:
-                  type: integer
-                  description: 'The ID of the project to be edited.'
                 name:
                   type: string
                   description: 'The new name of the project.'
@@ -822,8 +846,6 @@ paths:
                 is_public:
                   type: boolean
                   description: 'Indicates if the project is public or private.'
-              required:
-                - id
       responses:
         '200':
           description: 'OK. Project successfully updated.'
@@ -844,27 +866,23 @@ paths:
         '500':
           description: 'Internal Server Error. Error occurred while processing the request.'
 
+
 ######### DELETE PROJECT #########
 
-  api/project/delete:
+  /project/{id_project}/delete:
     post:
-      operationId: R604
-      summary: 'R604: Delete Project'
+      operationId: R605
+      summary: 'R605: Delete Project'
       description: 'Deletes a specified project. Access: OWN, ADM'
       tags:
         - 'M06: Projects'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  description: 'The ID of the project to be deleted.'
-              required:
-                - id
+      parameters:
+        - in: path
+          name: id_project
+          required: true
+          schema:
+            type: integer
+          description: 'The unique identifier of the project to be deleted.'
       responses:
         '200':
           description: 'OK. Project successfully deleted.'
@@ -885,11 +903,12 @@ paths:
         '500':
           description: 'Internal Server Error. Error occurred while processing the request.'
 
+
 ############################################ TASKS ############################################
 
 ######### CREATE TASK #########
 
-  api/task/create:
+  /task/create:
     post:
       operationId: R701
       summary: 'R701: Create Task'
@@ -955,13 +974,20 @@ paths:
 
 ######### EDIT TASK #########
 
-  api/task/edit:
+  /task/{id}/edit:
     put:
       operationId: R702
       summary: 'R702: Edit Task'
-      description: 'Edits an existing task in a project. Access: OWN, ADM'
+      description: 'Edits an existing task. Access: OWN, ADM'
       tags:
         - 'M07: Tasks'
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: 'The unique identifier of the task to be edited.'
       requestBody:
         required: true
         content:
@@ -969,9 +995,6 @@ paths:
             schema:
               type: object
               properties:
-                id:
-                  type: integer
-                  description: 'The ID of the task to be edited.'
                 name:
                   type: string
                   description: 'The new name of the task.'
@@ -989,8 +1012,6 @@ paths:
                 is_completed:
                   type: boolean
                   description: 'Indicates if the task is completed.'
-              required:
-                - id
       responses:
         '200':
           description: 'OK. Task successfully updated.'
@@ -1011,27 +1032,23 @@ paths:
         '500':
           description: 'Internal Server Error. Error occurred while processing the request.'
 
+
 ######### DELETE TASK #########
 
-  api/task/delete:
+  /task/{id}/delete:
     post:
       operationId: R703
       summary: 'R703: Delete Task'
-      description: 'Deletes a specified task from a project. Access: OWN, ADM'
+      description: 'Deletes a specified task. Access: OWN, ADM'
       tags:
         - 'M07: Tasks'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  description: 'The ID of the task to be deleted.'
-              required:
-                - id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: 'The unique identifier of the task to be deleted.'
       responses:
         '200':
           description: 'OK. Task successfully deleted.'
@@ -1051,3 +1068,4 @@ paths:
           description: 'Not Found. Task not found.'
         '500':
           description: 'Internal Server Error. Error occurred while processing the request.'
+
