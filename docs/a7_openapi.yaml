@@ -275,9 +275,28 @@ paths:
 ######### BLOCK USER #########
 
   /admin/user/block:
-    post:
+    get:
       operationId: R401
-      summary: 'R401: Block User'
+      summary: 'R401: Block User Form'
+      description: 'Retrieves a form for blocking a user. Access: ADM'
+      tags:
+        - 'M04: Administration'
+      responses:
+        '200':
+          description: 'OK. Block user form retrieved.'
+          content:
+            text/html:
+              schema:
+                type: string
+                example: '<html>Form HTML here</html>'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks admin privileges.'
+        '500':
+          description: 'Internal Server Error. Error occurred while retrieving the form.'
+
+    post:
+      operationId: R402
+      summary: 'R402: Block User'
       description: 'Blocks a specified user. Access: ADM'
       tags:
         - 'M04: Administration'
@@ -324,9 +343,28 @@ paths:
 ######### UNBLOCK USER #########
 
   /admin/user/unblock:
+    get:
+      operationId: R403
+      summary: 'R403: Unblock User Form'
+      description: 'Retrieves a form for unblocking a user. Access: ADM'
+      tags:
+        - 'M04: Administration'
+      responses:
+        '200':
+          description: 'OK. Unblock user form retrieved.'
+          content:
+            text/html:
+              schema:
+                type: string
+                example: '<html>Form HTML here</html>'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks admin privileges.'
+        '500':
+          description: 'Internal Server Error. Error occurred while retrieving the form.'
+
     post:
-      operationId: R402
-      summary: 'R402: Unblock User'
+      operationId: R404
+      summary: 'R404: Unblock User'
       description: 'Unblocks a previously blocked user. Access: ADM'
       tags:
         - 'M04: Administration'
