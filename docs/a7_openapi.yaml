@@ -279,13 +279,13 @@ paths:
     get:
       operationId: R301
       summary: 'R301: Search Project'
-      description: 'Search project. Access: USR ADM'
+      description: 'Search project by name. Access: USR ADM'
       tags: 
         - 'M03: Search'
       parameters:
         - in: query
           name: search
-          description: 'search project'
+          description: 'Search project by name'
           schema:
             type: string
             required: true
@@ -304,6 +304,14 @@ paths:
                     type: string
         '404':
           description: 'Project not found.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Project not found.'
 
 ######### SEARCH USER #########
 
@@ -311,13 +319,13 @@ paths:
     get:
       operationId: R302
       summary: 'R302: Search User'
-      description: 'Search user. Access: USR ADM'
+      description: 'Search user by name. Access: USR ADM'
       tags: 
         - 'M03: Search'
       parameters:
         - in: query
           name: search
-          description: 'search user'
+          description: 'search user by name or username'
           schema:
             type: string
             required: true
@@ -338,6 +346,14 @@ paths:
                     type: string
         '404':
           description: 'User not found.'
+          content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'User not found.'
   
 ######### SEARCH TASK #########
 
@@ -351,7 +367,7 @@ paths:
       parameters:
         - in: query
           name: search
-          description: 'search task'
+          description: 'search task by name'
           schema:
             type: string
             required: true
@@ -370,6 +386,14 @@ paths:
                     type: string
         '404':
           description: 'Task not found.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Task not found.'
 
 ######### SEARCH COMMENT #########
 
@@ -402,6 +426,14 @@ paths:
                     type: string
         '404':
           description: 'Comment not found.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Comment not found.'
 
 ############################################ ADMINISTRATION ############################################
 
