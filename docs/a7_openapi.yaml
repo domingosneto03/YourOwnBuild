@@ -32,7 +32,7 @@ paths:
     get:
       operationId: R101
       summary: 'R101: Login Form'
-      description: 'Provide login form. Access: PUB'
+      description: 'Provide login form. Access: VST'
       tags:
         - 'M01: Authentication'
       responses:
@@ -41,25 +41,24 @@ paths:
     post:
       operationId: R102
       summary: 'R102: Login Action'
-      description: 'Processes the login form submission. Access: PUB'
+      description: 'Processes the login form submission. Access: VST'
       tags:
         - 'M01: Authentication'
- 
       requestBody:
         required: true
         content:
-          application/x-www-form-urlencoded:
+          application/x-www-form-urllencoded:
             schema:
-              type: object
               properties:
-                email:          # <!--- form field name
+                email:
                   type: string
-                password:    # <!--- form field name
-                  type: password
+                  format: email
+                password:
+                  type: string
+                  format: password
               required:
-                - email
-                - password
- 
+                  - email
+                  - password
       responses:
         '302':
           description: 'Redirect after processing the login credentials.'
@@ -69,9 +68,9 @@ paths:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful authentication. Redirect to user profile.'
-                  value: '/users/{id}'
-                302Error:
+                  description: 'Successful authentication. Redirect to homepage.'
+                  value: '/home'
+                302Failure:
                   description: 'Failed authentication. Redirect to login form.'
                   value: '/login'
  
@@ -103,7 +102,7 @@ paths:
     get:
       operationId: R104
       summary: 'R104: Register Form'
-      description: 'Provide new user registration form. Access: PUB'
+      description: 'Provide new user registration form. Access: VST'
       tags:
         - 'M01: Authentication'
       responses:
@@ -113,7 +112,7 @@ paths:
     post:
       operationId: R105
       summary: 'R105: Register Action'
-      description: 'Processes the new user registration form submission. Access: PUB'
+      description: 'Processes the new user registration form submission. Access: VST'
       tags:
         - 'M01: Authentication'
 
@@ -126,14 +125,23 @@ paths:
               properties:
                 name:
                   type: string
+                username:
+                  type: string
                 email:
                   type: string
-                picture:
+                  format: email
+                password:
                   type: string
-                  format: binary
+                  format: password
+                confirm_password:
+                  type: string
+                  format: password
               required:
+                - name
+                - username
                 - email
                 - password
+                - confirm_password
 
       responses:
         '302':
@@ -144,12 +152,13 @@ paths:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful authentication. Redirect to user profile.'
-                  value: '/users/{id}'
+                  description: 'Successful authentication. Redirect to homepage.'
+                  value: '/home'
                 302Failure:
                   description: 'Failed authentication. Redirect to login form.'
                   value: '/login'
 
+      
 ############################################ PROFILE ############################################
 
 ######### VIEW USER PROFILE #########
@@ -261,6 +270,14 @@ paths:
           description: 'Not Found. User profile not found.'
         '500':
           description: 'Internal Server Error. Error occurred while processing the request.'
+
+############################################ HOMEPAGE ############################################
+
+######### text #########
+
+
+
+
 
 ############################################ SEARCH ############################################
 
