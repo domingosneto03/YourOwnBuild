@@ -175,18 +175,25 @@ paths:
 
 ######### EDIT USER PROFILE #########
 
-    put:
+  /users/edit:
+    get:
       operationId: R202
-      summary: 'R202: Update User Profile'
+      summary: 'R202: View user edit profile'
+      description: 'Show the edit user profile. Access: OWN'
+      tags:
+        - 'M02: Users'
+
+      responses:
+        '200':
+          description: 'Ok. Show edit profile UI'
+
+    put:
+      operationId: R203
+      summary: 'R203: Update User Profile'
       description: 'Allows the owner of profile to edit their information. Access: OWN'
       tags:
         - 'M02: Users'
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
+
       requestBody:
         required: true
         content:
@@ -219,3 +226,5 @@ paths:
           description: 'User not authenticated or does not have permission to update this profile.'
         '404':
           description: 'User profile not found.'
+
+######### EDIT USER PROFILE #########
