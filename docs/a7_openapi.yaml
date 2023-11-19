@@ -490,7 +490,7 @@ paths:
             text/html:
               schema:
                 type: string
-                example: '<html>Home Page HTML here</html>'
+                example: '<html>Admin Page HTML here</html>'
         '401':
           description: 'Unauthorized. User not authenticated or lacks admin privileges.'
 
