@@ -1,20 +1,47 @@
 .tasks-list {
     display: flex;
-    flex-direction: column; /* Aligns children vertically */
-    flex-grow: 1; /* Allows the element to grow to occupy all available space */
-    gap: 10px; /* Adds space between project cards */
-    background-color: #F5A623; /* Vivid Orange */
-    width: 100%; /* Ensures it takes the full width */
-    padding: 10px; /* Adds padding inside the projects-list */
+    flex-direction: row; /* Aligns the task categories horizontally */
+    justify-content: space-around; /* Distributes space evenly around the task categories */
+    gap: 20px; /* Adds space between the task categories */
+    padding: 20px; /* Adds padding around the entire tasks-list for better spacing */
+    background-color: yellowgreen;
 }
 
+.task-category {
+    flex-grow: 1; /* Allows each category to grow and take up equal space */
+    display: flex;
+    flex-direction: column; /* Aligns the task cards vertically within each category */
+    gap: 10px; /* Adds space between the task cards */
+}
+
+.task-card-link {
+    text-decoration: none; /* Removes the underline from the links */
+    color: inherit; /* Inherits the text color from the parent element */
+}
 
 .task-card {
-    flex: 0 1 30%; /* Adjust the 30% to control the card width */
-    background-color: #FFC107; /* Example: Amber */
-    color: #333333; /* Dark text for contrast */
-    border: 1px solid #000000; /* Optional: Adds a white border for contrast */
-    margin: 1em;
-    padding: 1em; /* Optional: Adds padding inside each card */
-    border-radius: 5px; /* Optional: Rounds the corners of the cards */
+    background-color: pink; /* Gives the task card a white background */
+    border: 1px solid #000; /* Adds a light border to the card */
+    border-radius: 8px; /* Rounds the corners of the card */
+    padding: 15px; /* Adds padding inside the task card */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Adds a subtle shadow to the card */
+    display: flex;
+    flex-direction: column; /* Aligns the content of the card vertically */
+}
+
+.card-header, .card-body, .card-footer {
+    margin-bottom: 10px; /* Adds margin to the bottom of each section for spacing */
+}
+
+.card-header h3 {
+    margin-top: 0; /* Removes the top margin from the header's h3 for tight spacing */
+    margin-bottom: 5px; /* Adds a little space below the h3 */
+}
+
+.card-body {
+    flex-grow: 1; /* Allows the body to grow and fill available space */
+}
+
+.card-footer {
+    text-align: right; /* Aligns the footer content to the right */
 }
