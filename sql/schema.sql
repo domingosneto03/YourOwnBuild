@@ -186,7 +186,7 @@ CREATE INDEX idx_user_comment ON comment USING btree (id_task);
 CLUSTER comment USING idx_user_comment;
 
 --IDX03
-CREATE INDEX idx_priority_task ON task (is_completed, priority);
+CREATE INDEX idx_priority_task ON task (completion, priority);
 
 --IDX03
 -- Add column to group to store computed ts_vectors.
