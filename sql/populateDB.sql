@@ -1,6 +1,6 @@
 INSERT INTO users2 (username, password, email, name, bio, is_admin, is_blocked)
 VALUES
-  ('john_doe', 'securepass', 'john.doe@example.com', 'John Doe', 'A software developer', false, false),
+  ('john_doe', '$2y$10$z3NzJjVMhLU4qTXqWv84fecbRmijF4TktrD8rVHWWFDVqsqBky78y', 'john.doe@example.com', 'John Doe', 'A software developer', false, false),
   ('alice_smith', 'password123', 'alice.smith@example.com', 'Alice Smith', 'A graphic designer', false, false),
   ('bob_jones', 'pass456', 'bob.jones@example.com', 'Bob Jones', 'An accountant', false, false),
   ('emma_white', 'secretword', 'emma.white@example.com', 'Emma White', 'A marketing specialist', false, false),
