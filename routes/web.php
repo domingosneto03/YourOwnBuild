@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ProjectController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -57,6 +58,10 @@ Route::controller(RegisterController::class)->group(function () {
 
 // Homepage
 Route::controller(HomepageController::class)->group(function () {
-    Route::get('/homepage', 'showHomepage')->name('homepage');
-    // Route::post('/homepage', 'register');
+    Route::get('/homepage', 'show')->name('homepage');
+});
+
+// Projects
+Route::controller(ProjectController::class)->group(function () {
+    Route::get('/project/{id}', 'show');
 });

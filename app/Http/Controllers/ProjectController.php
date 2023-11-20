@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\Project;
+
 class ProjectController extends Controller
 {
-    public function showHomepage(): View
+    // Display homepage
+    public function show(string $id): View
     {   
         // Check if the user is logged in.
         if (!Auth::check()) {
@@ -14,22 +20,16 @@ class ProjectController extends Controller
             return redirect('/login');
 
         } else {
-            // The user is logged in.
+            // Get the card.
+            $project = Project::findOrFail($id);
 
-            // Get projects for user ordered by id.
-            $projects = Auth::user()->projects()->get();
+            // Check if the current user can see (show) the card.
+            // $this->authorize('show', $card);  
 
-            // Check if the current user can list the projects.
-            // $this->authorize('list', Project::class);
-
-            // The current user is authorized to list cards.
-
-            // Use the pages.cards template to display all cards.
-            return view('pages.homepage', [
-                'projects' => $projects
+            // Use the pages.card template to display the card.
+            return view('pages.project', [
+                'project' => $project
             ]);
         }
-
-        // return view('pages.homepage');
     }
 }
