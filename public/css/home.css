@@ -1,22 +1,76 @@
-.container {
-    display: grid;
+html, body {
+    height: 100%; /* Ensures the full height of the viewport is used */
+    margin: 0;   /* Removes default margin */
+    padding: 0;  /* Removes default padding */
 }
 
-.container * {
-
+.container {
+    display: grid;
+    grid-template-columns: 1fr 5fr; /* Ratio between sidebar and main content */
+    grid-template-rows: 100px 1fr;  /* Taller header and the rest for main content and sidebar */
+    height: 100vh; /* Sets the container to fill the viewport height */
 }
 
 .dashboard-header {
-    grid-area: 1 / 1 / span 1 / span 2;
+    grid-area: 1 / 1 / 2 / -1; /* Spans full width */
     background-color: aquamarine;
+    display: flex; /* Enables Flexbox */
+    align-items: center; /* Vertically centers items in the header */
+    justify-content: space-between; /* Spaces out items evenly */
+    padding: 0 10px; /* Optional: Adds padding on the sides */
 }
 
+
 .sidebar {
-    grid-area: 2 / 1 / span 1 / span 1;
-    background-color: blanchedalmond;
+    grid-area: 2 / 1 / -1 / 2; /* Full height, first column */
+    background-color: #4A90E2; /* Deep Sky Blue */
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px; /* Adds space between child elements */
+    padding: 10px; /* Adds padding inside the sidebar */
+}
+
+.sidebar-menu, .sidebar-footer {
+    width: 100%; /* Full width of the sidebar */
+    background-color: #7BACD2; /* Example: Lighter Blue */
+}
+
+.sidebar-menu a, .sidebar-footer a {
+    color: #FFFFFF; /* White text for better contrast */
+    text-decoration: none; /* Optional: Removes underline from links */
+    padding: 5px 0; /* Optional: Adds vertical padding to each link */
+}
+
+.sidebar-menu ul {
+    list-style-type: none; /* Removes bullet points */
+    padding: 0; /* Optional: Removes default padding */
 }
 
 .main-content {
-    grid-area: 2 / 2 / span 1 / span 2;
+    grid-area: 2 / 2 / -1 / -1; /* Full height, remaining columns */
     background-color: blue;
+    display: flex; /* Enable Flexbox */
+    flex-direction: column; /* Set items to stack vertically */
+    gap: 10px; /* Optional: Adds space between child elements */
+    padding: 10px; /* Adds padding inside the main-content area */
+}
+
+.projects-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px; /* Adds space between project cards */
+    padding: 10px; /* Adds padding inside the projects-list area */
+    background-color: #F5A623; /* Vivid Orange */
+}
+
+
+.project-card {
+    flex: 0 1 30%; /* Adjust the 30% to control the card width */
+    background-color: #FFC107; /* Example: Amber */
+    color: #333333; /* Dark text for contrast */
+    border: 1px solid #FFFFFF; /* Optional: Adds a white border for contrast */
+    padding: 10px; /* Optional: Adds padding inside each card */
+    border-radius: 5px; /* Optional: Rounds the corners of the cards */
 }

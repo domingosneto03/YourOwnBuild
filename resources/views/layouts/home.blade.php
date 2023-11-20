@@ -25,21 +25,23 @@
 
     <!-- Search and profile icons -->
     <div class="dashboard-header">
+        <div class="logo-container">
+            <h2>V0B</h2>
+            <p>YourOwnBuild</p>
+        </div>
         <div class="search-bar">
             <input type="search" name="search" placeholder="search">
             <button type="submit">Search</button>
         </div>
         <div class="user-profile">
-            <!-- User profile icon -->
+            <a href="/users/"> <!-- Update the href value to the actual profile page URL -->
+                <img src="{{ asset('img/profile_pic.jpeg') }}" alt="User Profile" style="width: 50px; height: 50px; border-radius: 50%;">
+            </a>
         </div>
     </div>
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <div class="logo-container">
-            <h2>V0B</h2>
-            <p>YourOwnBuild</p>
-        </div>
         <nav class="sidebar-menu">
             <ul>
                 <li><a href="#">My projects</a></li>
