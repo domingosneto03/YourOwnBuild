@@ -23,6 +23,7 @@ DROP TYPE IF EXISTS user_notification_types;
 DROP TYPE IF EXISTS project_notification_types;
 DROP TYPE IF EXISTS member_types;
 DROP TYPE IF EXISTS priority_types;
+DROP TYPE IF EXISTS completion_types;
 
 DROP FUNCTION IF EXISTS project_search_update CASCADE;
 DROP FUNCTION IF EXISTS task_search_update CASCADE;
@@ -64,6 +65,7 @@ CREATE TYPE user_notification_types AS ENUM ('join_accepted', 'invitation_accept
 CREATE TYPE project_notification_types AS ENUM ('member_joined', 'member_left', 'new_coordinator', 'request_join');
 CREATE TYPE member_types AS ENUM ('coordinator', 'project_member');
 CREATE TYPE priority_types AS ENUM ('low', 'medium', 'high');
+CREATE TYPE completion_types AS ENUM ('pending', 'in_progress', 'completed');
 
 -----------------------------------------
 -- Tables
@@ -95,7 +97,7 @@ CREATE TABLE task (
     id_project INT NOT NULL REFERENCES project1(id),
     name VARCHAR(255) NOT NULL,
     label VARCHAR(255) NOT NULL,
-    is_completed BOOLEAN NOT NULL DEFAULT false,
+    completion completion_types NOT NULL DEFAULT 'pending',
     date_created DATE NOT NULL,
     due_date DATE NOT NULL CHECK (due_date >= date_created),
     priority priority_types NOT NULL
