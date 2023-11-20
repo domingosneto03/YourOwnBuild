@@ -37,12 +37,6 @@ class Project extends Model
         return $this->hasMany(Task::class, 'id_project');
     }
 
-    // Get the members of the project.
-    public function members()
-    {
-        return $this->hasMany(Member::class, 'id_project');
-    }
-
     // Get the notifications related to the project.
     public function notifications()
     {
@@ -61,4 +55,9 @@ class Project extends Model
         return $this->hasMany(RequestJoin::class, 'id_project');
     }
 
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'member', 'id_project', 'id_user')
+                    ->withPivot('role');
+    }
 }

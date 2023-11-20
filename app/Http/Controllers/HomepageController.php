@@ -23,7 +23,7 @@ class HomepageController extends Controller
             // The user is logged in.
 
             // Get projects for user ordered by id.
-            $projects = Auth::user()->memberProjects()->get();
+            $projects = Auth::user()->projects()->get();
 
             // Check if the current user can list the projects.
             // $this->authorize('list', Project::class);

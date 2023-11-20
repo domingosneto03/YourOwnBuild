@@ -60,6 +60,9 @@ VALUES
 
 INSERT INTO member (id_user, id_project, role)
 VALUES
+  (1, 2, 'project_member'),
+  (1, 3, 'project_member'),
+  (1, 4, 'project_member'),
   (11, 1, 'project_member'),
   (12, 1, 'project_member'),
   (13, 1, 'project_member'),

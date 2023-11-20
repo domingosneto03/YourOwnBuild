@@ -91,9 +91,9 @@ class User extends Authenticatable
         return $this->hasMany(Task::class, 'id_user', 'id');
     }
 
-    // The projects that the user is a member of.
-    public function memberProjects(): BelongsToMany
+    public function projects()
     {
-        return $this->belongsToMany(Project::class, 'member', 'id_user', 'id_project');
+        return $this->belongsToMany(Project::class, 'member', 'id_user', 'id_project')
+                    ->withPivot('role');
     }
 }

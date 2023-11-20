@@ -37,32 +37,52 @@ html, body {
 }
 
 .sidebar-menu a, .sidebar-footer a {
-    color: #FFFFFF; /* White text for better contrast */
+    color: #000000; /* White text for better contrast */
     text-decoration: none; /* Optional: Removes underline from links */
-    padding: 5px 0; /* Optional: Adds vertical padding to each link */
+    padding: 2px 0; /* Optional: Adds vertical padding to each link */
+}
+
+.sidebar-footer {
+    display: flex; /* Enables Flexbox */
+    flex-direction: column; /* Stacks items vertically */
+}
+
+.sidebar-footer ul {
+    list-style-type: none; /* Removes bullet points */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
+}
+
+.sidebar-footer ul li {
+    margin-bottom: 5px; /* Adds space between list items */
 }
 
 .sidebar-menu ul {
     list-style-type: none; /* Removes bullet points */
-    padding: 0; /* Optional: Removes default padding */
+    padding: 2px 0; /* Adds padding inside the ul block */
+    border-radius: 15px; /* Rounds the corners */
+    background-color: #7BACD2; /* Example: Lighter Blue (or choose another color) */
+    margin: 10px 0; /* Adds vertical margin for spacing */
+}
+
+.sidebar-menu ul li {
+    margin: 5px 10px; /* Adds top and bottom margin of 5px, left and right margin of 10px */
+    /* Additional styling as needed */
 }
 
 .main-content {
     grid-area: 2 / 2 / -1 / -1; /* Full height, remaining columns */
-    background-color: blue;
     display: flex; /* Enable Flexbox */
-    flex-direction: column; /* Set items to stack vertically */
-    gap: 10px; /* Optional: Adds space between child elements */
-    padding: 10px; /* Adds padding inside the main-content area */
 }
 
 .projects-list {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    flex-direction: column; /* Aligns children vertically */
+    flex-grow: 1; /* Allows the element to grow to occupy all available space */
     gap: 10px; /* Adds space between project cards */
-    padding: 10px; /* Adds padding inside the projects-list area */
     background-color: #F5A623; /* Vivid Orange */
+    width: 100%; /* Ensures it takes the full width */
+    padding: 10px; /* Adds padding inside the projects-list */
 }
 
 
@@ -70,7 +90,8 @@ html, body {
     flex: 0 1 30%; /* Adjust the 30% to control the card width */
     background-color: #FFC107; /* Example: Amber */
     color: #333333; /* Dark text for contrast */
-    border: 1px solid #FFFFFF; /* Optional: Adds a white border for contrast */
-    padding: 10px; /* Optional: Adds padding inside each card */
+    border: 1px solid #000000; /* Optional: Adds a white border for contrast */
+    margin: 1em;
+    padding: 1em; /* Optional: Adds padding inside each card */
     border-radius: 5px; /* Optional: Rounds the corners of the cards */
 }
