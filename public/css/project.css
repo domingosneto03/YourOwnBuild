@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: row; /* Aligns the task categories horizontally */
     justify-content: space-around; /* Distributes space evenly around the task categories */
-    gap: 20px; /* Adds space between the task categories */
-    padding: 20px; /* Adds padding around the entire tasks-list for better spacing */
+    gap: 1em; /* Adds space between the task categories */
+    padding: 1em; /* Adds padding around the entire tasks-list for better spacing */
     background-color: yellowgreen;
     height: 100%;
 }
@@ -12,7 +12,7 @@
     flex-grow: 1; /* Allows each category to grow and take up equal space */
     display: flex;
     flex-direction: column; /* Aligns the task cards vertically within each category */
-    gap: 10px; /* Adds space between the task cards */
+    gap: 1em; /* Adds space between the task cards */
 }
 
 .task-card-link {

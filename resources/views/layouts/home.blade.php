@@ -24,17 +24,10 @@
 <body>
 
 <div class="container">
-
-    <!-- Search and profile icons -->
-    <div class="dashboard-header">
-        <div class="logo-container">
-            <h2>V0B</h2>
-            <p>YourOwnBuild</p>
-        </div>
-        <div class="search-bar">
-            <input type="search" name="search" placeholder="search">
-            <button type="submit">Search</button>
-        </div>
+    <!-- Topnav bar -->
+    <div class="topnav">
+        <a class="active" href="#homepage">YourOwnBuild</a>
+        <input type="text" placeholder="Search..">
         <div class="user-profile">
             <a href="/users/"> <!-- Update the href value to the actual profile page URL -->
                 <img src="{{ asset('img/profile_pic.jpeg') }}" alt="User Profile" style="width: 50px; height: 50px; border-radius: 50%;">
