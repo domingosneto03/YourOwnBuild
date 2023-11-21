@@ -26,10 +26,34 @@ class ProjectController extends Controller
             // Check if the current user can see (show) the card.
             // $this->authorize('show', $card);  
 
-            // Use the pages.card template to display the card.
+            // Use the pages.project template to display the project.
             return view('pages.project', [
                 'project' => $project
             ]);
         }
+    }
+    public function create()
+    {
+        return view('projects.create');
+    }
+
+    public function store(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => ['required','max:255'],
+            'description' => ['nullable'],
+            'is_public' => ['required', 'boolean'],
+        ]);
+
+        // Validate creation data
+        $validatedData['id_creator'] = auth()->id();
+        $validatedData['date_created'] = now();
+
+        // Create a new project in the database
+        $project = Project::create($validatedData);
+
+        // Redirect the user to the project page after creation
+        return redirect('/project/' . $project->id);
     }
 }
