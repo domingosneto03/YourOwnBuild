@@ -16,9 +16,11 @@ class Project extends Model
     public $timestamps  = false;
 
     protected $fillable = [
+        'id_creator',
         'name',
         'description',
         'is_public',
+        'date_created',
     ];
 
     protected $casts = [
