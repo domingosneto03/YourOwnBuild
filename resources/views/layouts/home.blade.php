@@ -51,6 +51,7 @@
                 <li><a href="#">Project tasks</a></li>
                 <li><a href="#">Homepage</a></li>
                 <li><a href="#">Labels</a></li>
+                <li><a href="{{ route('projects.create') }}">New Project</a></li>
                 <li><a href="#">Settings</a></li>
             </ul>
         </nav>
