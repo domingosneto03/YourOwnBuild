@@ -34,7 +34,7 @@ class ProjectController extends Controller
     }
     public function create()
     {
-        return view('projects.create');
+        return view('pages.createproject');
     }
 
     public function store(Request $request)
@@ -48,7 +48,10 @@ class ProjectController extends Controller
 
         // Validate creation data
         $validatedData['id_creator'] = auth()->id();
-        $validatedData['date_created'] = now();
+        $validatedData['date_created'] = now()->format('Y-m-d');
+
+        // Debugging statements
+        //dd($validatedData); // Check the entire validatedData array
 
         // Create a new project in the database
         $project = Project::create($validatedData);

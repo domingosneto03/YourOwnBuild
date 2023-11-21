@@ -67,3 +67,4 @@ Route::controller(ProjectController::class)->group(function () {
     Route::get('/projects/create',  'create')->name('projects.create');
     Route::post('/projects',  'store')->name('projects.store');
 });
+
