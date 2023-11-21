@@ -5,6 +5,7 @@
     gap: 20px; /* Adds space between the task categories */
     padding: 20px; /* Adds padding around the entire tasks-list for better spacing */
     background-color: yellowgreen;
+    width: 100%;
 }
 
 .task-category {
