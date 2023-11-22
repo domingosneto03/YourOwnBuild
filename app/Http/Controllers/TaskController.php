@@ -84,4 +84,17 @@ class TaskController extends Controller
         return redirect('/project/' . $task->id_project);
     }
 
+    
+    public function destroy($id)
+    {
+        $task = Task::findOrFail($id);
+
+        // Check if user can delete a task
+
+        $projectId = $task->id_project;
+        $task->delete();
+
+        return redirect('/project/' . $projectId)->with('success', 'Task deleted successfully.');
+    }
+
 }

@@ -63,7 +63,7 @@ class Project extends Model
         return $this->belongsToMany(User::class, 'request_join', 'id_project', 'id_user');
     }
 
-    // Listen for the 'deleting' event and remove associated members
+    // Listen for the 'deleting' event and remove associated columns
     protected static function boot()
     {
         parent::boot();

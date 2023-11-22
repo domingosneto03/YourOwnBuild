@@ -80,4 +80,5 @@ Route::controller(TaskController::class)->group(function () {
     Route::post('/tasks',  'store')->name('tasks.store');
     Route::get('/task/{id}/edit', 'edit')->name('tasks.edit');
     Route::put('/task/{id}', 'update')->name('tasks.update');
+    Route::delete('/tasks/{id}', 'destroy')->name('tasks.destroy');
 });

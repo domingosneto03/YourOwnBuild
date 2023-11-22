@@ -71,4 +71,16 @@ class Task extends Model
         return $this->belongsToMany(User::class, 'responsible', 'id_task', 'id_user');
     }
 
+    // Listen for the 'deleting' event and remove associated columns
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($task) {
+            $task->comments()->delete(); // Remove the associated tasks from the table
+            $task->responsibleUsers()->detach(); // Remove the associated users from the pivot table
+            $task->notifications()->delete(); // Remove the associated project notifications from the table
+        });
+    }
+
 }
