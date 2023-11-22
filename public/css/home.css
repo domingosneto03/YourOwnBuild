@@ -11,32 +11,25 @@ html, body {
     height: 100vh; /* Sets the container to fill the viewport height */
 }
 
-/* Add a black background color to the top navigation bar */
-.topnav {
-    grid-area: 1 / 1 / 2 / -1; /* Spans full width */
-    overflow: hidden;
-    background-color: #e9e9e9;
-}
-
 /* Style the links inside the navigation bar */
 .topnav  {
-    display: block;
-    color: white;
+    grid-area: 1 / 1 / 2 / -1; /* Spans full width */
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
     background-color: aquamarine;
     padding: 0.8em 1em;
-    text-decoration: none;
-    display: inline-block
 }
 
 .active {
-    font-size: 2em;
+    margin: 0.2em 0 0 1em;
+    font-size: 3em;
     color: black;
     text-decoration: none;
 }
 
 .user-profile {
-    text-align: right;
-    font-size: 1.2em;
+    margin: 0.8em;
 }
 
 /* Style the search box inside the navigation bar */

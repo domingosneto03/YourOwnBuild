@@ -27,7 +27,7 @@
 <div class="container">
     <!-- Topnav bar -->
     <div class="topnav">
-        <a class="active" href="#homepage">YourOwnBuild</a>
+        <a class="active" href="../homepage/">YourOwnBuild</a>
         <input type="text" placeholder="Search..">
         <div class="user-profile">
             <a href="/users/"> <!-- Update the href value to the actual profile page URL -->
