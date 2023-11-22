@@ -6,6 +6,7 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SearchController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -69,6 +70,9 @@ Route::controller(ProjectController::class)->group(function () {
     Route::get('/project/{id}/edit', 'edit')->name('projects.edit');
     Route::put('/projects/{id}', 'update')->name('projects.update');
     Route::delete('/projects/{id}', 'destroy')->name('projects.destroy');
-
 });
 
+// Search
+Route::controller(SearchController::class)->group(function () {
+    Route::get('/search', 'index');
+});
