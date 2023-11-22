@@ -31,7 +31,7 @@
         <a class="active" href="../homepage/">YourOwnBuild</a>
         <!-- <input type="text" placeholder="Search.."> -->
         <form>
-            <input type="text" size="30" onkeyup="showResult(this.value)" placeholder="Search..">
+            <input type="text" size="30" onkeyup="showResult(this.value)" placeholder="Search users..">
             <div id="livesearch"></div>
         </form>
         <div class="user-profile">
