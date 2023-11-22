@@ -1,0 +1,53 @@
+
+h1 {
+    color: #333;
+    padding-left: 5%;
+}
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5%;
+}
+.main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.label-name,
+.label-public {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input,
+.textarea,
+.selection {
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.selection {
+    height: 35px;
+}
+
+.button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 10%;
+}
+
+.button:hover {
+    background-color: #2980b9;
+}
+
+/* Add more styles as needed */

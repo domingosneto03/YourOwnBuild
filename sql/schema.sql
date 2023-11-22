@@ -121,6 +121,7 @@ CREATE TABLE member (
 CREATE TABLE notifications (
     id SERIAL PRIMARY KEY,
     id_user INT NOT NULL REFERENCES users2(id),
+    message TEXT NOT NULL,
     date TIMESTAMP NOT NULL,
     seen BOOLEAN NOT NULL DEFAULT false
 );
@@ -188,7 +189,6 @@ CLUSTER comment USING idx_user_comment;
 --IDX03
 CREATE INDEX idx_priority_task ON task (completion, priority);
 
---IDX03
 -- Add column to group to store computed ts_vectors.
 ALTER TABLE project1
 ADD COLUMN tsvectors TSVECTOR;
@@ -400,17 +400,20 @@ CREATE TRIGGER trigger_check_project_invitation
 CREATE OR REPLACE FUNCTION notify_users_on_leave()
 RETURNS TRIGGER AS $$
 BEGIN
+    -- Check if the user is leaving the project
+    IF OLD.role = 'project_member' THEN
+        -- Notify users from the project excluding the leaving user
+        INSERT INTO notifications (id_user, message, date, seen)
+        SELECT
+            id_user,
+            'User with ID ' || OLD.id_user || ' has left the group.',
+            NOW(),
+            false
+        FROM member
+        WHERE id_project = OLD.id_project AND id_user != OLD.id_user;     
+    END IF;
 
-  -- Insert notifications for all other users in the group
-  INSERT INTO notifications (id_user, message, date)
-  SELECT id_user, 
-         'User with ID ' || OLD.id_user || ' has left the group.', 
-         NOW()
-  FROM member
-  WHERE id_group = OLD.id_group AND id_user != OLD.id_user;
-
-  RETURN NULL; -- Since it's an AFTER DELETE trigger, we don't need to return anything
-
+    RETURN NULL; -- Since it's an AFTER DELETE trigger, we don't need to return anything
 END;
 $$ LANGUAGE plpgsql;
 

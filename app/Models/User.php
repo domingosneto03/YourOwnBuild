@@ -96,4 +96,16 @@ class User extends Authenticatable
         return $this->belongsToMany(Project::class, 'member', 'id_user', 'id_project')
                     ->withPivot('role');
     }
+
+    // Get the projects that the user was invited to.
+    public function invited()
+    {
+        return $this->belongsToMany(Project::class, 'invited', 'id_user', 'id_project');
+    }
+
+    // Get the projects that the user requested to join.
+    public function joinRequests()
+    {
+        return $this->belongsToMany(Project::class, 'request_join', 'id_user', 'id_project');
+    }
 }
