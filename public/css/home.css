@@ -122,3 +122,8 @@ div.content {
 .main-content {
     grid-area: 2 / 2 / -1 / -1;
 }
+
+footer {
+    display: flex;
+    flex-direction: row;
+}

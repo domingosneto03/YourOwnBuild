@@ -3,15 +3,11 @@
 @section('content')
 <!-- Sidebar -->
 <div class="sidebar">
+    <a href="#">Homepage</a>
     <a href="#">My Projects</a>
     <a href="#">My Team</a>
     <a href="#">Project Tasks</a>
-    <a href="#">Homepage</a>
-    <a href="#">Labels</a>
     <a href="#">Settings</a>
-    <a href="#">About Us</a>
-    <a href="#">FAQ</a>
-    <a href="#">Help</a>
 </div>
 
 <main class="main-content">

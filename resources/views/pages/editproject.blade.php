@@ -1,6 +1,15 @@
 @extends('layouts.home')
 
 @section('content')
+<!-- Sidebar -->
+<div class="sidebar">
+    <a href="#">Homepage</a>
+    <a href="#">My Projects</a>
+    <a href="#">My Team</a>
+    <a href="#">Project Tasks</a>
+    <a href="#">Settings</a>
+</div>
+<main class="main-content">
     <h1>Edit Project</h1>
 
     <form method="post" action="{{ route('projects.update', $project->id) }}" class="create-form">
@@ -21,4 +30,5 @@
 
         <button class="button" type="submit">Update</button>
     </form>
+</main>
 @endsection

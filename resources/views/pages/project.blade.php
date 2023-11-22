@@ -3,15 +3,12 @@
 @section('content')
 <!-- Sidebar -->
 <div class="sidebar">
+    <a href="#">Homepage</a>
     <a href="#">My Projects</a>
     <a href="#">My Team</a>
-    <a href="#">Project Tasks</a>
-    <a href="#">Homepage</a>
-    <a href="#">Labels</a>
+    <a href="{{ route('projects.edit', $project->id) }}">Edit Project</a>
     <a href="#">Settings</a>
-    <a href="#">About Us</a>
-    <a href="#">FAQ</a>
-    <a href="#">Help</a>
+    <a href="#">Delete Project</a>
 </div>
 
 <!-- Tasks List -->
@@ -23,9 +20,6 @@
             $inProgressTasks = $tasks->where('completion', 'in_progress');
             $completedTasks = $tasks->where('completion', 'completed');
         @endphp
-        <div class="edit-button">
-                <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary">Edit Project</a>
-        </div>
         <form method="post" action="{{ route('projects.destroy', $project->id) }}" class="delete-form">
             @csrf
             @method('DELETE')

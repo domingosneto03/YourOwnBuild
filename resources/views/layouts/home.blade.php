@@ -23,23 +23,24 @@
     </script>
 </head>
 <body>
-
-<div class="container">
-    <!-- Topnav bar -->
-    <div class="topnav">
-        <a class="active" href="#homepage">YourOwnBuild</a>
-        <input type="text" placeholder="Search..">
-        <div class="user-profile">
-            <a href="/users/"> <!-- Update the href value to the actual profile page URL -->
-                <img src="{{ asset('img/profile_pic.jpeg') }}" alt="User Profile" style="width: 50px; height: 50px; border-radius: 50%;">
-            </a>
+    <div class="container">
+        <!-- Topnav bar -->
+        <div class="topnav">
+            <a class="active" href="#homepage">YourOwnBuild</a>
+            <input type="text" placeholder="Search..">
+            <div class="user-profile">
+                <a href="/users/"> <!-- Update the href value to the actual profile page URL -->
+                    <img src="{{ asset('img/profile_pic.jpeg') }}" alt="User Profile" style="width: 50px; height: 50px; border-radius: 50%;">
+                </a>
+            </div>
         </div>
+
+        @yield('content')
+        <footer>
+            <a href="#">About Us</a>
+            <a href="#">FAQ</a>
+            <a href="#">Help</a>
+        </footer>
     </div>
-
-    @yield('content')
-</div>
-
-<!-- Add your scripts here -->
-
 </body>
 </html>
