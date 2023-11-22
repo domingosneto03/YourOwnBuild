@@ -8,11 +8,12 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Task;
+use App\Models\Project;
 
 class TaskController extends Controller
 {
     // Display task page
-    public function show($id)
+    public function show(string $id) : View
     {
         // Retrieve the task by ID
         $task = Task::findOrFail($id);
@@ -20,4 +21,80 @@ class TaskController extends Controller
         // Return the task view with the task data
         return view('pages.taskpage', ['task' => $task]);
     }
+
+    // Display page to create a task
+    public function create(string $id) : View
+    {
+        // Get the project
+        $project = Project::findOrFail($id);
+        return view('pages.createtask', ['project' => $project]);
+    }
+
+    // Store data in database
+    public function store(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => ['required','max:255'],
+            'label' => ['required', 'max:255'],
+            'completion' => ['required'],
+            'due_date' => ['required'],
+            'priority' => ['required']
+        ]);
+
+        // Validate creation data
+        $validatedData['id_creator'] = auth()->id();
+        $validatedData['id_project'] = $request->input('id_project');
+        $validatedData['date_created'] = now()->format('Y-m-d');
+
+        // Debugging statements
+        //dd(auth()->id()); 
+        //dd($validatedData); // Check the entire validatedData array
+
+        // Create a new task in the database
+        $task = Task::create($validatedData);
+
+        // Redirect the user to the project page after task creation
+        return redirect('/project/' . $task->id_project);
+    }
+
+    // Display edit task view for the creator or responsible
+    public function edit(string $id): View
+    {
+        $task = Task::findOrFail($id);
+        $project = Project::findOrFail($task->id_project);
+        return view('pages.edittask', ['task' => $task, 'project' => $project]);
+    }
+
+    // Update values in database
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => ['required', 'max:255'],
+            'label' => ['required', 'max:255'],
+            'completion' => ['required'],
+            'due_date' => ['required', 'date'],
+            'priority' => ['required'],
+        ]);
+
+        $task = Task::findOrFail($id);
+        $task->update($validatedData);
+
+        // Redirect the user to the project page after task edition
+        return redirect('/project/' . $task->id_project);
+    }
+
+    
+    public function destroy($id)
+    {
+        $task = Task::findOrFail($id);
+
+        // Check if user can delete a task
+
+        $projectId = $task->id_project;
+        $task->delete();
+
+        return redirect('/project/' . $projectId)->with('success', 'Task deleted successfully.');
+    }
+
 }

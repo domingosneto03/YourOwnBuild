@@ -42,12 +42,13 @@
                 <img src="{{ asset('img/profile_pic.jpeg') }}" alt="User Profile" style="width: 50px; height: 50px; border-radius: 50%;">
             </a>
         </div>
+
+        @yield('content')
+        <footer>
+            <a href="#">About Us</a>
+            <a href="#">FAQ</a>
+            <a href="#">Help</a>
+        </footer>
     </div>
-
-    @yield('content')
-</div>
-
-<!-- Add your scripts here -->
-
 </body>
 </html>

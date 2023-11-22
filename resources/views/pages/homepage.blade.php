@@ -3,15 +3,10 @@
 @section('content')
 <!-- Sidebar -->
 <div class="sidebar">
-    <a href="#">My Projects</a>
-    <a href="#">My Team</a>
-    <a href="#">Project Tasks</a>
-    <a href="#">Homepage</a>
-    <a href="#">Labels</a>
+    <a href="{{ route('homepage') }}">Homepage</a>
+    <a href="#">My Projects</a> 
+    <a href="{{ route('projects.create') }}">New Project</a> 
     <a href="#">Settings</a>
-    <a href="#">About Us</a>
-    <a href="#">FAQ</a>
-    <a href="#">Help</a>
 </div>
 
 <!-- Projects List -->

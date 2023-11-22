@@ -4,7 +4,8 @@ h1 {
     padding-left: 5%;
 }
 
-.create-form {
+.create-form,
+.edit-form {
     display: flex;
     flex-direction: column;
     padding-left: 5%;
@@ -14,8 +15,8 @@ h1 {
     flex-direction: column;
 }
 
-.label-name,
-.label-public {
+.simple,
+.options {
     display: block;
     margin-bottom: 5px;
     color: #333;
@@ -32,10 +33,6 @@ h1 {
     border-radius: 4px;
 }
 
-.selection {
-    height: 35px;
-}
-
 .button {
     background-color: #3498db;
     color: #fff;
@@ -48,6 +45,10 @@ h1 {
 
 .button:hover {
     background-color: #2980b9;
+}
+
+.task-details {
+    padding-left: 5%;
 }
 
 /* Add more styles as needed */
