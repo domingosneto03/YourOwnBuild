@@ -1,5 +1,6 @@
 INSERT INTO users2 (username, password, email, name, bio, is_admin, is_blocked)
 VALUES
+  ('admin@example.com', '$2y$10$MBqElw8XUaAhaTmBSOm2uOUpAepgHmmxN089heGZ/oFwdg.CUNyTC', 'admin@example.com', 'admin', 'System Administrator', true, false),
   ('john_doe', '$2y$10$z3NzJjVMhLU4qTXqWv84fecbRmijF4TktrD8rVHWWFDVqsqBky78y', 'john.doe@example.com', 'John Doe', 'A software developer', false, false),
   ('alice_smith', 'password123', 'alice.smith@example.com', 'Alice Smith', 'A graphic designer', false, false),
   ('bob_jones', 'pass456', 'bob.jones@example.com', 'Bob Jones', 'An accountant', false, false),
@@ -47,16 +48,16 @@ VALUES
 
 INSERT INTO project1 (id_creator, name, description, is_public, date_created)
 VALUES
-  (1, 'Project Alpha', 'A simple project for testing', true, '2023-01-15'),
-  (2, 'Project Beta', 'An experimental project with new features', true, '2023-02-20'),
-  (3, 'Project Gamma', 'A small project to demonstrate functionality', true, '2023-03-10'),
-  (4, 'Project Delta', 'A project to explore different technologies', true, '2023-04-05'),
-  (5, 'Project Epsilon', 'A collaborative project among team members', true, '2023-05-18'),
-  (6, 'Project Zeta', 'A side project for additional testing', true, '2023-06-23'),
-  (7, 'Project Eta', 'A non-public project with specific goals', true, '2023-07-30'),
-  (8, 'Project Theta', 'A project for internal use only', true, '2023-08-12'),
-  (9, 'Project Iota', 'A short-term project with a focused scope', true, '2023-09-05'),
-  (10, 'Project Kappa', 'A restricted-access project for special tasks', true, '2023-10-02');
+  (1, 'Website Overhaul', 'Complete redesign and update of our main website, focusing on user experience and responsive design.', true, '2023-01-15'),
+  (2, 'App Development Phase 1', 'Initial development phase for our new mobile application, including core feature implementation.', true, '2023-02-20'),
+  (3, 'Marketing Campaign Q1', 'Development and execution of the marketing campaign for the first quarter, targeting new customer segments.', true, '2023-03-10'),
+  (4, 'Data Migration Project', 'Secure and efficient migration of customer data to the new cloud-based storage platform.', true, '2023-04-05'),
+  (5, 'Customer Feedback Analysis', 'Gathering and analyzing customer feedback to improve our product and service offerings.', true, '2023-05-18'),
+  (6, 'Security Upgrade Initiative', 'Upgrading our security protocols and systems to enhance data protection and privacy.', true, '2023-06-23'),
+  (7, 'Employee Training Program', 'Developing a comprehensive training program for new and existing employees on our latest software tools.', true, '2023-07-30'),
+  (8, 'Supply Chain Optimization', 'Analyzing and optimizing our supply chain to reduce costs and improve efficiency.', true, '2023-08-12'),
+  (9, 'Product R&D Expansion', 'Expanding our research and development efforts to explore new product lines.', true, '2023-09-05'),
+  (10, 'Customer Support System Overhaul', 'Revamping our customer support system to provide faster and more efficient service.', true, '2023-10-02');
 
 INSERT INTO member (id_user, id_project, role)
 VALUES
@@ -86,52 +87,52 @@ VALUES
 
 INSERT INTO task (id_creator, id_project, name, label, completion, date_created, due_date, priority)
 VALUES
-  (1, 1, 'Task 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at tempor massa, eget euismod lorem. Curabitur sagittis porttitor ligula, sit.', 'pending', '2023-01-15', '2023-02-01', 'low'),
-  (1, 1, 'Task 31', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac lacus et ex ultricies molestie et non justo. Curabitur euismod.', 'pending', '2023-01-15', '2023-02-01', 'high'),
-  (1, 1, 'Task 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in laoreet sapien, vitae tincidunt ipsum. Curabitur dolor ex, tempor in.', 'in_progress', '2023-02-20', '2023-03-10', 'medium'),
-  (1, 1, 'Task 32', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae consectetur lacus. Aenean dignissim rhoncus tincidunt. Nunc posuere, lectus nec.', 'in_progress', '2023-02-20', '2023-03-10', 'high'),
-  (12, 1, 'Task 3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla augue neque, tincidunt at turpis a, dapibus fermentum dui. In malesuada.', 'completed', '2023-03-10', '2023-04-05', 'low'),
-  (2, 2, 'Task 4', 'Label A', 'pending', '2023-04-05', '2023-05-18', 'medium'),
-  (14, 2, 'Task 5', 'Label B', 'in_progress', '2023-05-18', '2023-06-23', 'high'),
-  (15, 2, 'Task 6', 'Label C', 'completed', '2023-06-23', '2023-07-30', 'low'),
-  (3, 3, 'Task 7', 'Label A', 'pending', '2023-07-30', '2023-08-12', 'medium'),
-  (3, 3, 'Task 8', 'Label B', 'in_progress', '2023-08-12', '2023-09-05', 'high'),
-  (3, 3, 'Task 9', 'Label C', 'completed', '2023-09-05', '2023-10-02', 'low'),
-  (4, 4, 'Task 10', 'Label A', 'pending', '2023-10-02', '2023-11-08', 'medium'),
-  (21, 4, 'Task 11', 'Label B', 'in_progress', '2023-11-08', '2023-12-15', 'high'),
-  (22, 4, 'Task 12', 'Label C', 'completed', '2023-11-15', '2023-12-02', 'low'),
-  (5, 5, 'Task 13', 'Label A', 'pending', '2023-01-02', '2023-02-28', 'medium'),
-  (25, 5, 'Task 14', 'Label B', 'in_progress', '2023-02-28', '2023-03-18', 'high'),
-  (25, 5, 'Task 15', 'Label C', 'completed', '2023-03-18', '2023-04-25', 'low'),
-  (6, 6, 'Task 16', 'Label A', 'pending', '2023-04-25', '2023-05-30', 'medium'),
-  (6, 6, 'Task 17', 'Label B', 'in_progress', '2023-05-30', '2023-06-10', 'high'),
-  (6, 6, 'Task 18', 'Label C', 'completed', '2023-06-10', '2023-07-15', 'low'),
-  (7, 7, 'Task 19', 'Label A', 'pending', '2023-07-15', '2023-08-22', 'medium'),
-  (27, 7, 'Task 20', 'Label B', 'in_progress', '2023-08-22', '2023-09-05', 'high'),
-  (27, 7, 'Task 21', 'Label C', 'completed', '2023-09-05', '2023-10-12', 'low'),
-  (8, 8, 'Task 22', 'Label A', 'pending', '2023-10-12', '2023-11-18', 'medium'),
-  (8, 8, 'Task 23', 'Label B', 'in_progress', '2023-11-18', '2023-12-25', 'high'),
-  (28, 8, 'Task 24', 'Label C', 'completed', '2023-12-25', '2024-01-05', 'low'),
-  (9, 9, 'Task 25', 'Label A', 'pending', '2024-01-05', '2024-02-15', 'medium'),
-  (9, 9, 'Task 26', 'Label B', 'in_progress', '2024-02-15', '2024-03-01', 'high'),
-  (9, 9, 'Task 27', 'Label C', 'completed', '2024-03-01', '2024-04-10', 'low'),
-  (10, 10, 'Task 28', 'Label A', 'pending', '2024-04-10', '2024-05-20', 'medium'),
-  (10, 10, 'Task 29', 'Label B', 'in_progress', '2024-05-20', '2024-06-05', 'high'),
-  (30, 10, 'Task 30', 'Label C', 'completed', '2024-06-05', '2024-07-15', 'low'); 
+  (1, 1, 'Design New Homepage', 'Create a modern, user-friendly homepage design.', 'pending', '2023-01-15', '2023-02-01', 'high'),
+  (1, 1, 'Update Content Strategy', 'Revise the content strategy to align with the new website design.', 'pending', '2023-01-18', '2023-02-10', 'medium'),
+  (1, 1, 'Optimize for SEO', 'Implement SEO best practices in all new web pages.', 'in_progress', '2023-01-20', '2023-02-15', 'medium'),
+  (1, 1, 'Finalize Website Layout', 'Complete the final layout design for the new website.', 'completed', '2023-01-22', '2023-02-05', 'high'),
+  (1, 1, 'Implement Feedback Changes', 'Incorporate feedback from the initial design review into the website.', 'completed', '2023-01-25', '2023-02-10', 'medium'),
+  (2, 2, 'Develop Login Feature', 'Implement a secure and easy-to-use login feature.', 'pending', '2023-02-20', '2023-03-15', 'high'),
+  (2, 2, 'UI/UX Design for App', 'Design the user interface and experience for the app.', 'in_progress', '2023-02-22', '2023-04-01', 'high'),
+  (2, 2, 'Set Up Database', 'Establish the database for app data storage.', 'pending', '2023-02-25', '2023-03-30', 'medium'),
+  (3, 3, 'Market Analysis', 'Conduct a thorough market analysis for targeted advertising.', 'in_progress', '2023-03-10', '2023-04-10', 'low'),
+  (3, 3, 'Develop Campaign Material', 'Create engaging material for the marketing campaign.', 'pending', '2023-03-12', '2023-04-15', 'medium'),
+  (3, 3, 'Social Media Strategy', 'Outline a strategy for social media marketing.', 'pending', '2023-03-15', '2023-04-20', 'medium'),
+  (4, 4, 'Data Backup Plan', 'Develop a comprehensive data backup plan before migration.', 'in_progress', '2023-04-05', '2023-05-05', 'high'),
+  (4, 4, 'Select Cloud Provider', 'Choose a cloud provider for the new data storage.', 'pending', '2023-04-10', '2023-05-10', 'high'),
+  (4, 4, 'Test Data Transfer', 'Perform test transfers to ensure data integrity.', 'pending', '2023-04-15', '2023-05-20', 'medium'),
+  (5, 5, 'Feedback Collection', 'Set up online surveys and feedback forms for customer input.', 'completed', '2023-05-18', '2023-06-18', 'medium'),
+  (5, 5, 'Analyze Survey Results', 'Analyze the results from the collected surveys to identify key trends.', 'in_progress', '2023-05-20', '2023-07-10', 'high'),
+  (5, 5, 'Report Generation', 'Generate a detailed report on customer feedback and suggestions.', 'pending', '2023-05-25', '2023-07-20', 'medium'),
+  (6, 6, 'Security Audit', 'Conduct a comprehensive audit of current security protocols.', 'pending', '2023-06-23', '2023-07-15', 'high'),
+  (6, 6, 'Upgrade Encryption', 'Implement upgraded encryption methods for sensitive data.', 'pending', '2023-06-28', '2023-08-05', 'high'),
+  (6, 6, 'Employee Cybersecurity Training', 'Organize training sessions for employees on new security protocols.', 'pending', '2023-07-05', '2023-08-20', 'medium'),
+  (7, 7, 'Curriculum Development', 'Develop a comprehensive training curriculum for new software tools.', 'pending', '2023-07-30', '2023-08-30', 'high'),
+  (7, 7, 'Hire Trainers', 'Hire experienced trainers to conduct the training sessions.', 'pending', '2023-08-05', '2023-09-05', 'medium'),
+  (7, 7, 'Schedule Training Sessions', 'Organize and schedule the training sessions for all employees.', 'pending', '2023-08-10', '2023-09-15', 'low'),
+  (8, 8, 'Supply Chain Analysis', 'Analyze the current supply chain for inefficiencies.', 'pending', '2023-08-12', '2023-09-10', 'medium'),
+  (8, 8, 'Vendor Evaluation', 'Assess and renegotiate contracts with key vendors.', 'pending', '2023-08-18', '2023-10-01', 'low'),
+  (8, 8, 'Implement Tracking System', 'Implement a new tracking system for better supply chain visibility.', 'pending', '2023-08-25', '2023-10-15', 'medium'),
+  (9, 9, 'Market Research for New Product', 'Conduct market research for potential new product lines.', 'pending', '2023-09-05', '2023-10-05', 'high'),
+  (9, 9, 'Prototype Development', 'Develop prototypes for the most promising product ideas.', 'pending', '2023-09-10', '2023-11-10', 'medium'),
+  (9, 9, 'R&D Team Expansion', 'Expand the R&D team by hiring specialized experts.', 'pending', '2023-09-15', '2023-11-15', 'low'),
+  (10, 10, 'Assess Current Support System', 'Evaluate the existing customer support system for shortcomings.', 'pending', '2023-10-02', '2023-11-01', 'medium'),
+  (10, 10, 'Develop New Support Platform', 'Develop a new, more efficient customer support platform.', 'pending', '2023-10-07', '2023-12-07', 'high'),
+  (10, 10, 'Train Staff on New System', 'Train customer support staff on the new system.', 'pending', '2023-10-15', '2023-12-15', 'medium');
 
 INSERT INTO comment (id_user, id_task, content, date)
 VALUES
-  (1, 1, 'Comment 1 for Task 1', '2023-01-20'),
-  (2, 4, 'Comment 2 for Task 4', '2023-04-08'),
-  (3, 7, 'Comment 3 for Task 7', '2023-07-15'),
-  (4, 10, 'Comment 4 for Task 10', '2023-10-25'),
-  (5, 13, 'Comment 5 for Task 13', '2023-02-14'),
-  (6, 16, 'Comment 6 for Task 16', '2023-05-02'),
-  (7, 19, 'Comment 7 for Task 19', '2023-08-18'),
-  (8, 22, 'Comment 8 for Task 22', '2023-11-05'),
-  (9, 25, 'Comment 9 for Task 25', '2024-02-22'),
-  (10, 28, 'Comment 10 for Task 28', '2024-05-10');
-  
+  (1, 1, 'The new homepage design looks great! Can we ensure the call-to-action button is more prominent?', '2023-01-20'),
+  (2, 4, 'Completed the initial setup for the login feature. Awaiting feedback on the security protocols.', '2023-04-08'),
+  (3, 7, 'Market analysis report is ready. Identified some key trends that we can leverage for our campaign.', '2023-07-15'),
+  (4, 10, 'Data migration to the cloud completed successfully. No data integrity issues encountered.', '2023-10-25'),
+  (5, 13, 'Survey responses have been compiled. There are some insightful customer suggestions.', '2023-02-14'),
+  (6, 16, 'Security audit completed. We need to update several protocols to enhance data protection.', '2023-05-02'),
+  (7, 19, 'Training curriculum draft is ready for review. Focused on practical applications of the new software.', '2023-08-18'),
+  (8, 22, 'Supply chain analysis indicates potential savings with a few adjustments in the vendor selection.', '2023-11-05'),
+  (9, 25, 'The prototype for the new product line is ready. Awaiting approval to begin user testing.', '2024-02-22'),
+  (10, 28, 'The new customer support platform is operational and staff training is complete. Early feedback is positive.', '2024-05-10');
+
 
 INSERT INTO admin_action (id_admin, id_user, is_blocking, justification)
 VALUES
