@@ -10,7 +10,7 @@
         $completedTasks = $tasks->where('completion', 'completed');
     @endphp
     <div class="edit-button">
-            <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary">Edit</a>
+            <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary">Edit Project</a>
     </div>
     <form method="post" action="{{ route('projects.destroy', $project->id) }}" class="delete-form">
         @csrf
