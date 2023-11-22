@@ -25,17 +25,10 @@
 <body>
 
 <div class="container">
-
-    <!-- Search and profile icons -->
-    <div class="dashboard-header">
-        <div class="logo-container">
-            <h2>V0B</h2>
-            <p>YourOwnBuild</p>
-        </div>
-        <div class="search-bar">
-            <input type="search" name="search" placeholder="search">
-            <button type="submit">Search</button>
-        </div>
+    <!-- Topnav bar -->
+    <div class="topnav">
+        <a class="active" href="#homepage">YourOwnBuild</a>
+        <input type="text" placeholder="Search..">
         <div class="user-profile">
             <a href="/users/"> <!-- Update the href value to the actual profile page URL -->
                 <img src="{{ asset('img/profile_pic.jpeg') }}" alt="User Profile" style="width: 50px; height: 50px; border-radius: 50%;">
@@ -45,22 +38,15 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <nav class="sidebar-menu">
-            <ul>
-                <li><a href="#">My projects</a></li>
-                <li><a href="#">My team</a></li>
-                <li><a href="#">Project tasks</a></li>
-                <li><a href="{{ route('homepage') }}">Homepage</a></li>
-                <li><a href="#">Labels</a></li>
-                <li><a href="{{ route('projects.create') }}">New Project</a></li>
-                <li><a href="#">Settings</a></li>
-            </ul>
-        </nav>
-        <div class="sidebar-footer">
-            <a href="#">About us</a>
-            <a href="#">FAQ</a>
-            <a href="#">Help?</a>
-        </div>
+        <a href="#">My Projects</a>
+        <a href="#">My Team</a>
+        <a href="#">Project Tasks</a>
+        <a href="#">Homepage</a>
+        <a href="#">Labels</a>
+        <a href="#">Settings</a>
+        <a href="#">About Us</a>
+        <a href="#">FAQ</a>
+        <a href="#">Help</a>
     </div>
 
     <!-- Main Content -->

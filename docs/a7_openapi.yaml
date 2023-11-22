@@ -159,7 +159,7 @@ paths:
                   value: '/login'
 
       
-############################################ PROFILE ############################################
+############################################ USERS ############################################
 
 ######### VIEW USER PROFILE #########
 
@@ -278,6 +278,34 @@ paths:
         '500':
           description: 'Internal Server Error. Error occurred while processing the request.'
 
+######### HOMEPAGE #########
+
+  /home:
+    get:
+      operationId: R205
+      summary: 'R205: View user home page'
+      description: 'Show user home page UI. Access: USR, ADM'
+      tags:
+        - 'M02: Users'
+
+      responses:
+        '200':
+          description: 'OK. Show the home page for an user with its projects'
+          content:
+            text/html:
+              schema:
+                type: string
+                example: '<html>Home Page HTML here</html>'
+        '302':
+          description: 'Redirect after unauthorized request.'
+          headers:
+            Location:
+              schema:
+                type: string
+              example:
+                  302Success:
+                    description: 'You need login first. Redirect to login page.'
+                    value: '/login'
 
 ############################################ SEARCH ############################################
 
@@ -445,12 +473,33 @@ paths:
 
 ############################################ ADMINISTRATION ############################################
 
+######### ADMIN PAGE #########
+
+  /admin:
+    get:
+      operationId: R401
+      summary: 'R401: View user admin page'
+      description: 'Show user admin page UI. Access: ADM'
+      tags:
+        - 'M04: Administration'
+
+      responses:
+        '200':
+          description: 'OK. Show the admin page'
+          content:
+            text/html:
+              schema:
+                type: string
+                example: '<html>Admin Page HTML here</html>'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks admin privileges.'
+
 ######### BLOCK USER #########
 
   /admin/user/block:
     get:
-      operationId: R401
-      summary: 'R401: Block User Form'
+      operationId: R402
+      summary: 'R402: Block User Form'
       description: 'Retrieves a form for blocking a user. Access: ADM'
       tags:
         - 'M04: Administration'
@@ -468,8 +517,8 @@ paths:
           description: 'Internal Server Error. Error occurred while retrieving the form.'
 
     post:
-      operationId: R402
-      summary: 'R402: Block User'
+      operationId: R403
+      summary: 'R403: Block User'
       description: 'Blocks a specified user. Access: ADM'
       tags:
         - 'M04: Administration'
@@ -517,8 +566,8 @@ paths:
 
   /admin/user/unblock:
     get:
-      operationId: R403
-      summary: 'R403: Unblock User Form'
+      operationId: R404
+      summary: 'R404: Unblock User Form'
       description: 'Retrieves a form for unblocking a user. Access: ADM'
       tags:
         - 'M04: Administration'
@@ -536,8 +585,8 @@ paths:
           description: 'Internal Server Error. Error occurred while retrieving the form.'
 
     post:
-      operationId: R404
-      summary: 'R404: Unblock User'
+      operationId: R405
+      summary: 'R405: Unblock User'
       description: 'Unblocks a previously blocked user. Access: ADM'
       tags:
         - 'M04: Administration'
@@ -906,12 +955,45 @@ paths:
 
 ############################################ TASKS ############################################
 
+######### TASK PAGE #########
+
+  /task/{id}/:
+    get:
+      operationId: R701
+      summary: 'R701: Get Task Page'
+      description: 'Retrieves the page for a specific project. Access: USR'
+      tags:
+        - 'M07: Tasks'
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: 'The unique identifier of the task.'
+      responses:
+        '200':
+          description: 'OK. Task page successfully retrieved.'
+          content:
+            text/html:
+              schema:
+                type: string
+                example: '<html>Task Page HTML here</html>'
+        '400':
+          description: 'Bad Request. Invalid task ID.'
+        '401':
+          description: 'Unauthorized. User not authenticated or lacks permission to view the task.'
+        '404':
+          description: 'Not Found. Task not found.'
+        '500':
+          description: 'Internal Server Error. Error occurred while retrieving the task page.'
+
 ######### CREATE TASK #########
 
   /task/create:
     post:
-      operationId: R701
-      summary: 'R701: Create Task'
+      operationId: R702
+      summary: 'R702: Create Task'
       description: 'Creates a new task in a project. Access: USR, ADM'
       tags:
         - 'M07: Tasks'
@@ -976,8 +1058,8 @@ paths:
 
   /task/{id}/edit:
     put:
-      operationId: R702
-      summary: 'R702: Edit Task'
+      operationId: R703
+      summary: 'R703: Edit Task'
       description: 'Edits an existing task. Access: OWN, ADM'
       tags:
         - 'M07: Tasks'
@@ -1037,8 +1119,8 @@ paths:
 
   /task/{id}/delete:
     post:
-      operationId: R703
-      summary: 'R703: Delete Task'
+      operationId: R704
+      summary: 'R705: Delete Task'
       description: 'Deletes a specified task. Access: OWN, ADM'
       tags:
         - 'M07: Tasks'
@@ -1068,4 +1150,3 @@ paths:
           description: 'Not Found. Task not found.'
         '500':
           description: 'Internal Server Error. Error occurred while processing the request.'
-
