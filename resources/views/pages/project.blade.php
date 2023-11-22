@@ -8,7 +8,7 @@
     <a href="#">My Team</a>
     <a href="{{ route('projects.edit', $project->id) }}">Edit Project</a>
     <a href="{{ route('tasks.create', $project->id) }}">New Task</a>
-    <a href="#">Delete Project</a>
+    <a href="#" class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this project?')) document.getElementById('delete-form').submit();">Delete Project</a>
     <a href="#">Settings</a>
 </div>
 
@@ -21,10 +21,9 @@
             $inProgressTasks = $tasks->where('completion', 'in_progress');
             $completedTasks = $tasks->where('completion', 'completed');
         @endphp
-        <form method="post" action="{{ route('projects.destroy', $project->id) }}" class="delete-form">
+        <form method="post" action="{{ route('projects.destroy', $project->id) }}" id="delete-form">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this project?')">Delete Project</button>
         </form>
         <div class="task-category">
             <h2>Pending</h2>
