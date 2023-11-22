@@ -3,9 +3,9 @@
 @section('content')
 <!-- Sidebar -->
 <div class="sidebar">
-    <a href="#">Homepage</a>
+    <a href="{{ route('homepage') }}">Homepage</a>
     <a href="#">My Projects</a> 
-    <a href="#">New Project</a> 
+    <a href="{{ route('projects.create') }}">New Project</a> 
     <a href="#">Settings</a>
 </div>
 

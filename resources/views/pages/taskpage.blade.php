@@ -3,7 +3,7 @@
 @section('content')
 <!-- Sidebar -->
 <div class="sidebar">
-    <a href="#">Homepage</a>
+    <a href="{{ route('homepage') }}">Homepage</a>
     <a href="#">My Projects</a>
     <a href="#">My Team</a>
     <a href="#">Project Tasks</a>

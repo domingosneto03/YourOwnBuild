@@ -3,12 +3,13 @@
 @section('content')
 <!-- Sidebar -->
 <div class="sidebar">
-    <a href="#">Homepage</a>
+    <a href="{{ route('homepage') }}">Homepage</a>
     <a href="#">My Projects</a>
     <a href="#">My Team</a>
     <a href="{{ route('projects.edit', $project->id) }}">Edit Project</a>
-    <a href="#">Settings</a>
+    <a href="{{ route('tasks.create') }}">New Task</a>
     <a href="#">Delete Project</a>
+    <a href="#">Settings</a>
 </div>
 
 <!-- Tasks List -->

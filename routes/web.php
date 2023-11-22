@@ -76,4 +76,6 @@ Route::controller(ProjectController::class)->group(function () {
 // Tasks
 Route::controller(TaskController::class)->group(function () {
     Route::get('/task/{id}', 'show')->name('tasks.show');
+    Route::get('/tasks/create',  'create')->name('tasks.create');
+    Route::post('/tasks',  'store')->name('tasks.store');
 });
