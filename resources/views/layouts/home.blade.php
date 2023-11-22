@@ -21,18 +21,26 @@
     </script>
     <script type="text/javascript" src={{ url('js/app.js') }} defer>
     </script>
+    <script type="text/javascript" src={{ url('js/search.js') }} defer></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Topnav bar -->
-        <div class="topnav">
-            <a class="active" href="#homepage">YourOwnBuild</a>
-            <input type="text" placeholder="Search..">
-            <div class="user-profile">
-                <a href="/users/"> <!-- Update the href value to the actual profile page URL -->
-                    <img src="{{ asset('img/profile_pic.jpeg') }}" alt="User Profile" style="width: 50px; height: 50px; border-radius: 50%;">
-                </a>
-            </div>
+
+<div class="container">
+    <!-- Topnav bar -->
+    <div class="topnav">
+        <a class="active" href="../homepage/">YourOwnBuild</a>
+        <!-- <input type="text" placeholder="Search.."> -->
+        <form>
+            <input type="text" size="30" onkeyup="showResult(this.value)" placeholder="Search users..">
+            <div id="livesearch"></div>
+        </form>
+        <div class="user-profile">
+            @php 
+                $user = Auth::user();
+            @endphp
+            <a href="/user/{{ $user->id }}"> <!-- Update the href value to the actual profile page URL -->
+                <img src="{{ asset('img/profile_pic.jpeg') }}" alt="User Profile" style="width: 50px; height: 50px; border-radius: 50%;">
+            </a>
         </div>
 
         @yield('content')

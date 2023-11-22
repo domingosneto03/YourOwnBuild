@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column; /* Aligns children vertically */
     flex-grow: 1; /* Allows the element to grow to occupy all available space */
-    background-color: #F5A623; /* Vivid Orange */
+    background-color: #E1EAEB; /* Vivid Orange */
     gap: 1.5em;
     padding: 2em;
 }
@@ -10,9 +10,13 @@
 
 .project-card {
     flex: 0 1 30%; /* Adjust the 30% to control the card width */
-    background-color: #FFC107; /* Example: Amber */
-    color: #333333; /* Dark text for contrast */
+    background-color: #98B6B9; /* Example: Amber */
+    color: black; /* Dark text for contrast */
     border: 1px solid #000000; /* Optional: Adds a white border for contrast */
     padding: 1em; /* Optional: Adds padding inside each card */
     border-radius: 5px; /* Optional: Rounds the corners of the cards */
+}
+
+.project-card-link {
+    text-decoration: none;
 }
