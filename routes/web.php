@@ -6,6 +6,7 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -72,3 +73,7 @@ Route::controller(ProjectController::class)->group(function () {
 
 });
 
+// Tasks
+Route::controller(TaskController::class)->group(function () {
+    Route::get('/task/{id}', 'show')->name('tasks.show');
+});

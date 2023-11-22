@@ -1,5 +1,5 @@
 <!-- Project Card Link -->
-<a href="/task/{{ $task->id }}" class="task-card-link"> <!-- Update href with the URL to the task page -->
+<a href="{{ route('tasks.show', $task->id) }}" class="task-card-link"> <!-- Update href with the URL to the task page -->
     <div class="task-card">
         <div class="card-header">
             <h3>{{ $task->name }}</h3>
