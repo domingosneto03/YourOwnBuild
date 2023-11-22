@@ -11,7 +11,12 @@
     @endphp
     <div class="edit-button">
             <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary">Edit</a>
-        </div>
+    </div>
+    <form method="post" action="{{ route('projects.destroy', $project->id) }}" class="delete-form">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this project?')">Delete Project</button>
+    </form>
     <div class="task-category">
         <h2>Pending</h2>
         @foreach ($pendingTasks as $task)

@@ -107,4 +107,19 @@ class ProjectController extends Controller
         return redirect('/project/' . $project->id);
     }
 
+    // Delete a project, option avalible only to the coordinator
+    public function destroy($id)
+    {
+    // Retrieve the project by ID
+    $project = Project::findOrFail($id);
+
+    // Add authorization check if needed
+
+    // Delete the project
+    $project->delete();
+
+    // Redirect to the projects list or another appropriate page
+    return redirect('/homepage')->with('success', 'Project deleted successfully');
+    }
+
 }

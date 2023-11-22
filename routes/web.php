@@ -68,6 +68,7 @@ Route::controller(ProjectController::class)->group(function () {
     Route::post('/projects',  'store')->name('projects.store');
     Route::get('/project/{id}/edit', 'edit')->name('projects.edit');
     Route::put('/projects/{id}', 'update')->name('projects.update');
+    Route::delete('/projects/{id}', 'destroy')->name('projects.destroy');
 
 });
 
