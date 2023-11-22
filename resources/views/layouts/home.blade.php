@@ -36,23 +36,7 @@
         </div>
     </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="#">My Projects</a>
-        <a href="#">My Team</a>
-        <a href="#">Project Tasks</a>
-        <a href="#">Homepage</a>
-        <a href="#">Labels</a>
-        <a href="#">Settings</a>
-        <a href="#">About Us</a>
-        <a href="#">FAQ</a>
-        <a href="#">Help</a>
-    </div>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        @yield('content')
-    </main>
+    @yield('content')
 </div>
 
 <!-- Add your scripts here -->
