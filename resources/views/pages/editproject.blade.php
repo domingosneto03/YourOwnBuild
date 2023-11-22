@@ -16,13 +16,13 @@
         @csrf
         @method('PUT')
 
-        <label for="name" class="label-name">Project Name:</label>
+        <label for="name" class="simple">Project Name:</label>
         <input type="text" name="name" id="name" value="{{ $project->name }}" required class="input">
 
         <label for="description">Description:</label>
         <textarea class = "textarea" name="description" id="description">{{ $project->description }}</textarea>
 
-        <label for="is_public" class='label-public'>Privacy:</label>
+        <label for="is_public" class='options'>Privacy:</label>
         <select class='selection' name="is_public" id="is_public">
             <option value="0" {{ $project->is_public === 0 ? 'selected' : '' }}>Private</option>
             <option value="1" {{ $project->is_public === 1 ? 'selected' : '' }}>Public</option>

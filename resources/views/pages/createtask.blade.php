@@ -15,21 +15,21 @@
     <form method="post" action="{{ route('tasks.store') }}" class="create-form">
         @csrf
         <input type="hidden" name="id_project" value="{{ $project->id }}">
-        <label for="name" class="label-name">Task Name:</label>
+        <label for="name" class="simple">Task Name:</label>
         <input class="input" type="text" name="name" id="name" required>
 
-        <label for="label" class="label-name">Task Label:</label>
+        <label for="label" class="simple">Task Label:</label>
         <input class="input" type="text" name="label" id="label" required>
         
-        <label for="completion" class='label-public'>Status:</label>
+        <label for="completion" class='options'>Status:</label>
         <select class='selection' name="completion" id="completion">
             <option value="pending">Pending</option>
         </select>
 
-        <label for="dateInput" class="label-name">Select a Date:</label>
-        <input type="date" id="dateInput" name="due_date" required>
+        <label for="dateInput" class="simple">Select a Date:</label>
+        <input class="input" type="date" id="dateInput" name="due_date" required>
 
-        <label for="priority" class='label-public'>Priority:</label>
+        <label for="priority" class='options'>Priority:</label>
         <select class='selection' name="priority" id="is_public">
             <option value="low">Low</option>
             <option value="medium">Medium</option>

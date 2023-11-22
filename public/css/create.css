@@ -14,8 +14,8 @@ h1 {
     flex-direction: column;
 }
 
-.label-name,
-.label-public {
+.simple,
+.options {
     display: block;
     margin-bottom: 5px;
     color: #333;
@@ -30,10 +30,6 @@ h1 {
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
-}
-
-.selection {
-    height: 35px;
 }
 
 .button {
