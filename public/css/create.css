@@ -13,6 +13,7 @@ h1 {
 .main-content {
     display: flex;
     flex-direction: column;
+    background-color: #E1EAEB;
 }
 
 .simple,
@@ -34,7 +35,8 @@ h1 {
 }
 
 .button {
-    background-color: #3498db;
+    background-color: #364B4E;
+    border-color: #364B4E;
     color: #fff;
     border: none;
     padding: 10px 15px;
@@ -44,11 +46,13 @@ h1 {
 }
 
 .button:hover {
-    background-color: #2980b9;
+    background-color: #4c676b;
 }
+
 
 .task-details {
-    padding-left: 5%;
+    margin: 5%;
+    border: 2px solid #364B4E;
+    border-radius: 10px;
+    padding: 5px 10px 5px 5px;
 }
-
-/* Add more styles as needed */
