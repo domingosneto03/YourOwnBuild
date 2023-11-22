@@ -280,7 +280,7 @@ paths:
 
 ######### HOMEPAGE #########
 
-  /home:
+  /homepage:
     get:
       operationId: R205
       summary: 'R205: View user home page'
@@ -1120,7 +1120,7 @@ paths:
   /task/{id}/delete:
     post:
       operationId: R704
-      summary: 'R705: Delete Task'
+      summary: 'R704: Delete Task'
       description: 'Deletes a specified task. Access: OWN, ADM'
       tags:
         - 'M07: Tasks'
