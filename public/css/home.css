@@ -17,7 +17,7 @@ html, body {
     overflow: hidden;
     display: flex;
     justify-content: space-between;
-    background-color: aquamarine;
+    background-color: #6D979C;
     padding: 0.8em 1em;
 }
 
@@ -59,7 +59,7 @@ html, body {
     grid-area: 2 / 1 / -1 / 2;
     margin: 0;
     padding: 0;
-    background-color: #f1f1f1;
+    background-color: lightgray;
     height: 100%;
     overflow: auto;
 }

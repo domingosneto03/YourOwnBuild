@@ -4,7 +4,7 @@
     justify-content: space-around; /* Distributes space evenly around the task categories */
     gap: 1em; /* Adds space between the task categories */
     padding: 1em; /* Adds padding around the entire tasks-list for better spacing */
-    background-color: yellowgreen;
+    background-color: #E1EAEB;
     height: 100%;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .task-card {
-    background-color: pink; /* Gives the task card a white background */
+    background-color: #98B6B9; /* Gives the task card a white background */
     border: 1px solid #000; /* Adds a light border to the card */
     border-radius: 8px; /* Rounds the corners of the card */
     padding: 15px; /* Adds padding inside the task card */
