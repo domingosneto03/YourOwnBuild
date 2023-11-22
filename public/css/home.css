@@ -35,9 +35,7 @@ html, body {
 /* Style the search box inside the navigation bar */
 .topnav input[type=text] {
     padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
+    margin-top: 12px;
     font-size: 17px;
 }
 
@@ -117,5 +115,21 @@ div.content {
 }
 
 #livesearch {
-    
+    display: flex;
+    flex-direction: column;
+}
+
+.search-card {
+    background-color: white;
+    color: black;
+    font-size: 17px;
+    padding: 4px 4px 4px 6px;
+}
+
+a.search-card:hover {
+    color: #04AA6D;
+}
+
+p.search-card {
+    margin: 0;
 }

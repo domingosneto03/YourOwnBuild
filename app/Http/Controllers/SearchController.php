@@ -34,10 +34,10 @@ class SearchController extends Controller
         foreach ($users as $user) {
             // Assuming $user->name and $user->url are the fields to be used
             if (stristr($user->name, $query)) {
-                $hint .= "<a href='../user/$user->id' target='_blank'>{$user->name}</a><br />";
+                $hint .= "<a class='search-card' href='../user/$user->id' target='_blank'>{$user->name}</a>";
             }
         }
 
-        return $hint ?: 'no suggestion';
+        return $hint ?: "<p class='search-card'>no suggestion</p>";
     }
 }
