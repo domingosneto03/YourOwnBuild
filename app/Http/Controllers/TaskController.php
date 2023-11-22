@@ -58,7 +58,7 @@ class TaskController extends Controller
         return redirect('/project/' . $task->id_project);
     }
 
-    // Display edit task view for the creator or responsible
+    // Display edit task view for the creator, coordinator or responsible
     public function edit(string $id): View
     {
         $task = Task::findOrFail($id);
@@ -84,13 +84,10 @@ class TaskController extends Controller
         return redirect('/project/' . $task->id_project);
     }
 
-    
+    // Delete a task, option only avalible to coordinator
     public function destroy($id)
     {
         $task = Task::findOrFail($id);
-
-        // Check if user can delete a task
-
         $projectId = $task->id_project;
         $task->delete();
 

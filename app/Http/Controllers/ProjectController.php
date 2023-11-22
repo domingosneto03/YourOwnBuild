@@ -20,11 +20,8 @@ class ProjectController extends Controller
             return redirect('/login');
 
         } else {
-            // Get the card.
+            // Get the project.
             $project = Project::findOrFail($id);
-
-            // Check if the current user can see (show) the card.
-            // $this->authorize('show', $card);  
 
             // Use the pages.project template to display the project.
             return view('pages.project', [

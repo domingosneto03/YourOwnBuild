@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User; // Replace with your actual model
+use App\Models\User;
 use App\Models\Project;
 
 class SearchController extends Controller
