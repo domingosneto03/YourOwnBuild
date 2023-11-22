@@ -42,6 +42,7 @@
                 <img src="{{ asset('img/profile_pic.jpeg') }}" alt="User Profile" style="width: 50px; height: 50px; border-radius: 50%;">
             </a>
         </div>
+    </div>
 
         @yield('content')
         <footer>
