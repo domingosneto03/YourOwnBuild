@@ -66,5 +66,8 @@ Route::controller(ProjectController::class)->group(function () {
     Route::get('/project/{id}', 'show');
     Route::get('/projects/create',  'create')->name('projects.create');
     Route::post('/projects',  'store')->name('projects.store');
+    Route::get('/project/{id}/edit', 'edit')->name('projects.edit');
+    Route::put('/projects/{id}', 'update')->name('projects.update');
+
 });
 
