@@ -7,7 +7,7 @@
     <a href="#">My Projects</a>
     <a href="#">My Team</a>
     <a href="{{ route('projects.edit', $project->id) }}">Edit Project</a>
-    <a href="{{ route('tasks.create') }}">New Task</a>
+    <a href="{{ route('tasks.create', $project->id) }}">New Task</a>
     <a href="#">Delete Project</a>
     <a href="#">Settings</a>
 </div>

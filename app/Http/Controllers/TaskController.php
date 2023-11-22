@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Task;
+use App\Models\Project;
 
 class TaskController extends Controller
 {
@@ -22,9 +23,11 @@ class TaskController extends Controller
     }
 
     // Display page to create a task
-    public function create()
+    public function create(string $id) : View
     {
-        return view('pages.createtask');
+        // Get the project
+        $project = Project::findOrFail($id);
+        return view('pages.createtask', ['project' => $project]);
     }
 
     // Store data in database
@@ -35,22 +38,23 @@ class TaskController extends Controller
             'name' => ['required','max:255'],
             'label' => ['required', 'max:255'],
             'completion' => ['required'],
-            'due_date' => ['required','date'],
-            'prioriy' => ['required']
+            'due_date' => ['required'],
+            'priority' => ['required']
         ]);
 
         // Validate creation data
         $validatedData['id_creator'] = auth()->id();
-        $validatedData['id_project'] = $project->id;
+        $validatedData['id_project'] = $request->input('id_project');
         $validatedData['date_created'] = now()->format('Y-m-d');
 
         // Debugging statements
-        //dd($validatedData); // Check the entire validatedData array
+        //dd(auth()->id()); 
+        dd($validatedData); // Check the entire validatedData array
 
         // Create a new task in the database
         $task = Task::create($validatedData);
 
         // Redirect the user to the project page after task creation
-        return redirect('/project/' . $project->id);
+        return redirect('/project/' . $task->id_project);
     }
 }
