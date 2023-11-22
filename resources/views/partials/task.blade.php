@@ -9,7 +9,11 @@
             <p>{{ $task->label }}</p>
         </div>
         <div class="card-footer">
-            <p>The task is {{ $task->label }}</p>
+            @if ($task->completion == 'in_progress')
+                <p>The task is in progress</p>
+            @else
+                <p>The task is {{ $task->completion }}</p>
+            @endif
         </div>
     </div>
 </a>
