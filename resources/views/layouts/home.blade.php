@@ -48,8 +48,8 @@
             <ul>
                 <li><a href="#">My projects</a></li>
                 <li><a href="#">My team</a></li>
-                <li><a href="{{ route('homepage') }}">Project tasks</a></li>
-                <li><a href="#">Homepage</a></li>
+                <li><a href="#">Project tasks</a></li>
+                <li><a href="{{ route('homepage') }}">Homepage</a></li>
                 <li><a href="#">Labels</a></li>
                 <li><a href="{{ route('projects.create') }}">New Project</a></li>
                 <li><a href="#">Settings</a></li>

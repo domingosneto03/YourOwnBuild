@@ -44,4 +44,36 @@ class Project extends Model
         return $this->belongsToMany(User::class, 'member', 'id_project', 'id_user')
                     ->withPivot('role');
     }
+
+    // Get the notifications of a project
+    public function notifications()
+    {
+        return $this->hasMany(ProjectNotification::class, 'id_project');
+    }
+
+    // Get the users invited to the project.
+    public function invited()
+    {
+        return $this->belongsToMany(User::class, 'invited', 'id_project', 'id_user');
+    }
+
+    // Get the users who requested to join the project.
+    public function joinRequests()
+    {
+        return $this->belongsToMany(User::class, 'request_join', 'id_project', 'id_user');
+    }
+
+    // Listen for the 'deleting' event and remove associated members
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($project) {
+            $project->tasks()->delete(); // Remove the associated tasks from the table
+            $project->members()->detach(); // Remove the associated members (users) from the pivot table
+            $project->notifications()->delete(); // Remove the associated project notifications from the table
+            $project->invited()->detach(); // Remove the associated invitations from the table
+            $project->joinRequests()->detach(); // Remove the associated join requests from the table
+        });
+    }
 }
