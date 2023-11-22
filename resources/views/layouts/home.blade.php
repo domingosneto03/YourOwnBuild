@@ -35,7 +35,10 @@
             <div id="livesearch"></div>
         </form>
         <div class="user-profile">
-            <a href="/users/"> <!-- Update the href value to the actual profile page URL -->
+            @php 
+                $user = Auth::user();
+            @endphp
+            <a href="/user/{{ $user->id }}"> <!-- Update the href value to the actual profile page URL -->
                 <img src="{{ asset('img/profile_pic.jpeg') }}" alt="User Profile" style="width: 50px; height: 50px; border-radius: 50%;">
             </a>
         </div>

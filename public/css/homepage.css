@@ -16,3 +16,7 @@
     padding: 1em; /* Optional: Adds padding inside each card */
     border-radius: 5px; /* Optional: Rounds the corners of the cards */
 }
+
+.project-card-link {
+    text-decoration: none;
+}
