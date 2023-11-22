@@ -4,7 +4,8 @@ h1 {
     padding-left: 5%;
 }
 
-.create-form {
+.create-form,
+.edit-form {
     display: flex;
     flex-direction: column;
     padding-left: 5%;
@@ -44,6 +45,10 @@ h1 {
 
 .button:hover {
     background-color: #2980b9;
+}
+
+.task-details {
+    padding-left: 5%;
 }
 
 /* Add more styles as needed */

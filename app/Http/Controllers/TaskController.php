@@ -57,4 +57,31 @@ class TaskController extends Controller
         // Redirect the user to the project page after task creation
         return redirect('/project/' . $task->id_project);
     }
+
+    // Display edit task view for the creator or responsible
+    public function edit(string $id): View
+    {
+        $task = Task::findOrFail($id);
+        $project = Project::findOrFail($task->id_project);
+        return view('pages.edittask', ['task' => $task, 'project' => $project]);
+    }
+
+    // Update values in database
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => ['required', 'max:255'],
+            'label' => ['required', 'max:255'],
+            'completion' => ['required'],
+            'due_date' => ['required', 'date'],
+            'priority' => ['required'],
+        ]);
+
+        $task = Task::findOrFail($id);
+        $task->update($validatedData);
+
+        // Redirect the user to the project page after task edition
+        return redirect('/project/' . $task->id_project);
+    }
+
 }

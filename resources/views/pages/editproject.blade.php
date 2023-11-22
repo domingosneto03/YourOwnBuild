@@ -12,7 +12,7 @@
 <main class="main-content">
     <h1>Edit Project</h1>
 
-    <form method="post" action="{{ route('projects.update', $project->id) }}" class="create-form">
+    <form method="post" action="{{ route('projects.update', $project->id) }}" class="edit-form">
         @csrf
         @method('PUT')
 

@@ -6,6 +6,7 @@
     <a href="{{ route('homepage') }}">Homepage</a>
     <a href="#">My Projects</a>
     <a href="#">My Team</a>
+    <a href="{{ route('tasks.edit', ['id' => $task->id]) }}">Edit Task</a>
     <a href="#">Project Tasks</a>
     <a href="#">Settings</a>
 </div>
