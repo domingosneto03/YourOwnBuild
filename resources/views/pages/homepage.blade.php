@@ -41,24 +41,31 @@
   </div>
 
   <!-- Projects List -->
-  <section class="projects-list">
-      @foreach ($projects as $project)
-          <!-- Project Card Link -->
-          <a href="/project/{{ $project->id }}" class="project-card-link"> <!-- Update href with the URL to the project page -->
-              <div class="project-card">
-                  <div class="card-header">
-                      <h3>{{ $project->name }}</h3>
-                      <p>Creator Name: {{ $project->creator->name }}</p>
+  <div class="container bg-body-secondary">
+    <div class="album py-5 bg-body-tertiary">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          @foreach ($projects as $project)
+            <div class="col">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <h5 class="card-title">{{ $project->name }}</h1>
+                  <p class="card-text">{{ $project->description }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a href="../project/{{ $project->id }}" class="btn btn-sm btn-outline-secondary">View</a>
+                      <a href="../project/{{ $project->id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    </div>
+                    <small class="text-body-secondary">9 mins</small>
                   </div>
-                  <div class="card-body">
-                      <p>{{ $project->description }}</p>
-                  </div>
-                  <div class="card-footer">
-                      <span>{{ count($project->members) }} members</span>
-                  </div>
+                </div>
               </div>
-          </a>
-      @endforeach
-  </section>
+            </div>
+          @endforeach
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
 @endsection
