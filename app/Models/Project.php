@@ -63,6 +63,13 @@ class Project extends Model
         return $this->belongsToMany(User::class, 'request_join', 'id_project', 'id_user');
     }
 
+    public function closestDeadlineTask()
+    {
+        return $this->hasMany(Task::class, 'id_project')
+                    ->orderBy('due_date')
+                    ->limit(1);
+    }
+
     // Listen for the 'deleting' event and remove associated columns
     protected static function boot()
     {

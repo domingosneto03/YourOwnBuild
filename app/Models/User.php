@@ -108,4 +108,16 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Project::class, 'request_join', 'id_user', 'id_project');
     }
+
+    public function closestDeadlinesProjects()
+    {
+        return $this->belongsToMany(Project::class, 'member', 'id_user', 'id_project')
+                    ->withPivot('role')
+                    ->with(['closestDeadlineTask' => function ($query) {
+                        // Add conditions for the closest deadline task
+                        $query->where('due_date', '>=', now()); // Example condition for closest deadlines
+                    }])
+                    ->orderBy('due_date');
+    }
+    
 }

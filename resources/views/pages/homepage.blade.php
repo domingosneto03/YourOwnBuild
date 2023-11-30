@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('content')
-<main class="d-flex">
+<main class="d-flex" height="100%">
   <!-- Sidebar -->
   <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
     <hr>
@@ -41,28 +41,38 @@
   </div>
 
   <!-- Projects List -->
-  <div class="container bg-body-secondary">
-    <div class="album py-5 bg-body-tertiary">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          @foreach ($projects as $project)
-            <div class="col">
-              <div class="card shadow-sm">
-                <div class="card-body">
-                  <h5 class="card-title">{{ $project->name }}</h1>
-                  <p class="card-text">{{ $project->description }}</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <a href="../project/{{ $project->id }}" class="btn btn-sm btn-outline-secondary">View</a>
-                      <a href="../project/{{ $project->id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
-                    </div>
-                    <small class="text-body-secondary">9 mins</small>
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        @foreach ($projects as $project)
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">{{ $project->name }}</h1>
+                <p class="card-text">{{ $project->description }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="../project/{{ $project->id }}" class="btn btn-sm btn-outline-secondary">View</a>
+                    <a href="../project/{{ $project->id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
                   </div>
+                  @php
+                    $closestTask = $project->closestDeadlineTask()->first();
+                    $closestDeadline = $closestTask->due_date;
+                    $now = new DateTime();
+                    $daysLeft = $now->diff($closestDeadline)->format("%d");
+                  @endphp
+                  @if ($daysLeft == 0)
+                    <small class="text-body-secondary">Next deadline today</small>
+                  @elseif ($daysLeft == 1)
+                    <small class="text-body-secondary">Next deadline tomorrow</small>
+                  @else 
+                    <small class="text-body-secondary">Next deadline in {{ $daysLeft }} days</small>
+                  @endif
                 </div>
               </div>
             </div>
-          @endforeach
-        </div>
+          </div>
+        @endforeach
       </div>
     </div>
   </div>
