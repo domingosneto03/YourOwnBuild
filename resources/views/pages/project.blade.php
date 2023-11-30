@@ -48,20 +48,20 @@
         $inProgressTasks = $tasks->where('completion', 'in_progress');
         $completedTasks = $tasks->where('completion', 'completed');
     @endphp
-    <div id="col-1" class="col bg-primary-subtle">
-      <h2>Pending</h2>
+    <div id="col-1" class="col bg-primary-subtle mx-3">
+      <h2 class="text-center mt-3">Pending</h2>
       @foreach ($pendingTasks as $task)
         @include('partials.task', ['task' => $task])
       @endforeach
     </div>
-    <div id="col-2" class="col bg-primary-subtle">
-      <h2>In Progress</h2>
+    <div id="col-2" class="col bg-primary-subtle mx-3">
+      <h2 class="text-center mt-3">In Progress</h2>
       @foreach ($inProgressTasks as $task)
         @include('partials.task', ['task' => $task])
       @endforeach
     </div>
-    <div id="col-3" class="col bg-primary-subtle">
-      <h2>Completed</h2>
+    <div id="col-3" class="col bg-primary-subtle mx-3">
+      <h2 class="text-center mt-3">Completed</h2>
       @foreach ($completedTasks as $task)
         @include('partials.task', ['task' => $task])
       @endforeach
