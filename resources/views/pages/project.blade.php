@@ -10,27 +10,27 @@
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
         Project
       </a>
-    </li>
+    </li class="nav-item">
     <li>
       <a href="#" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
         Team
       </a>
     </li>
-    <li>
+    <li class="nav-item">
       <a href="{{ route('projects.edit', $project->id) }}" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
         Edit Project
       </a>
     </li>
-    <li>
+    <li class="nav-item">
       <a href="{{ route('tasks.create', $project->id) }}" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
         New Task
       </a>
     </li>
-    <li>
-      <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this project?')) document.getElementById('delete-form').submit();" class="nav-link active --bs-danger">
+    <li class="nav-item">
+      <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this project?')) document.getElementById('delete-form').submit();" class="nav-link bg-danger text-light">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
         Delete Project
       </a>

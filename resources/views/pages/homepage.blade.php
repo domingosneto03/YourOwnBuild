@@ -11,25 +11,25 @@
         Home
       </a>
     </li>
-    <li>
+    <li class="nav-item">
       <a href="#" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
         Dashboard
       </a>
     </li>
-    <li>
+    <li class="nav-item">
       <a href="#" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
         Orders
       </a>
     </li>
-    <li>
+    <li class="nav-item">
       <a href="#" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
         Products
       </a>
     </li>
-    <li>
+    <li class="nav-item">
       <a href="#" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
         Customers
