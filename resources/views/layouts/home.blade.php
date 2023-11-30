@@ -19,9 +19,9 @@
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
-    <script type="text/javascript" src={{ url('js/app.js') }} defer>
-    </script>
+    <script type="text/javascript" src={{ url('js/app.js') }} defer></script>
     <script type="text/javascript" src={{ url('js/search.js') }} defer></script>
+    <script type="text/javascript" src={{ url('js/drag.js') }} defer></script>
 </head>
 <body class="d-flex flex-column vh-100 m-0">
     <div class="d-flex flex-column flex-grow-1">
@@ -34,7 +34,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="../homepage">Home</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">

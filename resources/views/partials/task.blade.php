@@ -1,19 +1,24 @@
-<!-- Project Card Link -->
-<a href="{{ route('tasks.show', $task->id) }}" class="task-card-link"> <!-- Update href with the URL to the task page -->
-    <div class="task-card">
-        <div class="card-header">
-            <h3>{{ $task->name }}</h3>
-            <p>Creator Name: {{ $project->creator->name }}</p>
+<div class="card shadow-sm" draggable="true">
+    <div class="card-body">
+        <h5 class="card-title">{{ $task->name }}</h1>
+        <p class="card-text">{{ $task->label }}</p>
+        <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+            <a href="../project/{{ $task->id }}" class="btn btn-sm btn-outline-secondary">View</a>
+            <a href="../project/{{ $task->id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
         </div>
-        <div class="card-body">
-            <p>{{ $task->label }}</p>
-        </div>
-        <div class="card-footer">
-            @if ($task->completion == 'in_progress')
-                <p>The task is in progress</p>
-            @else
-                <p>The task is {{ $task->completion }}</p>
-            @endif
+        @php
+            $deadline = $task->due_date;
+            $now = new DateTime();
+            $daysLeft = $now->diff($deadline)->format("%d");
+        @endphp
+        @if ($daysLeft == 0)
+            <small class="text-body-secondary">Deadline today</small>
+        @elseif ($daysLeft == 1)
+            <small class="text-body-secondary">Deadline tomorrow</small>
+        @else 
+            <small class="text-body-secondary">Deadline in {{ $daysLeft }} days</small>
+        @endif
         </div>
     </div>
-</a>
+</div>
