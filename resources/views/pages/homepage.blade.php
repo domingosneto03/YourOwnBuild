@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('content')
-<main class="d-flex" height="100%">
+<main class="d-flex flex-grow-1">
   <!-- Sidebar -->
   <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
     <hr>
