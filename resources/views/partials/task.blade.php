@@ -4,8 +4,8 @@
         <p class="card-text">{{ $task->label }}</p>
         <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
-            <a href="../project/{{ $task->id }}" class="btn btn-sm btn-outline-secondary">View</a>
-            <a href="../project/{{ $task->id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
+            <a href="../task/{{ $task->id }}" class="btn btn-sm btn-outline-secondary">View</a>
+            <a href="../task/{{ $task->id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
         </div>
         @php
             $deadline = $task->due_date;
