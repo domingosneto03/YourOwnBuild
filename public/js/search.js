@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     var searchInput = document.querySelector('input[type="text"]');
 
     searchInput.addEventListener('keyup', function() {
@@ -22,3 +22,4 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error:', error));
     });
 });
+*/

@@ -25,7 +25,9 @@ function addEventListeners() {
   }
   
   function encodeForAjax(data) {
+    console.log(data);
     if (data == null) return null;
+    console.log('here');
     return Object.keys(data).map(function(k){
       return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
     }).join('&');
@@ -38,6 +40,8 @@ function addEventListeners() {
     request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     request.addEventListener('load', handler);
+    console.log(data);
+    console.log(url);
     request.send(encodeForAjax(data));
   }
   

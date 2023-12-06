@@ -45,7 +45,7 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       @foreach ($projects as $project)
         <div class="col">
-          <div class="card shadow-sm">
+          <div id="id-project-{{ $project->id }}" class="card shadow-sm">
             <div class="card-body">
               <h5 class="card-title">{{ $project->name }}</h1>
               <p class="card-text">{{ $project->description }}</p>

@@ -1,9 +1,11 @@
 document.addEventListener('dragstart', function(){
     beingDragged(event);
 });
+
 document.addEventListener('dragend', function(){
     dragEnd(event);
 });
+
 document.addEventListener('dragover', function(){
    var beingDragged = document.querySelector(".dragging")
   if (event.target.matches('.card')) {
@@ -20,22 +22,35 @@ document.addEventListener('dragover', function(){
     }
   }
 });
+
 function beingDragged(ev) {
   var draggedEl = ev.target;
   draggedEl.classList.add("dragging");
 }
+
 function dragEnd(ev) {
   var draggedEl = ev.target;
   draggedEl.classList.remove("dragging");
+  console.log(ev.target);
+  let arry = ev.target.id.split('-');
+  let id = arry[arry.length - 1];
+  console.log(id);
+  let arry2 = ev.target.parentNode.id.split('-');
+  let completion = arry2[arry2.length - 1];
+  console.log(completion);
+  sendAjaxRequest('put', '/task/' + id + '/update-completion/', {completion: completion}, emptyHandler);
 }
+
+function emptyHandler() {
+  console.log('Hello World');
+}
+
 function allowDrop(ev) {
   ev.preventDefault();
-  //var project = document.getElementById('project');
   var dragOver = ev.target;
   var dragOverParent = dragOver.parentElement;
   var beingDragged = document.querySelector(".dragging");
   var draggedParent = beingDragged.parentElement;
-  var project = document.getElementById("project");
   var draggedIndex = whichChild(beingDragged);
   var dragOverIndex = whichChild(dragOver);
   if (draggedParent === dragOverParent) {

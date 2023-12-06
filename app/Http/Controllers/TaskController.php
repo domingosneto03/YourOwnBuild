@@ -84,6 +84,28 @@ class TaskController extends Controller
         return redirect('/project/' . $task->id_project);
     }
 
+    public function updateCompletion(Request $request, $id)
+    {
+        $request->validate([
+            'completion' => 'required|in:pending,completed', // Add any other validation rules as needed
+        ]);
+
+        // Find the task by ID
+        $task = Task::find($id);
+
+        // Check if the task exists
+        if (!$task) {
+            return response()->json(['error' => 'Task not found'], 404);
+        }
+
+        // Update the completion variable
+        $task->completion = $request->input('completion');
+        $task->save();
+
+        // Return a response
+        return response()->json(['message' => 'Task completion updated successfully', 'task' => $task]);
+    }
+
     // Delete a task, option only avalible to coordinator
     public function destroy($id)
     {

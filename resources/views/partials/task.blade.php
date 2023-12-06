@@ -1,4 +1,4 @@
-<div class="card shadow-sm mt-3" draggable="true">
+<div id="id-task-{{ $task->id }}" class="card shadow-sm mt-3" draggable="true">
     <div class="card-body">
         <h5 class="card-title">{{ $task->name }}</h1>
         <p class="card-text">{{ $task->label }}</p>
