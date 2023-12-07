@@ -1,6 +1,3 @@
-<div id="edit-project" class="main-content">
-    <h1>Edit Project</h1>
-
 <!-- Edit Project Form -->
 <div class="container">
     <h2>Edit Project</h2>
