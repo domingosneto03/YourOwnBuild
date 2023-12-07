@@ -37,7 +37,6 @@ class TaskController extends Controller
         $validatedData = $request->validate([
             'name' => ['required','max:255'],
             'label' => ['required', 'max:255'],
-            'completion' => ['required'],
             'due_date' => ['required'],
             'priority' => ['required']
         ]);
@@ -46,10 +45,11 @@ class TaskController extends Controller
         $validatedData['id_creator'] = auth()->id();
         $validatedData['id_project'] = $request->input('id_project');
         $validatedData['date_created'] = now()->format('Y-m-d');
+        $validatedData['completion'] = 'pending';
 
         // Debugging statements
         //dd(auth()->id()); 
-        dd($validatedData); // Check the entire validatedData array
+        //dd($validatedData); // Check the entire validatedData array
 
         // Create a new task in the database
         $task = Task::create($validatedData);
