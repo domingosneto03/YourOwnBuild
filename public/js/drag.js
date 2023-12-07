@@ -38,7 +38,7 @@ function dragEnd(ev) {
   let arry2 = ev.target.parentNode.id.split('-');
   let completion = arry2[arry2.length - 1];
   console.log(completion);
-  sendAjaxRequest('put', '/task/' + id + '/update-completion/', {completion: completion}, emptyHandler);
+  sendAjaxRequest('put', '/tasks/' + id + '/update-completion/', {completion: completion}, emptyHandler);
 }
 
 function emptyHandler() {

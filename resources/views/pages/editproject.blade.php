@@ -1,34 +1,43 @@
-@extends('layouts.home')
-
-@section('content')
-<!-- Sidebar -->
-<div class="sidebar">
-    <a href="{{ route('homepage') }}">Homepage</a>
-    <a href="#">My Projects</a>
-    <a href="#">My Team</a>
-    <a href="#">Project Tasks</a>
-    <a href="#">Settings</a>
-</div>
-<main class="main-content">
+<div id="edit-project" class="main-content">
     <h1>Edit Project</h1>
 
     <form method="post" action="{{ route('projects.update', $project->id) }}" class="edit-form">
         @csrf
         @method('PUT')
 
-        <label for="name" class="simple">Project Name:</label>
-        <input type="text" name="name" id="name" value="{{ $project->name }}" required class="input">
+        <!-- Text input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input type="text" id="name" class="form-control" />
+            <label class="form-label" for="name" value="{{ $project->name }}" required class="input">Project Name</label>
+        </div>
 
-        <label for="description">Description:</label>
-        <textarea class = "textarea" name="description" id="description">{{ $project->description }}</textarea>
+        <!-- Message input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+            <textarea class="form-control" id="description" rows="4">{{ $project->description }}</textarea>
+            <label class="form-label" for="description">Description</label>
+        </div>
 
-        <label for="is_public" class='options'>Privacy:</label>
-        <select class='selection' name="is_public" id="is_public">
-            <option value="0" {{ $project->is_public === 0 ? 'selected' : '' }}>Private</option>
-            <option value="1" {{ $project->is_public === 1 ? 'selected' : '' }}>Public</option>
-        </select>
+        <div data-mdb-input-init class="form-outline mb-4">
+            <select class='selection' name="is_public" id="is_public">
+                <option value="0" {{ $project->is_public === 0 ? 'selected' : '' }}>Private</option>
+                <option value="1" {{ $project->is_public === 1 ? 'selected' : '' }}>Public</option>
+            </select>
+            <label class="form-label" for="is_public">Privacy</label>
+        </div>
 
-        <button class="button" type="submit">Update</button>
+        <!-- Checkbox -->
+        <div class="form-check d-flex justify-content-center mb-4">
+            <input
+            class="form-check-input me-2"
+            type="checkbox"
+            value=""
+            id="form6Example8"
+            checked
+            />
+            <label class="form-check-label" for="form6Example8"> Create an account? </label>
+        </div>
+
+        <!-- Submit button -->
+        <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">Update</button>
     </form>
-</main>
-@endsection
+</div>

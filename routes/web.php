@@ -66,3 +66,8 @@ Route::controller(TaskController::class)->group(function () {
     Route::delete('/tasks/{id}', 'destroy')->name('tasks.destroy');
     Route::put('/tasks/{id}/update-completion', 'updateCompletion');
 });
+
+
+
+// Cena para mudar depois
+Route::get('/fetch-content', 'YourController@fetchContent');

@@ -87,7 +87,7 @@ class TaskController extends Controller
     public function updateCompletion(Request $request, $id)
     {
         $request->validate([
-            'completion' => 'required|in:pending,completed', // Add any other validation rules as needed
+            'completion' => 'required|in:pending,in_progress,completed', // Add any other validation rules as needed
         ]);
 
         // Find the task by ID

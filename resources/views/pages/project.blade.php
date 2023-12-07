@@ -18,7 +18,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('projects.edit', $project->id) }}" class="nav-link link-body-emphasis">
+      <a id="edit-project-btn" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
         Edit Project
       </a>
@@ -41,7 +41,7 @@
 
 <!-- Tasks Columns -->
 <div class="d-flex bg-body-tertiary flex-grow-1">
-  <div class="row justify-content-evenly flex-grow-1">
+  <div id="tasks-col" class="row justify-content-evenly flex-grow-1">
     @php 
         $tasks = $project->tasks()->get();
         $pendingTasks = $tasks->where('completion', 'pending');

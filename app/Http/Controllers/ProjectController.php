@@ -29,7 +29,7 @@ class ProjectController extends Controller
             ]);
         }
     }
-
+    
     // Display page to create a project
     public function create()
     {
