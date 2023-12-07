@@ -2,12 +2,41 @@
 
 @section('content')
 <!-- Sidebar -->
-<div class="sidebar">
-    <a href="{{ route('homepage') }}">Homepage</a>
-    <a href="#">My Projects</a>
-    <a href="#">My Team</a>
-    <a href="#">Project Tasks</a>
-    <a href="#">Settings</a>
+<div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a href="{{ route('homepage') }}" class="nav-link active" aria-current="page">
+        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+        Home
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link link-body-emphasis">
+        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+        Dashboard
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link link-body-emphasis">
+        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+        Orders
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link link-body-emphasis">
+        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+        Products
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link link-body-emphasis">
+        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+        Customers
+      </a>
+    </li>
+  </ul>
+  <hr>
 </div>
 <main class="main-content">
     <h1>Create Task</h1>

@@ -12,9 +12,9 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="#" class="nav-link link-body-emphasis">
+      <a href="{{ route('projects.create') }}" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-        Dashboard
+        Create Project
       </a>
     </li>
     <li class="nav-item">
