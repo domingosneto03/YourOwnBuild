@@ -4,7 +4,7 @@
         <p class="card-text">{{ $task->label }}</p>
         <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
-            <a href="#" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#taskOverlay">View</a>
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">View</button>
             <a href="../task/{{ $task->id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
         </div>
         @php
@@ -28,26 +28,23 @@
     </div>
 </div>
 
-<!-- Modal overlay for the task -->
-<div class="modal fade" id="taskOverlay" tabindex="-1" role="dialog" aria-labelledby="taskOverlayLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="taskOverlayLabel">Task Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h2>{{ $task->name }}</h2>
-                <p>Creator Name: {{ $task->creator->name }}</p>
-                <p>Project: {{ $task->project->name }}</p>
-                <p>Label: {{ $task->label }}</p>
-                <p>Completion: {{ $task->completion }}</p>
-                <p>Date Created: {{ $task->date_created->format('Y-m-d') }}</p>
-                <p>Due Date: {{ $task->due_date->format('Y-m-d') }}</p>
-                <p>Priority: {{ $task->priority }}</p>
-            </div>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ $task->name }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Creator Name: {{ $task->creator->name }}</p>
+        <p>Project: {{ $task->project->name }}</p>
+        <p>Label: {{ $task->label }}</p>
+        <p>Completion: {{ $task->completion }}</p>
+        <p>Date Created: {{ $task->date_created->format('Y-m-d') }}</p>
+        <p>Due Date: {{ $task->due_date->format('Y-m-d') }}</p>
+        <p>Priority: {{ $task->priority }}</p>
+      </div>
     </div>
+  </div>
 </div>
