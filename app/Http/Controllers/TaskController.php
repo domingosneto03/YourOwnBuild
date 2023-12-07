@@ -49,7 +49,7 @@ class TaskController extends Controller
 
         // Debugging statements
         //dd(auth()->id()); 
-        //dd($validatedData); // Check the entire validatedData array
+        dd($validatedData); // Check the entire validatedData array
 
         // Create a new task in the database
         $task = Task::create($validatedData);

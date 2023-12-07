@@ -25,7 +25,6 @@ class Task extends Model
         'id_project',
         'name',
         'label',
-        'completion',
         'date_created',
         'due_date',
         'priority',
@@ -39,6 +38,15 @@ class Task extends Model
     protected $casts = [
         'date_created' => 'datetime',
         'due_date' => 'datetime',
+    ];
+
+    /**
+     * The default values for attributes.
+     *
+     * @var array<string, mixed>
+     */
+    protected $attributes = [
+        'completion' => 'pending',
     ];
 
     // Get the creator of the task.

@@ -55,10 +55,14 @@
                   <a href="../project/{{ $project->id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
                 </div>
                 @php
-                  $closestTask = $project->closestDeadlineTask()->first();
-                  $closestDeadline = $closestTask->due_date;
-                  $now = new DateTime();
-                  $daysLeft = $now->diff($closestDeadline)->format("%d");
+                  $tasksCount = $project->tasks->count();
+
+                  if ($tasksCount > 0) {
+                      $closestTask = $project->closestDeadlineTask()->first();
+                      $closestDeadline = $closestTask->due_date;
+                      $now = new DateTime();
+                      $daysLeft = $now->diff($closestDeadline)->format("%d");
+                  }
                 @endphp
                 @if ($daysLeft == 0)
                   <small class="text-body-secondary">Next deadline today</small>
