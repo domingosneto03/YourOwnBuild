@@ -1,7 +1,10 @@
 <div id="edit-project" class="main-content">
     <h1>Edit Project</h1>
 
-    <form method="post" action="{{ route('projects.update', $project->id) }}" class="edit-form">
+<!-- Edit Project Form -->
+<div class="container">
+    <h2>Edit Project</h2>
+    <form method="post" action="{{ route('projects.update', $project->id) }}">
         @csrf
         @method('PUT')
 

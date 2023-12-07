@@ -29,6 +29,7 @@ class Task extends Model
         'date_created',
         'due_date',
         'priority',
+        
     ];
 
     /**

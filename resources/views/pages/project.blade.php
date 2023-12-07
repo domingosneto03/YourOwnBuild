@@ -39,6 +39,11 @@
   <hr>
 </div>
 
+<form method="post" action="{{ route('projects.destroy', $project->id) }}" id="delete-form">
+            @csrf
+            @method('DELETE')
+</form>
+
 <!-- Tasks Columns -->
 <div class="d-flex bg-body-tertiary flex-grow-1">
   <div id="tasks-col" class="row justify-content-evenly flex-grow-1">
