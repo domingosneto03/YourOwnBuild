@@ -44,7 +44,7 @@
             @method('DELETE')
 </form>
 
-<!-- Tasks Columns -->
+<!-- Main content -->
 <div id="main-content" class="d-flex bg-body-tertiary flex-grow-1">
   @include('partials.projectTasks')
 </div>
