@@ -1,5 +1,10 @@
-Btn = document.getElementById("edit-project-btn")
-Btn.addEventListener("click", function() {
+document.getElementById("edit-project-btn").addEventListener("click", function() {
+    // Change button colors
+    document.getElementById("project-tasks-btn").className = "nav-link link-body-emphasis"
+    document.getElementById("project-team-btn").className = "nav-link link-body-emphasis"
+    document.getElementById("edit-project-btn").className = "nav-link active"
+    document.getElementById("new-task-btn").className = "nav-link link-body-emphasis"
+
     Page = document.getElementById("tasks-col");
 
     // Get the current path

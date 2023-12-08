@@ -6,25 +6,25 @@
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
-      <a href="{{ route('homepage') }}" class="nav-link active" aria-current="page">
+      <a href="#" id="project-tasks-btn" class="nav-link active" aria-current="page">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-        Project
+        Tasks
       </a>
     </li class="nav-item">
     <li>
-      <a href="#" class="nav-link link-body-emphasis">
+      <a href="#" id="project-team-btn" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
         Team
       </a>
     </li>
     <li class="nav-item">
-      <a id="edit-project-btn" class="nav-link link-body-emphasis">
+      <a href="#" id="edit-project-btn" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
         Edit Project
       </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('tasks.create', $project->id) }}" class="nav-link link-body-emphasis">
+      <a href="{{ route('tasks.create', $project->id) }}" id="new-task-btn" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
         New Task
       </a>
