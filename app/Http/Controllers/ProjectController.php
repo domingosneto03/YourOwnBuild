@@ -76,7 +76,7 @@ class ProjectController extends Controller
         // Add authorization logic if needed.
 
         // Use the pages.editproject template to display the edit form.
-        return view('pages.editproject', [
+        return view('partials.editproject', [
             'project' => $project,
         ]);
     }

@@ -5,7 +5,7 @@ document.getElementById("edit-project-btn").addEventListener("click", function()
     document.getElementById("edit-project-btn").className = "nav-link active"
     document.getElementById("new-task-btn").className = "nav-link link-body-emphasis"
 
-    Page = document.getElementById("tasks-col");
+    Page = document.getElementById("main-content");
 
     // Get the current path
     let path = window.location.pathname;
