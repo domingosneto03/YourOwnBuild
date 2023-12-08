@@ -81,6 +81,26 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function tasks(string $id): View
+    {
+        // Check if the user is logged in.
+        if (!Auth::check()) {
+            // Not logged in, redirect to login.
+            return redirect('/login');
+        }
+
+        // Get the project.
+        $project = Project::findOrFail($id);
+
+        // Check if the current user can edit the project.
+        // Add authorization logic if needed.
+
+        // Use the pages.editproject template to display the edit form.
+        return view('partials.projectTasks', [
+            'project' => $project,
+        ]);
+    }
+
     // Update values in database
     public function update(Request $request, $id)
     {

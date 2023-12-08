@@ -49,6 +49,7 @@ Route::controller(ProjectController::class)->group(function () {
     Route::get('/project/{id}/edit', 'edit')->name('projects.edit');
     Route::put('/projects/{id}', 'update')->name('projects.update');
     Route::delete('/projects/{id}', 'destroy')->name('projects.destroy');
+    Route::get('/project/{id}/tasks', 'tasks')->name('projects.tasks');
 });
 
 // Search
@@ -66,8 +67,3 @@ Route::controller(TaskController::class)->group(function () {
     Route::delete('/tasks/{id}', 'destroy')->name('tasks.destroy');
     Route::put('/tasks/{id}/update-completion', 'updateCompletion');
 });
-
-
-
-// Cena para mudar depois
-Route::get('/fetch-content', 'YourController@fetchContent');

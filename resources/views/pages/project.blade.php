@@ -24,7 +24,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('tasks.create', $project->id) }}" id="new-task-btn" class="nav-link link-body-emphasis">
+      <a href="#" id="new-task-btn" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
         New Task
       </a>

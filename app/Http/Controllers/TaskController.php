@@ -27,7 +27,7 @@ class TaskController extends Controller
     {
         // Get the project
         $project = Project::findOrFail($id);
-        return view('pages.createtask', ['project' => $project]);
+        return view('partials.createtask', ['project' => $project]);
     }
 
     // Store data in database
