@@ -1,6 +1,8 @@
 @extends('layouts.home')
 
 @section('content')
+<script type="text/javascript" src={{ url('js/projectSidebar.js') }} defer></script>
+
 <!-- Sidebar -->
 <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
   <hr>

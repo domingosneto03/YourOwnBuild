@@ -20,9 +20,7 @@
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
     <script type="text/javascript" src={{ url('js/app.js') }} defer></script>
-    <script type="text/javascript" src={{ url('js/projectSidebar.js') }} defer></script>
     <script type="text/javascript" src={{ url('js/search.js') }} defer></script>
-    <script type="text/javascript" src={{ url('js/drag.js') }} defer></script>
 </head>
 <body class="d-flex flex-column vh-100 m-0">
     <div class="d-flex flex-column flex-grow-1">

@@ -1,3 +1,5 @@
+<script type="text/javascript" src={{ url('js/drag.js') }} defer></script>
+
 <div class="row justify-content-evenly flex-grow-1">
     @php 
         $tasks = $project->tasks()->get();

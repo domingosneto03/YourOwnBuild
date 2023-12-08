@@ -11,7 +11,7 @@ use App\Models\Project;
 
 class ProjectController extends Controller
 {
-    // Display homepage
+    // Display project page
     public function show(string $id): View
     {   
         // Check if the user is logged in.
@@ -29,11 +29,37 @@ class ProjectController extends Controller
             ]);
         }
     }
+
+    // Display homepage
+    public function showHomepage(): View
+    {   
+        // Check if the user is logged in.
+        if (!Auth::check()) {
+            // Not logged in, redirect to login.
+            return redirect('/login');
+
+        } else {
+            $projects = Auth::user()->projects()->get();
+
+            return view('partials.homepageMainContent', [
+                'projects' => $projects
+            ]);
+        }
+    }
     
     // Display page to create a project
     public function create()
-    {
-        return view('pages.createproject');
+    {   
+        // Check if the user is logged in.
+        if (!Auth::check()) {
+            // Not logged in, redirect to login.
+            return redirect('/login');
+        }
+
+        // Check if the current user can edit the project.
+        // Add authorization logic if needed.
+
+        return view('partials.createproject');
     }
 
     // Store data in database
