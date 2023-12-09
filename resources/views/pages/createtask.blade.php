@@ -59,11 +59,20 @@
             <input class="form-control" type="date" id="dateInput" name="due_date" required>
         </div>
         <div class="mb-3 col-8">
+        <label for="priority" class="form-label">Priority:</label>
             <select class="form-select" aria-label="Priority" name = "priority">
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
             </select>
+        </div>
+        <div class="mb-3 col-8">
+          <label for="deadline" class="form-label">Assign to:</label>
+          <select class="form-select" aria-label="Assign to" name="assigned">
+            @foreach ($project->members as $member)
+                <option value="{{ $member->id }}">{{ $member->name }}</option>
+            @endforeach
+          </select>
         </div>
         <div class="col-1">
             <button class="btn btn-primary btn-sm" type="submit">Create</button>
