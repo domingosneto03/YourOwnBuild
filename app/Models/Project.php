@@ -67,7 +67,7 @@ class Project extends Model
     {
         return $this->hasMany(Task::class, 'id_project')
                     ->orderBy('due_date')
-                    ->limit(10);
+                    ->limit(1);
     }
 
     // Listen for the 'deleting' event and remove associated columns

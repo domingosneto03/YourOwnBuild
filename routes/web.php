@@ -6,6 +6,8 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ProfilePageController;
+use App\Http\Controllers\UserController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -67,4 +69,16 @@ Route::controller(TaskController::class)->group(function () {
     Route::put('/task/{id}', 'update')->name('tasks.update');
     Route::delete('/tasks/{id}', 'destroy')->name('tasks.destroy');
     Route::put('/tasks/{id}/update-completion', 'updateCompletion');
+});
+
+// Profile Page
+Route::controller(ProfilePageController::class)->group(function () {
+    Route::get('/user/{id}', 'show');
+    Route::get('/user/{id}/profile', 'showProfile');
+    Route::get('/user/{id}/edit', 'editShow');
+});
+
+// User
+Route::controller(UserController::class)->group(function () {
+    Route::put('/user/{id}', 'update')->name('user.update');
 });

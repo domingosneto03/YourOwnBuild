@@ -78,6 +78,8 @@ CREATE TABLE users2 (
     email VARCHAR(255) NOT NULL UNIQUE,
     name VARCHAR(255) NOT NULL,
     bio TEXT,
+    job VARCHAR(255),
+    address VARCHAR(255),
     is_admin BOOLEAN NOT NULL DEFAULT false,
     is_blocked BOOLEAN NOT NULL DEFAULT false
 );
