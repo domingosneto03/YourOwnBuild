@@ -24,7 +24,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="task-modal-{{ $task->id }}" tabindex="-1" aria-labelledby="task-modal-label-{{ $task->id }}" aria-hidden="true">
+<div class="modal fade" id="task-modal-{{ $task->id }}" tabindex="-1" aria-labelledby="task-modal-label-{{ $task->id }}" aria-hidden="true" data-task-id="{{ $task->id }}">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -58,12 +58,12 @@
                             <div class="modal-header">
                                 <h5 class="modal-title">Comments</h5>
                             </div>
-                            <div class="modal-body" id="comments-body">
+                            <div class="modal-body" id="comments-body-{{ $task->id }}">
                             <!-- Existing comments will be displayed here -->
                                 @foreach($task->comments as $comment)
                                     <div class="card mb-2 card-sm">
                                         <div class="card-body">
-                                            <h6 class="card-title" id="comment-author">{{ $comment->user->name }}:</h6>
+                                            <h6 class="card-title">{{ $comment->user->name }}:</h6>
                                             <p class="card-text"> {{ $comment->content }}</p>
                                         </div>
                                     </div>
@@ -71,8 +71,8 @@
                             </div>
                             <div class="modal-footer">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Write a comment..." id="comment-input">
-                                    <button class="btn btn-primary" onclick="submitComment()">Send</button>
+                                    <input type="text" class="form-control" placeholder="Write a comment..." id="comment-input-{{ $task->id }}">
+                                    <button class="btn btn-primary" onclick="submitComment('{{ $task->id }}', '{{ auth()->user()->name }}')">Send</button>
                                 </div>
                             </div>
                         </div>
