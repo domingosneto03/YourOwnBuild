@@ -4,7 +4,7 @@
         <p class="card-text">{{ $task->label }}</p>
         <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
-        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">View</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">View</button>
             <a href="../task/{{ $task->id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
         </div>
         @php
