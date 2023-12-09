@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Task;
 use App\Models\Project;
+use App\Models\Responsible;
 
 class TaskController extends Controller
 {
@@ -38,7 +39,8 @@ class TaskController extends Controller
             'name' => ['required','max:255'],
             'label' => ['required', 'max:255'],
             'due_date' => ['required'],
-            'priority' => ['required']
+            'priority' => ['required'],
+            'assigned' => ['required', 'exists:users,id']
         ]);
 
         // Validate creation data
@@ -53,6 +55,9 @@ class TaskController extends Controller
 
         // Create a new task in the database
         $task = Task::create($validatedData);
+
+        // Assign the task to the selected user
+        $task->responsibleUsers()->attach($request->input('assigned'));
 
         // Redirect the user to the project page after task creation
         return redirect('/project/' . $task->id_project);

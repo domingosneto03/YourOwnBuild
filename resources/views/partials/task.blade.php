@@ -43,16 +43,20 @@
                         <div class="col-md-4">
                             <p class="card-text mb-5">Creator Name: {{ $task->creator->name }}</p>
                             <p class="card-text mb-5">Label: {{ $task->label }}</p>
-                            <p class="card-text mb-5">Status: {{ $task->completion }}</p>
                             <p class="card-text mb-5">Date Created: {{ $task->date_created->format('Y-m-d') }}</p>
                             <p class="card-text mb-5">Deadline: {{ $task->due_date->format('Y-m-d') }}</p>
                             <p class="card-text mb-5">Priority: {{ $task->priority }}</p>
                         </div>
                         <!-- Middle Column for Assigned Info -->
                         <div class="col-md-3">
-                            <p class="card-text">Assign to:</p>
-                            <!-- assigned table-->
-                            <p> hmm </p> 
+                            <p class="card-text">Assigned to:</p>
+                            @foreach($task->responsibleUsers as $user)
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="card-text">{{ $user->name }}</p>
+                                    </div>
+                                </div>
+                            @endforeach 
                         </div>
                         <!-- Right Column for Comments Section -->
                         <div class="col-md-5 border-start">
