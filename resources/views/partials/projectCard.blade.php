@@ -6,7 +6,6 @@
             <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
                 <a href="../project/{{ $project->id }}" class="btn btn-sm btn-outline-secondary">View</a>
-                <a href="../project/{{ $project->id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
             </div>
             @php
                 $tasksCount = $project->tasks->count();
