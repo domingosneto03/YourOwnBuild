@@ -57,8 +57,7 @@ class TaskController extends Controller
         // Create a new task in the database
         $task = Task::create($validatedData);
 
-        $assignedUsers = User::find($request->input('assigned'));
-        $attached = $task->responsibleUsers()->attach($assignedUsers);
+        $task->responsibleUsers()->attach($request->input('assigned'));
 
         // Redirect the user to the project page after task creation
         return redirect('/project/' . $task->id_project);
