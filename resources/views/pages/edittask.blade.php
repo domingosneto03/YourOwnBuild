@@ -10,9 +10,14 @@
     <a href="#">My Team</a>
     <a href="#">Project Tasks</a>
     <a href="#">Settings</a>
+    <a href="#" class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this task?')) document.getElementById('delete-task-form').submit();">Delete Task</a>
 </div>
 
 <main class="main-content">
+<form method="post" action="{{ route('tasks.destroy', $task->id) }}" id="delete-task-form">
+        @csrf
+        @method('DELETE')
+    </form>
     <h1>Edit Task</h1>
 
     <form method="post" action="{{ route('tasks.update', ['id' => $task->id]) }}" class="edit-form">
