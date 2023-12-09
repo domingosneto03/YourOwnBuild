@@ -10,9 +10,14 @@
         @php
             $deadline = $task->due_date;
             $now = new DateTime();
-            $daysLeft = $now->diff($deadline)->format("%d");
+            $interval = $now->diff($deadline);
+            $daysLeft = $now->diff($deadline)->format("%r%d");
         @endphp
-        @if ($daysLeft == 0)
+        @if ($daysLeft == -1)
+            <small class="text-body-secondary fw-bold">Deadline yesterday</small>
+        @elseif ($daysLeft < 0)
+            <small class="text-body-secondary fw-bold">Deadline {{ $interval->format("%d") }} days ago</small>
+        @elseif ($daysLeft == 0)
             <small class="text-body-secondary">Deadline today</small>
         @elseif ($daysLeft == 1)
             <small class="text-body-secondary">Deadline tomorrow</small>
