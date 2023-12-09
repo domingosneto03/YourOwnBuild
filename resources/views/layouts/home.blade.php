@@ -22,6 +22,7 @@
     <script type="text/javascript" src={{ url('js/app.js') }} defer></script>
     <script type="text/javascript" src={{ url('js/search.js') }} defer></script>
     <script type="text/javascript" src={{ url('js/drag.js') }} defer></script>
+    <script type="text/javascript" src={{ url('js/comment.js') }} defer></script>
 </head>
 <body class="d-flex flex-column vh-100 m-0">
     <div class="d-flex flex-column flex-grow-1">
