@@ -32,10 +32,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="container-fluid">
+                <div class="container-fluid" style="flex: 1; display: grid; grid-template-rows: 1fr auto;">
                     <div class="row">
                         <!-- Left Column for Task Info -->
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-10">
                             <p class="card-text mb-5">Creator Name: {{ $task->creator->name }}</p>
                             <p class="card-text mb-5">Label: {{ $task->label }}</p>
                             <p class="card-text mb-5">Date Created: {{ $task->date_created->format('Y-m-d') }}</p>
@@ -58,23 +58,26 @@
                             <div class="modal-header">
                                 <h5 class="modal-title">Comments</h5>
                             </div>
-                            <div class="modal-body" id="comments-body-{{ $task->id }}">
+                            <div class="modal-body" id="comments-body-{{ $task->id }}" style="max-height: 60vh; overflow-y: auto;">
                             <!-- Existing comments will be displayed here -->
                                 @foreach($task->comments as $comment)
-                                    <div class="card mb-2 card-sm">
+                                    <div class="card mb-2 card-sm position-relative">
                                         <div class="card-body">
                                             <h6 class="card-title">{{ $comment->user->name }}:</h6>
                                             <p class="card-text"> {{ $comment->content }}</p>
+                                                @if(auth()->user()->id == $comment->user->id)
+                                                    <button class="btn btn-outline-danger btn-sm position-absolute top-0 end-0 m-2" onclick="deleteComment('{{ $comment->id }}')">Delete</button>
+                                                @endif
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
-                            <div class="modal-footer">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Write a comment..." id="comment-input-{{ $task->id }}">
-                                    <button class="btn btn-primary" onclick="submitComment('{{ $task->id }}', '{{ auth()->user()->name }}')">Send</button>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Write a comment..." id="comment-input-{{ $task->id }}">
+                            <button class="btn btn-outline-success ms-2" onclick="submitComment('{{ $task->id }}', '{{ auth()->user()->name }}')">Send</button>
                         </div>
                     </div>
                 </div>
