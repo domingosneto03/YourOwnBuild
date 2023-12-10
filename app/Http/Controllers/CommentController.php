@@ -21,9 +21,9 @@ class CommentController extends Controller
 
         // Create a new comment associated with the task
         $validatedData['id_user'] = auth()->id();
-        $validatedData['date'] = now()->format('H:i');
+        $validatedData['date'] = now()->format('Y-m-d H:i:s');
+        $validatedData['id_task'] = $taskId;
         $comment = Comment::create($validatedData);
-        dd($comment);
         $task->comments()->save($comment);
 
         // Redirect back or perform other actions as needed
