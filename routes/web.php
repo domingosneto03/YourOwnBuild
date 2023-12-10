@@ -8,6 +8,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfilePageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -81,4 +82,11 @@ Route::controller(ProfilePageController::class)->group(function () {
 // User
 Route::controller(UserController::class)->group(function () {
     Route::put('/user/{id}', 'update')->name('user.update');
+});
+
+// Admin
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin', 'show')->name('admin.show');
+    Route::get('/admin/users', 'showUsers')->name('admin.showUsers');
+    Route::get('/admin/projects', 'showProjects')->name('admin.showProjects');
 });

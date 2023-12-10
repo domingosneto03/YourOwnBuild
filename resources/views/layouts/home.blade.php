@@ -50,6 +50,9 @@
                     </a>
                     <ul class="dropdown-menu text-small shadow">
                         <li><a class="dropdown-item" href="/user/{{ $user->id }}">Profile</a></li>
+                        @if ($user->is_admin)
+                            <li><a class="dropdown-item" href="/admin/">Admin</a></li>
+                        @endif
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="../logout">Sign out</a></li>
                     </ul>
