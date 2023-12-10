@@ -30,5 +30,10 @@ class CommentController extends Controller
         return redirect()->back()->with('success', 'Comment added successfully.');
     }
 
-    // Additional methods for updating and deleting comments can be added here
+    public function destroy($id)
+    {
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+        return response()->json(['message' => 'Comment deleted successfully']);
+    }
 }
