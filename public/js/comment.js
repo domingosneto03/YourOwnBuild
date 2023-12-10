@@ -20,7 +20,7 @@ function submitComment(taskId, userName) {
             // Append the delete button for the user's own comments
             var deleteButton = '<button class="btn btn-outline-danger btn-sm position-absolute top-0 end-0 m-2" onclick="deleteComment(' + response.id + ')">Delete</button>';
 
-            var newComment = '<div class="card mb-2 card-sm position-relative"><div class="card-body"><h6 class="card-title">' + userName + ':</h6><p class="card-text">' + commentContent + '</p>' + deleteButton + '</div></div>';
+            var newComment = '<div class="card mb-2 card-sm position-relative"><div class="card-body card-sm pb-0 mb-0"><h6 class="card-title">' + userName + ':</h6><p class="card-text">' + commentContent + '</p>' + deleteButton + '</div></div>';
             commentsBody.append(newComment);
 
             // Clear the input field

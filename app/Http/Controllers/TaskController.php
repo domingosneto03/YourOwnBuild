@@ -65,14 +65,6 @@ class TaskController extends Controller
         return redirect('/project/' . $task->id_project);
     }
 
-    // Display edit task view for the creator, coordinator or responsible
-    public function edit(string $id): View
-    {
-        $task = Task::findOrFail($id);
-        $project = Project::findOrFail($task->id_project);
-        return view('pages.edittask', ['task' => $task, 'project' => $project]);
-    }
-
     // Update values in database
     public function update(Request $request, $id)
     {
@@ -87,8 +79,9 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $task->update($validatedData);
 
-        // Redirect the user to the project page after task edition
-        return redirect('/project/' . $task->id_project);
+        $updatedTask = Task::findOrFail($id);
+
+        return redirect()->back()->with('success', 'Comment added successfully.');
     }
 
     public function updateCompletion(Request $request, $id)
