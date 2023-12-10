@@ -71,4 +71,5 @@ Route::controller(TaskController::class)->group(function () {
 // Comments
 Route::controller(CommentController::class)->group(function () {
     Route::post('/comments/task/{id}',  'store')->name('comments.store');
+    Route::delete('/comments/{id}',  'destroy')->name('comments.destroy');
 });

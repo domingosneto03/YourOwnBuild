@@ -61,7 +61,7 @@
                             <div class="modal-body" id="comments-body-{{ $task->id }}" style="max-height: 60vh; overflow-y: auto;">
                             <!-- Existing comments will be displayed here -->
                                 @foreach($task->comments as $comment)
-                                    <div class="card mb-2 card-sm position-relative">
+                                    <div class="card mb-2 card-sm position-relative" id="comment-{{ $comment->id }}">
                                         <div class="card-body">
                                             <h6 class="card-title">{{ $comment->user->name }}:</h6>
                                             <p class="card-text"> {{ $comment->content }}</p>
