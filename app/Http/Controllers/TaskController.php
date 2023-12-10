@@ -41,7 +41,7 @@ class TaskController extends Controller
             'label' => ['required', 'max:255'],
             'due_date' => ['required'],
             'priority' => ['required'],
-            'assigned' => ['required']
+            'assigned' => ['required', 'array']
         ]);
 
         // Validate creation data
@@ -57,7 +57,9 @@ class TaskController extends Controller
         // Create a new task in the database
         $task = Task::create($validatedData);
 
-        $task->responsibleUsers()->attach($request->input('assigned'));
+        foreach ($request->input('assigned') as $userId) {
+            $task->responsibleUsers()->attach($userId);
+        }
 
         // Redirect the user to the project page after task creation
         return redirect('/project/' . $task->id_project);
