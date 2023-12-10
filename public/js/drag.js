@@ -31,18 +31,14 @@ function beingDragged(ev) {
 function dragEnd(ev) {
   var draggedEl = ev.target;
   draggedEl.classList.remove("dragging");
-  console.log(ev.target);
+  
   let arry = ev.target.id.split('-');
   let id = arry[arry.length - 1];
-  console.log(id);
+
   let arry2 = ev.target.parentNode.id.split('-');
   let completion = arry2[arry2.length - 1];
-  console.log(completion);
-  sendAjaxRequest('put', '/tasks/' + id + '/update-completion/', {completion: completion}, emptyHandler);
-}
 
-function emptyHandler() {
-  console.log('Hello World');
+  sendAjaxRequest('put', '/tasks/' + id + '/update-completion/', {completion: completion}, emptyHandler);
 }
 
 function allowDrop(ev) {

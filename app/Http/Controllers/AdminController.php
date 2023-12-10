@@ -20,9 +20,15 @@ class AdminController extends Controller
             return redirect('/login');
         }
 
+        $users = User::all()->where('is_admin', false)->sortBy('username');
+        $projects = Project::all()->sortBy('name');
+
         // Add authorization logic if needed.
 
-        return view('pages.adminpage');
+        return view('pages.adminpage', [
+            'users' => $users,
+            'projects' => $projects,
+        ]);
     }
 
     public function showUsers(): View
@@ -33,8 +39,8 @@ class AdminController extends Controller
             return redirect('/login');
         }
 
-        // Get all projects
-        $users = User::all();
+        // Get all users
+        $users = User::all()->where('is_admin', false)->sortBy('username');
 
         // Add authorization logic if needed.
 
@@ -52,12 +58,48 @@ class AdminController extends Controller
         }
 
         // Get all projects
-        $projects = Project::all();
+        $projects = Project::all()->sortBy('name');
 
         // Add authorization logic if needed
 
         return view('partials.adminProjects', [
             'projects' => $projects,
         ]);
+    }
+
+    public function blockUser($id)
+    {
+        //Find user
+        $user = User::findOrFail($id);
+
+        // Check if the user exists
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        // Update the is_blocked variable
+        $user->is_blocked = 'true';
+        $user->save();
+
+        // Return a response
+        return response()->json(['message' => 'User successfully blocked']);
+    }
+
+    public function unblockUser($id)
+    {
+        //Find user
+        $user = User::findOrFail($id);
+
+        // Check if the user exists
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        // Update the is_blocked variable
+        $user->is_blocked = 'false';
+        $user->save();
+
+        // Return a response
+        return response()->json(['message' => 'User successfully unblocked']);
     }
 }

@@ -89,4 +89,6 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin', 'show')->name('admin.show');
     Route::get('/admin/users', 'showUsers')->name('admin.showUsers');
     Route::get('/admin/projects', 'showProjects')->name('admin.showProjects');
+    Route::put('/user/{id}/block', 'blockUser')->name('admin.blockUser');
+    Route::put('/user/{id}/unblock', 'unblockUser')->name('admin.unblockUser');
 });
