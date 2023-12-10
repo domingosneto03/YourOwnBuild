@@ -3,10 +3,7 @@
         <h5 class="card-title">{{ $task->name }}</h5>
         <p class="card-text">{{ $task->label }}</p>
         <div class="d-flex justify-content-between align-items-center">
-        <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#task-modal-{{ $task->id }}">View</button>
-            <a href="../task/{{ $task->id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
-        </div>
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#task-modal-{{ $task->id }}">View</button>
         @php
             $deadline = $task->due_date;
             $now = new DateTime();
@@ -40,18 +37,61 @@
                 <div class="container-fluid" style="flex: 1; display: grid; grid-template-rows: 1fr auto;">
                     <div class="row">
                         <!-- Left Column for Task Info -->
-                        <div class="col-md-4 mt-10">
-                            <p class="card-text mb-5">Creator Name: {{ $task->creator->name }}</p>
-                            <p class="card-text mb-5">Label: {{ $task->label }}</p>
-                            <p class="card-text mb-5">Date Created: {{ $task->date_created->format('Y-m-d') }}</p>
-                            <p class="card-text mb-5">Deadline: {{ $task->due_date->format('Y-m-d') }}</p>
-                            <p class="card-text mb-5">Priority: {{ $task->priority }}</p>
+                        <div class="col-md-5 mt-10">
+                            <div id="task-info-section-{{ $task->id }}">
+                                <p class="card-text mb-5">Creator Name: {{ $task->creator->name }}</p>
+                                <p class="card-text mb-5">Label: {{ $task->label }}</p>
+                                <p class="card-text mb-5">Date Created: {{ $task->date_created->format('Y-m-d') }}</p>
+                                <p class="card-text mb-5">Deadline: {{ $task->due_date->format('Y-m-d') }}</p>
+                                <p class="card-text">Priority: {{ $task->priority }}</p>
+                                <button class="btn btn-outline-secondary btn-sm my-3" onclick="editTask('{{ $task->id }}')">Edit Task</button>
+                            </div>
+                            <div  id="edit-task-form-container-{{ $task->id }}" style="display: none;">
+                                <form method="post" action="{{ route('tasks.update', ['id' => $task->id]) }}" class="edit-form">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="id_project" value="{{ $project->id }}">
+
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Task Name:</label>
+                                        <input class="form-control form-control-sm" type="text" name="name" id="name" value="{{ $task->name }}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="label" class="form-label">Task Label:</label>
+                                        <input class="form-control form-control-sm" type="text" name="label" id="label" value="{{ $task->label }}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="completion" class='form-label'>Status:</label>
+                                        <select class='form-select form-select-sm' aria-label="Completion" name="completion" id="completion">
+                                            <option value="pending" {{ $task->completion === 'pending' ? 'selected' : '' }}>Pending</option>
+                                            <option value="in_progress" {{ $task->completion === 'in_progress' ? 'selected' : '' }}>In Progress</option>
+                                            <option value="completed" {{ $task->completion === 'completed' ? 'selected' : '' }}>Completed</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="dateInput" class="form-label">Deadline:</label>
+                                        <input class="form-control form-control-sm" type="date" id="dateInput" name="due_date" value="{{ $task->due_date }}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="priority" class='form-label'>Priority:</label>
+                                        <select class='form-select form-select-sm' aria-label="Priority" name="priority">
+                                            <option value="low" {{ $task->priority === 'low' ? 'selected' : '' }}>Low</option>
+                                            <option value="medium" {{ $task->priority === 'medium' ? 'selected' : '' }}>Medium</option>
+                                            <option value="high" {{ $task->priority === 'high' ? 'selected' : '' }}>High</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-flex my-3">
+                                        <button class="btn btn-outline-secondary btn-sm" onclick="cancelEdit('{{ $task->id }}')">Cancel</button>
+                                        <button class="btn btn-outline-primary btn-sm ms-2" type="submit">Update</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                         <!-- Middle Column for Assigned Info -->
                         <div class="col-md-2">
                             <p class="card-text">Assigned to:</p>
                             @foreach($task->responsibleUsers as $user)
-                                <div class="card">
+                                <div class="card card-sm">
                                     <div class="card-body">
                                         <p class="card-text">{{ $user->name }}</p>
                                     </div>
@@ -59,15 +99,15 @@
                             @endforeach 
                         </div>
                         <!-- Right Column for Comments Section -->
-                        <div class="col-md-6 border-start">
+                        <div class="col-md-5 border-start">
                             <div class="modal-header">
                                 <h5 class="modal-title">Comments</h5>
                             </div>
-                            <div class="modal-body" id="comments-body-{{ $task->id }}" style="max-height: 60vh; overflow-y: auto;">
+                            <div class="modal-body" id="comments-body-{{ $task->id }}" style="max-height: 50vh; overflow-y: auto;">
                             <!-- Existing comments will be displayed here -->
                                 @foreach($task->comments as $comment)
-                                    <div class="card mb-2 card-sm position-relative" id="comment-{{ $comment->id }}">
-                                        <div class="card-body">
+                                    <div class="card mb-2 position-relative" id="comment-{{ $comment->id }}">
+                                        <div class="card-body card-sm pb-0 mb-0">
                                             <h6 class="card-title">{{ $comment->user->name }}:</h6>
                                             <p class="card-text"> {{ $comment->content }}</p>
                                                 @if(auth()->user()->id == $comment->user->id)
