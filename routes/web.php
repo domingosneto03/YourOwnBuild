@@ -56,6 +56,8 @@ Route::controller(ProjectController::class)->group(function () {
     Route::put('/projects/{id}', 'update')->name('projects.update');
     Route::delete('/projects/{id}', 'destroy')->name('projects.destroy');
     Route::get('/project/{id}/tasks', 'tasks')->name('projects.tasks');
+    Route::get('/project/{id}/team', 'showTeam')->name('projects.team');
+
 });
 
 // Search
@@ -76,7 +78,7 @@ Route::controller(TaskController::class)->group(function () {
 
 // Profile Page
 Route::controller(ProfilePageController::class)->group(function () {
-    Route::get('/user/{id}', 'show');
+    Route::get('/user/{id}', 'show')->name('profile.show');
     Route::get('/user/{id}/profile', 'showProfile');
     Route::get('/user/{id}/edit', 'editShow');
 });

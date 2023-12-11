@@ -1,0 +1,32 @@
+<!-- team.blade.php -->
+<div class="container">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-team-tab" data-bs-toggle="tab" data-bs-target="#nav-team" type="button" role="tab" aria-controls="nav-team" aria-selected="true">My Team</button>
+            <button class="nav-link" id="nav-request-tab" data-bs-toggle="tab" data-bs-target="#nav-request" type="button" role="tab" aria-controls="nav-request" aria-selected="false">Requests</button>
+            <button class="nav-link" id="nav-add-user-tab" data-bs-toggle="tab" data-bs-target="#nav-add-user" type="button" role="tab" aria-controls="nav-add-user" aria-selected="false">Add User</button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-team" role="tabpanel" aria-labelledby="nav-team-tab" tabindex="0">
+            <div class="row mt-4">
+                @foreach($project->members as $member)
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0">{{ $member->name }}</h5>
+                                @if($member->id == auth()->id())
+                                    <a href="{{ route('profile.show', $member->id) }}" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
+                                @else
+                                    <a href="#" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-request" role="tabpanel" aria-labelledby="nav-request-tab" tabindex="0">join requests</div>
+        <div class="tab-pane fade" id="nav-add-user" role="tabpanel" aria-labelledby="nav-add-user-tab" tabindex="0">lets add an user</div>
+    </div>
+</div>

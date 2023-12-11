@@ -165,4 +165,22 @@ class ProjectController extends Controller
     return redirect('/homepage')->with('success', 'Project deleted successfully');
     }
 
+    // Display team page
+    public function showTeam(string $id): View
+{
+    // Check if the user is logged in.
+    if (!Auth::check()) {
+        // Not logged in, redirect to login.
+        return redirect('/login');
+    }
+
+    // Get the project.
+    $project = Project::findOrFail($id);
+
+    // Use the partials.team template to display the team.
+    return view('partials.team', [
+        'project' => $project,
+    ]);
+}
+
 }
