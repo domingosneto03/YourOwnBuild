@@ -89,14 +89,33 @@
                         </div>
                         <!-- Middle Column for Assigned Info -->
                         <div class="col-md-2">
-                            <p class="card-text">Assigned to:</p>
-                            @foreach($task->responsibleUsers as $user)
-                                <div class="card card-sm">
-                                    <div class="card-body">
-                                        <p class="card-text">{{ $user->name }}</p>
+                            <div id="assigned-{{ $task->id }}">
+                                <p class="card-text">Assigned to:</p>
+                                @foreach($task->responsibleUsers as $user)
+                                    <div class="card card-sm">
+                                        <div class="card-body">
+                                            <p class="card-text">{{ $user->name }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach 
+                                @endforeach
+                                <button class="btn btn-outline-secondary btn-sm my-3" onclick="editAssign('{{ $task->id }}')">Reassign</button>
+                            </div>
+                            <div id="reassign-{{ $task->id }}" style="display: none;">
+                                <p class="card-text">Assigned to:</p>
+                                <form method="post" action="{{ route('tasks.updateAssign', ['id' => $task->id]) }}" class="edit-form">
+                                    @csrf
+                                    @method('PUT')
+                                    <ul class="card" style="padding: 10px; list-style: none;">
+                                        @foreach ($project->members as $member)
+                                            <li><input class="form-check-input" type="checkbox" name="assigned[]" value="{{ $member->id }}"> {{ $member->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                    <div class="d-flex my-3">
+                                        <button class="btn btn-outline-secondary btn-sm" type="button" onclick="cancelAssign('{{ $task->id }}')">Cancel</button>
+                                        <button class="btn btn-outline-primary btn-sm ms-2" type="submit">Update</button>
+                                    </div>
+                                </form>
+                            </div>   
                         </div>
                         <!-- Right Column for Comments Section -->
                         <div class="col-md-5 border-start">
@@ -107,12 +126,12 @@
                             <!-- Existing comments will be displayed here -->
                                 @foreach($task->comments as $comment)
                                     <div class="card mb-2 position-relative" id="comment-{{ $comment->id }}">
-                                        <div class="card-body card-sm pb-0 mb-0">
+                                        <div class="card-body card-sm mb-0">
                                             <h6 class="card-title">{{ $comment->user->name }}:</h6>
-                                            <p class="card-text"> {{ $comment->content }}</p>
-                                                @if(auth()->user()->id == $comment->user->id)
-                                                    <button class="btn btn-outline-danger btn-sm position-absolute top-0 end-0 m-2" onclick="deleteComment('{{ $comment->id }}')">Delete</button>
-                                                @endif
+                                            <p class="card-text mb-0"> {{ $comment->content }}</p>
+                                            @if(auth()->user()->id == $comment->user->id)
+                                                <button class="btn btn-outline-danger btn-sm position-absolute top-0 end-0 m-2" onclick="deleteComment('{{ $comment->id }}')">Delete</button>
+                                            @endif
                                         </div>
                                     </div>
                                 @endforeach

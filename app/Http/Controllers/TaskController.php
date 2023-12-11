@@ -79,9 +79,24 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $task->update($validatedData);
 
-        $updatedTask = Task::findOrFail($id);
+        return redirect()->back()->with('success', 'Updated with success.');
+    }
 
-        return redirect()->back()->with('success', 'Comment added successfully.');
+    public function updateAssign(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'assigned' => ['required', 'array'],
+        ]);
+
+        $task = Task::findOrFail($id);
+        $task->responsibleUsers()->detach();
+
+        foreach ($request->input('assigned') as $userId) {
+            $task->responsibleUsers()->attach($userId);
+        }
+        $task->update($validatedData);
+
+        return redirect()->back()->with('success', 'Updated with success.');
     }
 
     public function updateCompletion(Request $request, $id)
