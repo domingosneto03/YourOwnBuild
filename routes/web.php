@@ -71,6 +71,7 @@ Route::controller(TaskController::class)->group(function () {
     Route::put('/task/{id}', 'update')->name('tasks.update');
     Route::delete('/tasks/{id}', 'destroy')->name('tasks.destroy');
     Route::put('/tasks/{id}/update-completion', 'updateCompletion');
+    Route::put('/tasks/{id}/update-assign', 'updateAssign')->name('tasks.updateAssign');
 });
 
 // Profile Page
