@@ -9,6 +9,8 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfilePageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CommentController;
+
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -66,7 +68,6 @@ Route::controller(TaskController::class)->group(function () {
     Route::get('/task/{id}', 'show')->name('tasks.show');
     Route::get('/tasks/create/{id}',  'create')->name('tasks.create');
     Route::post('/tasks',  'store')->name('tasks.store');
-    Route::get('/task/{id}/edit', 'edit')->name('tasks.edit');
     Route::put('/task/{id}', 'update')->name('tasks.update');
     Route::delete('/tasks/{id}', 'destroy')->name('tasks.destroy');
     Route::put('/tasks/{id}/update-completion', 'updateCompletion');
@@ -89,4 +90,10 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin', 'show')->name('admin.show');
     Route::get('/admin/users', 'showUsers')->name('admin.showUsers');
     Route::get('/admin/projects', 'showProjects')->name('admin.showProjects');
+});
+
+// Comments
+Route::controller(CommentController::class)->group(function () {
+    Route::post('/comments/task/{id}',  'store')->name('comments.store');
+    Route::delete('/comments/{id}',  'destroy')->name('comments.destroy');
 });

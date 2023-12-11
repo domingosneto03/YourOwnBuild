@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Task;
 use App\Models\Project;
+use App\Models\Responsible;
+use App\Models\User;
 
 class TaskController extends Controller
 {
@@ -38,7 +40,8 @@ class TaskController extends Controller
             'name' => ['required','max:255'],
             'label' => ['required', 'max:255'],
             'due_date' => ['required'],
-            'priority' => ['required']
+            'priority' => ['required'],
+            'assigned' => ['required', 'array']
         ]);
 
         // Validate creation data
@@ -54,16 +57,12 @@ class TaskController extends Controller
         // Create a new task in the database
         $task = Task::create($validatedData);
 
+        foreach ($request->input('assigned') as $userId) {
+            $task->responsibleUsers()->attach($userId);
+        }
+
         // Redirect the user to the project page after task creation
         return redirect('/project/' . $task->id_project);
-    }
-
-    // Display edit task view for the creator, coordinator or responsible
-    public function edit(string $id): View
-    {
-        $task = Task::findOrFail($id);
-        $project = Project::findOrFail($task->id_project);
-        return view('pages.edittask', ['task' => $task, 'project' => $project]);
     }
 
     // Update values in database
@@ -80,8 +79,24 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $task->update($validatedData);
 
-        // Redirect the user to the project page after task edition
-        return redirect('/project/' . $task->id_project);
+        return redirect()->back()->with('success', 'Updated with success.');
+    }
+
+    public function updateAssign(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'assigned' => ['required', 'array'],
+        ]);
+
+        $task = Task::findOrFail($id);
+        $task->responsibleUsers()->detach();
+
+        foreach ($request->input('assigned') as $userId) {
+            $task->responsibleUsers()->attach($userId);
+        }
+        $task->update($validatedData);
+
+        return redirect()->back()->with('success', 'Updated with success.');
     }
 
     public function updateCompletion(Request $request, $id)
