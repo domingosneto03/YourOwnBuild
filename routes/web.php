@@ -6,7 +6,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\CommentController;
+
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -65,11 +65,5 @@ Route::controller(TaskController::class)->group(function () {
     Route::put('/task/{id}', 'update')->name('tasks.update');
     Route::delete('/tasks/{id}', 'destroy')->name('tasks.destroy');
     Route::put('/tasks/{id}/update-completion', 'updateCompletion');
-    Route::put('/tasks/{id}/update-assign', 'updateAssign')->name('tasks.updateAssign');
 });
 
-// Comments
-Route::controller(CommentController::class)->group(function () {
-    Route::post('/comments/task/{id}',  'store')->name('comments.store');
-    Route::delete('/comments/{id}',  'destroy')->name('comments.destroy');
-});
