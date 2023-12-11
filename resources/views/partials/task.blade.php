@@ -37,14 +37,21 @@
                 <div class="container-fluid" style="flex: 1; display: grid; grid-template-rows: 1fr auto;">
                     <div class="row">
                         <!-- Left Column for Task Info -->
-                        <div class="col-md-5 mt-10">
+                        <div class="col-md-4 mt-10">
                             <div id="task-info-section-{{ $task->id }}">
                                 <p class="card-text mb-5">Creator Name: {{ $task->creator->name }}</p>
                                 <p class="card-text mb-5">Label: {{ $task->label }}</p>
                                 <p class="card-text mb-5">Date Created: {{ $task->date_created->format('Y-m-d') }}</p>
                                 <p class="card-text mb-5">Deadline: {{ $task->due_date->format('Y-m-d') }}</p>
                                 <p class="card-text">Priority: {{ $task->priority }}</p>
-                                <button class="btn btn-outline-secondary btn-sm my-3" onclick="editTask('{{ $task->id }}')">Edit Task</button>
+                                <div class="d-flex my-3">
+                                    <button class="btn btn-outline-secondary btn-sm" onclick="editTask('{{ $task->id }}')">Edit Task</button> 
+                                    <button class="btn btn-outline-danger btn-sm ms-2" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this task?')) document.getElementById('delete-task-form-{{ $task->id}}').submit();">Delete Task</button> 
+                                </div>
+                                <form method="post" action="{{ route('tasks.destroy', $task->id) }}" id="delete-task-form-{{ $task->id}}">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
                             </div>
                             <div  id="edit-task-form-container-{{ $task->id }}" style="display: none;">
                                 <form method="post" action="{{ route('tasks.update', ['id' => $task->id]) }}" class="edit-form">
@@ -88,16 +95,16 @@
                             </div>
                         </div>
                         <!-- Middle Column for Assigned Info -->
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div id="assigned-{{ $task->id }}">
                                 <p class="card-text">Assigned to:</p>
-                                @foreach($task->responsibleUsers as $user)
-                                    <div class="card card-sm">
-                                        <div class="card-body">
-                                            <p class="card-text">{{ $user->name }}</p>
+                                <div class="row" style="max-height: 40vh; overflow-y: auto;">
+                                    @foreach($task->responsibleUsers as $user)
+                                        <div class="pl-1 mb-1 border border-secondary-subtle rounded">
+                                            <p>{{ $user->name }}</p>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                                 <button class="btn btn-outline-secondary btn-sm my-3" onclick="editAssign('{{ $task->id }}')">Reassign</button>
                             </div>
                             <div id="reassign-{{ $task->id }}" style="display: none;">
