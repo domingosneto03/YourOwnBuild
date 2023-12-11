@@ -13,7 +13,6 @@
     <!-- Styles -->
     <link href="{{ url('css/homepage.css') }}" rel="stylesheet">
     <link href="{{ url('css/project.css') }}" rel="stylesheet">
-    <link href="{{ url('css/create.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
