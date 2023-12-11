@@ -30,7 +30,6 @@ function editAssign(taskId) {
 }
 
 function cancelAssign(taskId) {
-    console.log("Cancel Assign called for task ID: " + taskId);
     if (taskId) {
         // Hide the edit form container for the specific task
         $("#reassign-" + taskId).hide();
