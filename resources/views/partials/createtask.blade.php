@@ -28,17 +28,29 @@
         <div class="mb-3 col-8">
             <label for="deadline" class="form-label">Assign to:</label>
             <div class="dropdown" id="assign-to-dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="assignToDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-outline-secondary form-select" type="button" id="assignToDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                     Select Users
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="assignToDropdownButton" id="assigned-users-list">
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="assignToDropdownButton" id="assigned-users-list" style="padding: 10px;">
                     @foreach ($project->members as $member)
-                        <li><input type="checkbox" name="assigned[]" value="{{ $member->id }}"> {{ $member->name }}</li>
+                        <li><input class="form-check-input" type="checkbox" name="assigned[]" value="{{ $member->id }}"> {{ $member->name }}</li>
                     @endforeach
                 </ul>
+            </div>
         </div>
         <div class="col-1">
             <button class="btn btn-primary btn-sm" type="submit">Create</button>
         </div>
     </form>
 </div>
+<script>
+    // Handle dropdown item selection
+    $('#assigned-users-list input[type="checkbox"]').on('change', function () {
+        var selectedUsers = $('#assigned-users-list input:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        // Update the button text with selected users
+        $('#assignToDropdownButton').text(selectedUsers.length > 0 ? 'Selected Users' : 'Select Users');
+    });
+</script>
