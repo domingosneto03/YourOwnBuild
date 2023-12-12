@@ -10,7 +10,7 @@ use App\Http\Controllers\ProfilePageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\RequestJoinController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -99,4 +99,10 @@ Route::controller(AdminController::class)->group(function () {
 Route::controller(CommentController::class)->group(function () {
     Route::post('/comments/task/{id}',  'store')->name('comments.store');
     Route::delete('/comments/{id}',  'destroy')->name('comments.destroy');
+});
+
+// Join Requests
+Route::controller(RequestJoinController::class)->group(function () {
+    Route::post('/requests/accept/{id}',  'accept')->name('requests.accept');
+    Route::post('/requests/refuse/{id}',  'refuse')->name('requests.refuse');
 });

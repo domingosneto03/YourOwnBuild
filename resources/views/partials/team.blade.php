@@ -26,7 +26,29 @@
                 @endforeach
             </div>
         </div>
-        <div class="tab-pane fade" id="nav-request" role="tabpanel" aria-labelledby="nav-request-tab" tabindex="0">join requests</div>
+        <div class="tab-pane fade" id="nav-request" role="tabpanel" aria-labelledby="nav-request-tab" tabindex="0">
+            <div class="row mt-4">
+                @foreach($project->joinRequests as $request)
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0">{{ $request->name }}</h5>
+                                <div class="d-flex">
+                                    <form action="{{ route('requests.accept', $request->id) }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-outline-success btn-sm">Accept</button>
+                                    </form>
+                                    <form action="{{ route('requests.refuse', $request->id) }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-outline-danger btn-sm ms-2">Refuse</button>
+                                    </form>
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
         <div class="tab-pane fade" id="nav-add-user" role="tabpanel" aria-labelledby="nav-add-user-tab" tabindex="0">lets add an user</div>
     </div>
 </div>
