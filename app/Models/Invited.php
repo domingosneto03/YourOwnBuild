@@ -16,15 +16,6 @@ class Invited extends Model
     // Indicates if the model should be timestamped.
     public $timestamps = false;
 
-    // Indicates if the model should increment its primary key.
-    public $incrementing = false;
-
-    /**
-     * The primary key associated with the table.
-     *
-     * @var array<string>
-     */
-    protected $primaryKey = ['id_user', 'id_project'];
 
     /**
      * The attributes that are mass assignable.

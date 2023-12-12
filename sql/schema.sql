@@ -129,21 +129,21 @@ CREATE TABLE notifications (
 );
 
 CREATE TABLE responsible (
+    id SERIAL PRIMARY KEY,
     id_user INT NOT NULL REFERENCES users2(id),
-    id_task INT NOT NULL REFERENCES task(id),
-    PRIMARY KEY (id_user, id_task)
+    id_task INT NOT NULL REFERENCES task(id)
 );
 
 CREATE TABLE invited (
+    id SERIAL PRIMARY KEY,
     id_user INT NOT NULL REFERENCES users2(id),
-    id_project INT NOT NULL REFERENCES project1(id),
-    PRIMARY KEY (id_user, id_project)
+    id_project INT NOT NULL REFERENCES project1(id)
 );
 
 CREATE TABLE request_join (
+    id SERIAL PRIMARY KEY,
     id_user INT NOT NULL REFERENCES users2(id),
-    id_project INT NOT NULL REFERENCES project1(id),
-    PRIMARY KEY (id_user, id_project)
+    id_project INT NOT NULL REFERENCES project1(id)
 );
 
 CREATE TABLE task_notification (
