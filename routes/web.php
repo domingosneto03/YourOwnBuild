@@ -103,6 +103,6 @@ Route::controller(CommentController::class)->group(function () {
 
 // Join Requests
 Route::controller(RequestJoinController::class)->group(function () {
-    Route::post('/requests/accept/{id}',  'accept')->name('requests.accept');
-    Route::post('/requests/refuse/{id}',  'refuse')->name('requests.refuse');
+    Route::post('/requests/accept/{id_user}/{id_project}',  'accept')->name('requests.accept');
+    Route::post('/requests/refuse/{id_user}/{id_project}',  'refuse')->name('requests.refuse');
 });

@@ -84,7 +84,6 @@ document.getElementById("new-task-btn").addEventListener("click", function() {
 });
 
 document.getElementById("project-team-btn").addEventListener("click", function() {
-    console.log("Team link clicked");
     // Change button colors
     document.getElementById("project-tasks-btn").className = "nav-link link-body-emphasis";
     document.getElementById("project-team-btn").className = "nav-link active";
