@@ -51,6 +51,22 @@
                 @endforeach
             </div>
         </div>
-        <div class="tab-pane fade" id="nav-add-user" role="tabpanel" aria-labelledby="nav-add-user-tab" tabindex="0">lets add an user</div>
+        <div class="tab-pane fade" id="nav-add-user" role="tabpanel" aria-labelledby="nav-add-user-tab" tabindex="0">
+            <h4>Suggestions</h4>
+            <div class="row mt-4">
+                @foreach($users->take(12) as $user)
+                    @if (!$project->members->contains('id', $user->id))
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title mb-0">{{ $user->name }}</h5>
+                                    <a href="#" class="btn btn-outline-secondary btn-sm">Invite</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
     </div>
 </div>

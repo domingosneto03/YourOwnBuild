@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Project;
+use App\Models\User;
 
 class ProjectController extends Controller
 {
@@ -177,9 +178,13 @@ class ProjectController extends Controller
     // Get the project.
     $project = Project::findOrFail($id);
 
+    $users = User::all();
+
     // Use the partials.team template to display the team.
     return view('partials.team', [
         'project' => $project,
+        'users' => $users,
+
     ]);
 }
 
