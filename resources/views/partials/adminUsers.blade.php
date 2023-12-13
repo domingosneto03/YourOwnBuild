@@ -8,9 +8,9 @@
                     <div class="btn-group">
                         <a href="/user/{{ $user->id }}" class="btn btn-outline-secondary btn-sm">Profile</a>
                         @if ($user->is_blocked)
-                            <a id="block-user-{{ $user->id }}" href="javascript:undefined" class="btn btn-danger btn-sm unblock-user-btn">Unblock</a>
+                            <button id="block-user-{{ $user->id }}" onclick="unblockUserFunc()" class="btn btn-danger btn-sm unblock-user-btn">Unblock</a>
                         @else
-                            <a id="block-user-{{ $user->id }}" href="javascript:undefined" class="btn btn-danger btn-sm block-user-btn">Block</a>
+                            <button id="block-user-{{ $user->id }}" class="btn btn-danger btn-sm block-user-btn">Block</a>
                         @endif
                     </div>
                 </div>
