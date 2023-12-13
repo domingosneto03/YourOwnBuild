@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RequestJoinController;
+use App\Http\Controllers\InvitedController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -81,6 +82,7 @@ Route::controller(ProfilePageController::class)->group(function () {
     Route::get('/user/{id}', 'show')->name('profile.show');
     Route::get('/user/{id}/profile', 'showProfile');
     Route::get('/user/{id}/edit', 'editShow');
+    Route::get('/user/{id}/invitations', 'showInvitations');
 });
 
 // User
@@ -105,4 +107,9 @@ Route::controller(CommentController::class)->group(function () {
 Route::controller(RequestJoinController::class)->group(function () {
     Route::post('/requests/accept/{id_user}/{id_project}',  'accept')->name('requests.accept');
     Route::post('/requests/refuse/{id_user}/{id_project}',  'refuse')->name('requests.refuse');
+});
+
+// Invites
+Route::controller(InvitedController::class)->group(function () {
+    Route::post('/invite/{id_user}/{id_project}',  'invite')->name('project.invite');
 });

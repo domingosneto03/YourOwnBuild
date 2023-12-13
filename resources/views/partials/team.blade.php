@@ -52,19 +52,26 @@
             </div>
         </div>
         <div class="tab-pane fade" id="nav-add-user" role="tabpanel" aria-labelledby="nav-add-user-tab" tabindex="0">
-            <h4>Suggestions</h4>
+            <h5 class="mt-3">Suggestions</h5>
             <div class="row mt-4">
-                @foreach($users->take(12) as $user)
-                    @if (!$project->members->contains('id', $user->id))
+                @php
+                    $nonMembers = $users->reject(function ($user) use ($project) {
+                        return $project->members->contains('id', $user->id);
+                    })->shuffle()->take(12);
+                @endphp
+                @foreach($nonMembers as $user)
                         <div class="col-md-4 mb-3">
                             <div class="card">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <h5 class="card-title mb-0">{{ $user->name }}</h5>
-                                    <a href="#" class="btn btn-outline-secondary btn-sm">Invite</a>
+                                    <form action="{{ route('project.invite', ['id_user' => $user->id, 'id_project' => $project->id]) }}" method="post">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit" class="btn btn-outline-secondary btn-sm">Invite</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                    @endif
                 @endforeach
             </div>
         </div>

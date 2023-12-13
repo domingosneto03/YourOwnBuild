@@ -12,11 +12,17 @@
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
         Profile
       </a>
-    </li class="nav-item">
+    </li>
     <li>
       <a href="#" id="edit-user-profile-btn" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
         Edit Profile
+      </a>
+    </li>
+    <li>
+      <a href="#" id="invitations-btn" class="nav-link link-body-emphasis">
+        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+        Invitations
       </a>
     </li>
     <li class="nav-item">
