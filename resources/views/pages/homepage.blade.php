@@ -13,9 +13,15 @@
         Homepage
       </a>
     </li>
+    <li>
+      <a href="#" id="discover-btn" class="nav-link link-body-emphasis">
+        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+        Discover
+      </a>
+    </li>
     <li class="nav-item">
       <a href="#" id="new-project-btn" class="nav-link link-body-emphasis">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
         New Project
       </a>
     </li>

@@ -9,6 +9,21 @@ use App\Models\Member;
 
 class RequestJoinController extends Controller
 {
+
+    public function requestJoin($id_user, $id_project)
+    {
+
+        // Create a new invited record in the database.
+        RequestJoin::create([
+            'id_user' => $id_user,
+            'id_project' => $id_project,
+        ]);
+
+
+        // Redirect back to the team page or wherever you want.
+        return redirect()->back();
+    }
+
     public function accept(string $id_user, $id_project)
     {
         $request = RequestJoin::where([

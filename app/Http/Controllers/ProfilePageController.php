@@ -70,7 +70,6 @@ class ProfilePageController extends Controller
             return redirect('/login');
         }
     
-        // Get the project.
         $user = User::findOrFail($id);
     
         // Use the partials.team template to display the team.

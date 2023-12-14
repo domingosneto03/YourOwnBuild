@@ -45,6 +45,7 @@ Route::controller(RegisterController::class)->group(function () {
 // Homepage
 Route::controller(HomepageController::class)->group(function () {
     Route::get('/homepage', 'show')->name('homepage');
+    Route::get('/homepage/discover', 'showDiscover')->name('homepage.discover');
 });
 
 // Projects
@@ -105,6 +106,7 @@ Route::controller(CommentController::class)->group(function () {
 
 // Join Requests
 Route::controller(RequestJoinController::class)->group(function () {
+    Route::post('/request/{id_user}/{id_project}',  'requestJoin')->name('project.request');
     Route::post('/requests/accept/{id_user}/{id_project}',  'accept')->name('requests.accept');
     Route::post('/requests/refuse/{id_user}/{id_project}',  'refuse')->name('requests.refuse');
 });
