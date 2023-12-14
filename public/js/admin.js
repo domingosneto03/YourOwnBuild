@@ -32,57 +32,42 @@ document.getElementById("projects-admin-btn").addEventListener("click", function
     .catch(error => console.error('Error fetching new content:', error));
 });
 
-function blockUserFunc() {
+function blockUserFunc(elem) {
     // Change button
-    let id = this.id.split('-')[2];
-    this.innerHTML = 'Unblock';
-    this.className = 'btn btn-danger btn-sm unblock-user-btn';
-    this.removeEventListener("click", blockUserFunc);
-    this.addEventListener("click", unblockUserFunc);
+    console.log(elem);
+
+    let id = elem.id.split('-')[2];
+    elem.innerHTML = 'Unblock';
+    elem.setAttribute( "onClick", "javascript: unblockUserFunc(this);" );
     
+    console.log(elem);
+
     // Send a PUT request to the Laravel route
     sendAjaxRequest('put', '/user/' + id + '/block', { id: id }, emptyHandler);
 }
 
-// Get all elements with the class "block-user-btn"
-let blockUserButtons = document.getElementsByClassName("block-user-btn");
-
-// Loop through the collection and add an event listener to each element
-for (let i = 0; i < blockUserButtons.length; i++) {
-    blockUserButtons[i].addEventListener("click", blockUserFunc);
-}
-
-function unblockUserFunc() {
+function unblockUserFunc(elem) {
     // Change button
-    let id = this.id.split('-')[2];
-    this.innerHTML = 'Block';
-    this.className = 'btn btn-danger btn-sm block-user-btn';
-    this.removeEventListener("click", unblockUserFunc);
-    this.addEventListener("click", blockUserFunc);
+    console.log(elem);
+
+    let id = elem.id.split('-')[2];
+    elem.innerHTML = 'Block';
+    elem.setAttribute( "onClick", "javascript: blockUserFunc(this);" );
+
+    console.log(elem);
 
     // Send a PUT request to the Laravel route
     sendAjaxRequest('put', '/user/' + id + '/unblock', { id: id }, emptyHandler);
 }
 
-// Get all elements with the class "unblock-user-btn"
-let unblockUserButtons = document.getElementsByClassName("unblock-user-btn");
-
 // Loop through the collection and add an event listener to each element
-for (let i = 0; i < unblockUserButtons.length; i++) {
-    unblockUserButtons[i].addEventListener("click", unblockUserFunc);
-}
+function delProjectFunc(elem) {
+    // Change button
+    let id = elem.id.split('-')[2];
 
-// Get all elements with the class "del-proj-btn"
-let delProjectButtons = document.getElementsByClassName("del-proj-btn");
+    let cardElem = document.getElementById('proj-card-' + id);
+    cardElem.remove();
 
-// Loop through the collection and add an event listener to each element
-for (let i = 0; i < delProjectButtons.length; i++) {
-    delProjectButtons[i].addEventListener("click", function() {
-        // Change button
-        let id = this.id.split('-')[2];
-        this.remove();
-
-        // Send a PUT request to the Laravel route
-        sendAjaxRequest('delete', '/projects/' + id, { id: id }, emptyHandler);
-    });
+    // Send a PUT request to the Laravel route
+    sendAjaxRequest('delete', '/projects/' + id, { id: id }, emptyHandler);
 }
