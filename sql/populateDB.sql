@@ -123,15 +123,15 @@ VALUES
 INSERT INTO comment (id_user, id_task, content, date)
 VALUES
   (1, 1, 'The new homepage design looks great! Can we ensure the call-to-action button is more prominent?', '2023-01-20'),
-  (2, 4, 'Completed the initial setup for the login feature. Awaiting feedback on the security protocols.', '2023-04-08'),
-  (3, 7, 'Market analysis report is ready. Identified some key trends that we can leverage for our campaign.', '2023-07-15'),
-  (4, 10, 'Data migration to the cloud completed successfully. No data integrity issues encountered.', '2023-10-25'),
-  (5, 13, 'Survey responses have been compiled. There are some insightful customer suggestions.', '2023-02-14'),
-  (6, 16, 'Security audit completed. We need to update several protocols to enhance data protection.', '2023-05-02'),
-  (7, 19, 'Training curriculum draft is ready for review. Focused on practical applications of the new software.', '2023-08-18'),
-  (8, 22, 'Supply chain analysis indicates potential savings with a few adjustments in the vendor selection.', '2023-11-05'),
-  (9, 25, 'The prototype for the new product line is ready. Awaiting approval to begin user testing.', '2024-02-22'),
-  (10, 28, 'The new customer support platform is operational and staff training is complete. Early feedback is positive.', '2024-05-10');
+  (12, 4, 'Completed the initial setup for the login feature. Awaiting feedback on the security protocols.', '2023-04-08'),
+  (15, 7, 'Market analysis report is ready. Identified some key trends that we can leverage for our campaign.', '2023-07-15'),
+  (3, 10, 'Data migration to the cloud completed successfully. No data integrity issues encountered.', '2023-10-25'),
+  (20, 13, 'Survey responses have been compiled. There are some insightful customer suggestions.', '2023-02-14'),
+  (5, 16, 'Security audit completed. We need to update several protocols to enhance data protection.', '2023-05-02'),
+  (6, 19, 'Training curriculum draft is ready for review. Focused on practical applications of the new software.', '2023-08-18'),
+  (7, 22, 'Supply chain analysis indicates potential savings with a few adjustments in the vendor selection.', '2023-11-05'),
+  (8, 25, 'The prototype for the new product line is ready. Awaiting approval to begin user testing.', '2024-02-22'),
+  (9, 28, 'The new customer support platform is operational and staff training is complete. Early feedback is positive.', '2024-05-10');
 
 
 INSERT INTO admin_action (id_admin, id_user, is_blocking, justification)
@@ -145,23 +145,23 @@ VALUES
   (1, 1),
   (11, 2),
   (12, 3),
-  (2, 4),
-  (14, 5),
+  (13, 4),
+  (12, 5),
   (15, 6),
-  (3, 7),
-  (17, 8),
+  (2, 7),
+  (14, 8),
   (18, 9),
-  (4, 10),
-  (11, 11),
+  (3, 10),
+  (18, 11),
   (21, 12),
   (22, 13),
-  (12, 14),
-  (24, 15),
-  (25, 16),
-  (13, 17),
-  (28, 18),
-  (29, 19),
-  (14, 20);
+  (4, 14),
+  (25, 15),
+  (5, 16),
+  (24, 17),
+  (26, 18),
+  (26, 19),
+  (26, 20);
 
 INSERT INTO invited (id_user, id_project)
 VALUES
