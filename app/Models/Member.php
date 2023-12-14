@@ -15,6 +15,17 @@ class Member extends Model
     // Don't add create and update timestamps in database.
     public $timestamps = false;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'id_user',
+        'id_project',
+        'role'
+    ];
+
     // Get the user that is a member of the project.
     public function user()
     {
