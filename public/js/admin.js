@@ -34,27 +34,19 @@ document.getElementById("projects-admin-btn").addEventListener("click", function
 
 function blockUserFunc(elem) {
     // Change button
-    console.log(elem);
-
     let id = elem.id.split('-')[2];
     elem.innerHTML = 'Unblock';
     elem.setAttribute( "onClick", "javascript: unblockUserFunc(this);" );
     
-    console.log(elem);
-
     // Send a PUT request to the Laravel route
     sendAjaxRequest('put', '/user/' + id + '/block', { id: id }, emptyHandler);
 }
 
 function unblockUserFunc(elem) {
     // Change button
-    console.log(elem);
-
     let id = elem.id.split('-')[2];
     elem.innerHTML = 'Block';
     elem.setAttribute( "onClick", "javascript: blockUserFunc(this);" );
-
-    console.log(elem);
 
     // Send a PUT request to the Laravel route
     sendAjaxRequest('put', '/user/' + id + '/unblock', { id: id }, emptyHandler);
@@ -68,6 +60,6 @@ function delProjectFunc(elem) {
     let cardElem = document.getElementById('proj-card-' + id);
     cardElem.remove();
 
-    // Send a PUT request to the Laravel route
-    sendAjaxRequest('delete', '/projects/' + id, { id: id }, emptyHandler);
+    // Send a DELETE request to the Laravel route
+    sendAjaxRequest('delete', '/admin/project/delete', { id: id }, emptyHandler);
 }

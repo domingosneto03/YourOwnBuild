@@ -102,4 +102,16 @@ class AdminController extends Controller
         // Return a response
         return response()->json(['message' => 'User successfully unblocked']);
     }
+
+    public function deleteProject($id) {
+        $project = Project::findOrFail($id);
+
+        if (!$project) {
+            return response()->json(['error' => 'Project not found'], 404);
+        }
+
+        $project->delete();
+
+        return response()->json(['message' => 'Project successfully deleted']);
+    }
 }

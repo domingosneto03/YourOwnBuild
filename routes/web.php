@@ -91,4 +91,5 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/projects', 'showProjects')->name('admin.showProjects');
     Route::put('/user/{id}/block', 'blockUser')->name('admin.blockUser');
     Route::put('/user/{id}/unblock', 'unblockUser')->name('admin.unblockUser');
+    Route::delete('/admin/project/delete', 'deleteProject')->name('admin.delProject');
 });
