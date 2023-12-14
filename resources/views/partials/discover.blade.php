@@ -10,11 +10,15 @@
                                 <h5 class="card-title">{{ $project->name }}</h1>
                                 <p class="card-text">{{ $project->description }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <form action="{{ route('project.request', ['id_user' => $user->id, 'id_project' => $project->id]) }}" method="post">
-                                        @csrf
-                                        @method('POST')
-                                        <button type="submit" class="btn btn-outline-success btn-sm">Request to Join</button>
-                                    </form>   
+                                    @if ($project->joinRequests->contains('id', $user->id))
+                                        <button class="btn btn-outline-secondary btn-sm" disabled>Requested</button>
+                                    @else
+                                        <form action="{{ route('project.request', ['id_user' => $user->id, 'id_project' => $project->id]) }}" method="post">
+                                            @csrf
+                                            @method('POST')
+                                            <button type="submit" class="btn btn-outline-success btn-sm">Request to Join</button>
+                                        </form>
+                                    @endif   
                                 </div>
                             </div>
                         </div>

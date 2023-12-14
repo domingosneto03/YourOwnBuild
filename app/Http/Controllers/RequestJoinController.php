@@ -46,7 +46,7 @@ class RequestJoinController extends Controller
         return redirect()->back();
     }
 
-    public function refuse(string $id, $id_project)
+    public function refuse(string $id_user, $id_project)
     {
         $request = RequestJoin::where([
             'id_user' => $id_user,

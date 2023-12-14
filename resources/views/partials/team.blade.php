@@ -13,8 +13,14 @@
                 @foreach($project->members as $member)
                     <div class="col-md-4 mb-3">
                         <div class="card">
-                            <div class="card-body d-flex justify-content-between align-items-center">
+                            <div class="card-body text-center">
                                 <h5 class="card-title mb-0">{{ $member->name }}</h5>
+                                @if($member->pivot->role === 'project_member')
+                                    <p class="card-text mb-2">Project Member</p>
+                                @elseif($member->pivot->role === 'coordinator')
+                                    <p class="card-text mb-2">Coordinator</p>
+                                @endif
+
                                 @if($member->id == auth()->id())
                                     <a href="{{ route('profile.show', $member->id) }}" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
                                 @else
@@ -70,11 +76,15 @@
                             <div class="card">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <h5 class="card-title mb-0">{{ $user->name }}</h5>
-                                    <form action="{{ route('project.invite', ['id_user' => $user->id, 'id_project' => $project->id]) }}" method="post">
-                                        @csrf
-                                        @method('POST')
-                                        <button type="submit" class="btn btn-outline-secondary btn-sm">Invite</button>
-                                    </form>
+                                    @if($project->invited->contains('id', $user->id))
+                                        <button class="btn btn-outline-secondary btn-sm" disabled>Invited</button>
+                                    @else
+                                        <form action="{{ route('project.invite', ['id_user' => $user->id, 'id_project' => $project->id]) }}" method="post">
+                                            @csrf
+                                            @method('POST')
+                                            <button type="submit" class="btn btn-outline-success btn-sm">Invite</button>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>
