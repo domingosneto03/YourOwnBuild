@@ -16,7 +16,10 @@ class Comment extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'id_user',
+        'id_task',
         'content',
+        'date'
     ];
 
     protected $casts = [

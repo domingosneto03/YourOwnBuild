@@ -61,4 +61,20 @@ class ProfilePageController extends Controller
             ]);
         }
     }
+
+    public function showInvitations(string $id): View
+    {
+        // Check if the user is logged in.
+        if (!Auth::check()) {
+            // Not logged in, redirect to login.
+            return redirect('/login');
+        }
+    
+        $user = User::findOrFail($id);
+    
+        // Use the partials.team template to display the team.
+        return view('partials.invitations', [
+            'user' => $user
+        ]);
+    }
 }

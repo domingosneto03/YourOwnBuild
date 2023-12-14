@@ -9,6 +9,9 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfilePageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\RequestJoinController;
+use App\Http\Controllers\InvitedController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -42,6 +45,7 @@ Route::controller(RegisterController::class)->group(function () {
 // Homepage
 Route::controller(HomepageController::class)->group(function () {
     Route::get('/homepage', 'show')->name('homepage');
+    Route::get('/homepage/discover', 'showDiscover')->name('homepage.discover');
 });
 
 // Projects
@@ -54,6 +58,8 @@ Route::controller(ProjectController::class)->group(function () {
     Route::put('/projects/{id}', 'update')->name('projects.update');
     Route::delete('/projects/{id}', 'destroy')->name('projects.destroy');
     Route::get('/project/{id}/tasks', 'tasks')->name('projects.tasks');
+    Route::get('/project/{id}/team', 'showTeam')->name('projects.team');
+
 });
 
 // Search
@@ -66,17 +72,18 @@ Route::controller(TaskController::class)->group(function () {
     Route::get('/task/{id}', 'show')->name('tasks.show');
     Route::get('/tasks/create/{id}',  'create')->name('tasks.create');
     Route::post('/tasks',  'store')->name('tasks.store');
-    Route::get('/task/{id}/edit', 'edit')->name('tasks.edit');
     Route::put('/task/{id}', 'update')->name('tasks.update');
     Route::delete('/tasks/{id}', 'destroy')->name('tasks.destroy');
     Route::put('/tasks/{id}/update-completion', 'updateCompletion');
+    Route::put('/tasks/{id}/update-assign', 'updateAssign')->name('tasks.updateAssign');
 });
 
 // Profile Page
 Route::controller(ProfilePageController::class)->group(function () {
-    Route::get('/user/{id}', 'show');
+    Route::get('/user/{id}', 'show')->name('profile.show');
     Route::get('/user/{id}/profile', 'showProfile');
     Route::get('/user/{id}/edit', 'editShow');
+    Route::get('/user/{id}/invitations', 'showInvitations');
 });
 
 // User
@@ -89,7 +96,30 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin', 'show')->name('admin.show');
     Route::get('/admin/users', 'showUsers')->name('admin.showUsers');
     Route::get('/admin/projects', 'showProjects')->name('admin.showProjects');
+<<<<<<< HEAD
     Route::put('/user/{id}/block', 'blockUser')->name('admin.blockUser');
     Route::put('/user/{id}/unblock', 'unblockUser')->name('admin.unblockUser');
     Route::delete('/admin/project/delete', 'deleteProject')->name('admin.delProject');
+=======
+});
+
+// Comments
+Route::controller(CommentController::class)->group(function () {
+    Route::post('/comments/task/{id}',  'store')->name('comments.store');
+    Route::delete('/comments/{id}',  'destroy')->name('comments.destroy');
+});
+
+// Join Requests
+Route::controller(RequestJoinController::class)->group(function () {
+    Route::post('/request/{id_user}/{id_project}',  'requestJoin')->name('project.request');
+    Route::post('/requests/accept/{id_user}/{id_project}',  'accept')->name('requests.accept');
+    Route::post('/requests/refuse/{id_user}/{id_project}',  'refuse')->name('requests.refuse');
+});
+
+// Invites
+Route::controller(InvitedController::class)->group(function () {
+    Route::post('/invite/{id_user}/{id_project}',  'invite')->name('project.invite');
+    Route::post('/invite/accept/{id_user}/{id_project}',  'accept')->name('invite.accept');
+    Route::post('/invite/refuse/{id_user}/{id_project}',  'refuse')->name('invite.refuse');
+>>>>>>> 7586cf3651d3d266263780320cafa6c3b0640486
 });

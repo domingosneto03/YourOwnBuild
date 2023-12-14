@@ -13,7 +13,6 @@
     <!-- Styles -->
     <link href="{{ url('css/homepage.css') }}" rel="stylesheet">
     <link href="{{ url('css/project.css') }}" rel="stylesheet">
-    <link href="{{ url('css/create.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
@@ -21,6 +20,10 @@
     </script>
     <script type="text/javascript" src={{ url('js/app.js') }} defer></script>
     <script type="text/javascript" src={{ url('js/search.js') }} defer></script>
+    <script type="text/javascript" src={{ url('js/drag.js') }} defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script type="text/javascript" src={{ url('js/comment.js') }} defer></script>
+    <script type="text/javascript" src={{ url('js/task.js') }} defer></script>
 </head>
 <body class="d-flex flex-column vh-100 m-0">
     <div class="d-flex flex-column flex-grow-1">

@@ -76,8 +76,8 @@ class Project extends Model
         parent::boot();
 
         static::deleting(function ($project) {
-            $project->tasks()->delete(); // Remove the associated tasks from the table
             $project->members()->detach(); // Remove the associated members (users) from the pivot table
+            $project->tasks()->each(function ($task) {$task->delete();}); // Remove the associated tasks from the table
             $project->notifications()->delete(); // Remove the associated project notifications from the table
             $project->invited()->detach(); // Remove the associated invitations from the table
             $project->joinRequests()->detach(); // Remove the associated join requests from the table

@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
+use App\Models\Project;
 
 class HomepageController extends Controller
 {
@@ -36,4 +37,23 @@ class HomepageController extends Controller
             ]);
         }
     }
+
+    public function showDiscover(): View
+{
+    // Check if the user is logged in.
+    if (!Auth::check()) {
+        // Not logged in, redirect to login.
+        return redirect('/login');
+    }
+
+
+    $user =Auth::user();
+    $projects = Project::all();
+    
+        // Use the partials.team template to display the team.
+        return view('partials.discover', [
+            'user' => $user,
+            'projects' => $projects,
+        ]);
+}
 }
