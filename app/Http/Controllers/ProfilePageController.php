@@ -8,7 +8,6 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
-use App\Models\Project;
 
 class ProfilePageController extends Controller
 {
@@ -73,11 +72,9 @@ class ProfilePageController extends Controller
     
         // Get the project.
         $user = User::findOrFail($id);
-        $projects = Auth::user()->projects()->get();
     
         // Use the partials.team template to display the team.
         return view('partials.invitations', [
-            'projects' => $projects,
             'user' => $user
         ]);
     }

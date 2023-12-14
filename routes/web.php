@@ -112,4 +112,6 @@ Route::controller(RequestJoinController::class)->group(function () {
 // Invites
 Route::controller(InvitedController::class)->group(function () {
     Route::post('/invite/{id_user}/{id_project}',  'invite')->name('project.invite');
+    Route::post('/invite/accept/{id_user}/{id_project}',  'accept')->name('invite.accept');
+    Route::post('/invite/refuse/{id_user}/{id_project}',  'refuse')->name('invite.refuse');
 });
