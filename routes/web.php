@@ -51,16 +51,14 @@ Route::controller(HomepageController::class)->group(function () {
 
 // Projects
 Route::controller(ProjectController::class)->group(function () {
-    Route::get('/project/{id}', 'show');
-    Route::get('/projects/stuff', 'showHomepage');
+    Route::get('/project/{id}/tasks', 'showTasks')->name('projects.tasks');;
+    Route::get('/project/{id}/team', 'showTeam')->name('projects.team');
+    Route::get('/project/{id}/newtask', 'showNewTask')->name('projects.newtask');
     Route::get('/projects/create',  'create')->name('projects.create');
     Route::post('/projects',  'store')->name('projects.store');
-    Route::get('/project/{id}/edit', 'edit')->name('projects.edit');
+    Route::get('/project/{id}/edit', 'showEdit')->name('projects.edit');
     Route::put('/projects/{id}', 'update')->name('projects.update');
     Route::delete('/projects/{id}', 'destroy')->name('projects.destroy');
-    Route::get('/project/{id}/tasks', 'tasks')->name('projects.tasks');
-    Route::get('/project/{id}/team', 'showTeam')->name('projects.team');
-
 });
 
 // Search

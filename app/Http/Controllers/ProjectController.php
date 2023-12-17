@@ -13,7 +13,7 @@ use App\Models\User;
 class ProjectController extends Controller
 {
     // Display project page
-    public function show(string $id): View
+    public function showTasks(string $id): View
     {   
         // Check if the user is logged in.
         if (!Auth::check()) {
@@ -25,14 +25,13 @@ class ProjectController extends Controller
             $project = Project::findOrFail($id);
 
             // Use the pages.project template to display the project.
-            return view('pages.project', [
+            return view('pages.projectTasks', [
                 'project' => $project
             ]);
         }
     }
-
-    // Display homepage
-    public function showHomepage(): View
+    
+    public function showNewTask($id): View
     {   
         // Check if the user is logged in.
         if (!Auth::check()) {
@@ -40,27 +39,13 @@ class ProjectController extends Controller
             return redirect('/login');
 
         } else {
-            $projects = Auth::user()->projects()->get();
+            $project = Project::findOrFail($id);
+            //$projects = Auth::user()->projects()->get();
 
-            return view('partials.homepageMainContent', [
-                'projects' => $projects
+            return view('pages.projectNewTask', [
+                'project' => $project
             ]);
         }
-    }
-    
-    // Display page to create a project
-    public function create()
-    {   
-        // Check if the user is logged in.
-        if (!Auth::check()) {
-            // Not logged in, redirect to login.
-            return redirect('/login');
-        }
-
-        // Check if the current user can edit the project.
-        // Add authorization logic if needed.
-
-        return view('partials.createproject');
     }
 
     // Store data in database
@@ -88,7 +73,7 @@ class ProjectController extends Controller
     }
 
     // Display edit project view for the coordinator
-    public function edit(string $id): View
+    public function showEdit(string $id): View
     {
         // Check if the user is logged in.
         if (!Auth::check()) {
@@ -103,27 +88,7 @@ class ProjectController extends Controller
         // Add authorization logic if needed.
 
         // Use the pages.editproject template to display the edit form.
-        return view('partials.editproject', [
-            'project' => $project,
-        ]);
-    }
-
-    public function tasks(string $id): View
-    {
-        // Check if the user is logged in.
-        if (!Auth::check()) {
-            // Not logged in, redirect to login.
-            return redirect('/login');
-        }
-
-        // Get the project.
-        $project = Project::findOrFail($id);
-
-        // Check if the current user can edit the project.
-        // Add authorization logic if needed.
-
-        // Use the pages.editproject template to display the edit form.
-        return view('partials.projectTasks', [
+        return view('pages.projectEdit', [
             'project' => $project,
         ]);
     }
@@ -168,24 +133,22 @@ class ProjectController extends Controller
 
     // Display team page
     public function showTeam(string $id): View
-{
-    // Check if the user is logged in.
-    if (!Auth::check()) {
-        // Not logged in, redirect to login.
-        return redirect('/login');
+    {
+        // Check if the user is logged in.
+        if (!Auth::check()) {
+            // Not logged in, redirect to login.
+            return redirect('/login');
+        }
+
+        // Get the project.
+        $project = Project::findOrFail($id);
+
+        $users = User::all();
+
+        return view('pages.projectTeam', [
+            'project' => $project,
+            'users' => $users,
+        ]);
     }
-
-    // Get the project.
-    $project = Project::findOrFail($id);
-
-    $users = User::all();
-
-    // Use the partials.team template to display the team.
-    return view('partials.team', [
-        'project' => $project,
-        'users' => $users,
-
-    ]);
-}
 
 }
