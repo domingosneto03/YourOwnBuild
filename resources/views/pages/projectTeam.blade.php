@@ -65,7 +65,7 @@
                                     @endif
 
                                     @if($member->id == auth()->id())
-                                        <a href="{{ route('profile.show', $member->id) }}" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
+                                        <a href="{{ route('profile.page', $member->id) }}" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
                                     @else
                                         <a href="#" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
                                     @endif

@@ -69,7 +69,7 @@ class ProjectController extends Controller
         $project = Project::create($validatedData);
 
         // Redirect the user to the project page after creation
-        return redirect('/project/' . $project->id);
+        return redirect('/project/' . $project->id . '/tasks');
     }
 
     // Display edit project view for the coordinator
@@ -113,7 +113,7 @@ class ProjectController extends Controller
         $project->update($validatedData);
 
         // Redirect the user to the project page after update
-        return redirect('/project/' . $project->id);
+        return redirect('/project/' . $project->id . '/tasks');
     }
 
     // Delete a project, option avalible only to the coordinator

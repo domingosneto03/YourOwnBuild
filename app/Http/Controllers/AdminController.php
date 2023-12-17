@@ -12,25 +12,6 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
-    public function show(): View
-    {
-        // Check if the user is logged in.
-        if (!Auth::check()) {
-            // Not logged in, redirect to login.
-            return redirect('/login');
-        }
-
-        $users = User::all()->where('is_admin', false)->sortBy('username');
-        $projects = Project::all()->sortBy('name');
-
-        // Add authorization logic if needed.
-
-        return view('pages.adminpage', [
-            'users' => $users,
-            'projects' => $projects,
-        ]);
-    }
-
     public function showUsers(): View
     {
         // Check if the user is logged in.
@@ -44,7 +25,7 @@ class AdminController extends Controller
 
         // Add authorization logic if needed.
 
-        return view('partials.adminUsers', [
+        return view('pages.adminUsers', [
             'users' => $users,
         ]);
     }
@@ -62,7 +43,7 @@ class AdminController extends Controller
 
         // Add authorization logic if needed
 
-        return view('partials.adminProjects', [
+        return view('pages.adminProjects', [
             'projects' => $projects,
         ]);
     }
