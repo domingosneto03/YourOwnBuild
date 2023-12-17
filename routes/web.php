@@ -44,8 +44,9 @@ Route::controller(RegisterController::class)->group(function () {
 
 // Homepage
 Route::controller(HomepageController::class)->group(function () {
-    Route::get('/homepage', 'show')->name('homepage');
+    Route::get('/homepage/projects', 'showProjects')->name('homepage.projects');
     Route::get('/homepage/discover', 'showDiscover')->name('homepage.discover');
+    Route::get('/homepage/newproject', 'showNewProject')->name('homepage.newproject');
 });
 
 // Projects
