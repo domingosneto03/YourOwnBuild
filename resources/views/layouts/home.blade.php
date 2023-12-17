@@ -52,7 +52,7 @@
                         <strong>{{ $user->name }}</strong>
                     </a>
                     <ul class="dropdown-menu text-small shadow">
-                        <li><a class="dropdown-item" href="/user/{{ $user->id }}">Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/{{ $user->id }}/profile">Profile</a></li>
                         @if ($user->is_admin)
                             <li><a class="dropdown-item" href="/admin/">Admin</a></li>
                         @endif

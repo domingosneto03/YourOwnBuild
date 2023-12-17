@@ -79,10 +79,9 @@ Route::controller(TaskController::class)->group(function () {
 
 // Profile Page
 Route::controller(ProfilePageController::class)->group(function () {
-    Route::get('/user/{id}', 'show')->name('profile.show');
-    Route::get('/user/{id}/profile', 'showProfile');
-    Route::get('/user/{id}/edit', 'editShow');
-    Route::get('/user/{id}/invitations', 'showInvitations');
+    Route::get('/user/{id}/profile', 'showProfile')->name('profile.page');
+    Route::get('/user/{id}/edit', 'editShow')->name('profile.edit');
+    Route::get('/user/{id}/invitations', 'showInvitations')->name('profile.invitations');
 });
 
 // User
