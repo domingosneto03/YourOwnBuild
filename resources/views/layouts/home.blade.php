@@ -36,7 +36,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('homepage') }}">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('homepage.projects') }}">Home</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -52,12 +52,12 @@
                         <strong>{{ $user->name }}</strong>
                     </a>
                     <ul class="dropdown-menu text-small shadow">
-                        <li><a class="dropdown-item" href="/user/{{ $user->id }}">Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/{{ $user->id }}/profile">Profile</a></li>
                         @if ($user->is_admin)
-                            <li><a class="dropdown-item" href="/admin/">Admin</a></li>
+                            <li><a class="dropdown-item" href="/admin/users">Admin</a></li>
                         @endif
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="../logout">Sign out</a></li>
+                        <li><a class="dropdown-item" href="{{ route('logout') }}">Sign out</a></li>
                     </ul>
                 </div>
                 </div>

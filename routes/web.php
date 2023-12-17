@@ -44,22 +44,21 @@ Route::controller(RegisterController::class)->group(function () {
 
 // Homepage
 Route::controller(HomepageController::class)->group(function () {
-    Route::get('/homepage', 'show')->name('homepage');
+    Route::get('/homepage/projects', 'showProjects')->name('homepage.projects');
     Route::get('/homepage/discover', 'showDiscover')->name('homepage.discover');
+    Route::get('/homepage/newproject', 'showNewProject')->name('homepage.newproject');
 });
 
 // Projects
 Route::controller(ProjectController::class)->group(function () {
-    Route::get('/project/{id}', 'show');
-    Route::get('/projects/stuff', 'showHomepage');
+    Route::get('/project/{id}/tasks', 'showTasks')->name('projects.tasks');;
+    Route::get('/project/{id}/team', 'showTeam')->name('projects.team');
+    Route::get('/project/{id}/newtask', 'showNewTask')->name('projects.newtask');
     Route::get('/projects/create',  'create')->name('projects.create');
     Route::post('/projects',  'store')->name('projects.store');
-    Route::get('/project/{id}/edit', 'edit')->name('projects.edit');
+    Route::get('/project/{id}/edit', 'showEdit')->name('projects.edit');
     Route::put('/projects/{id}', 'update')->name('projects.update');
     Route::delete('/projects/{id}', 'destroy')->name('projects.destroy');
-    Route::get('/project/{id}/tasks', 'tasks')->name('projects.tasks');
-    Route::get('/project/{id}/team', 'showTeam')->name('projects.team');
-
 });
 
 // Search
@@ -80,10 +79,9 @@ Route::controller(TaskController::class)->group(function () {
 
 // Profile Page
 Route::controller(ProfilePageController::class)->group(function () {
-    Route::get('/user/{id}', 'show')->name('profile.show');
-    Route::get('/user/{id}/profile', 'showProfile');
-    Route::get('/user/{id}/edit', 'editShow');
-    Route::get('/user/{id}/invitations', 'showInvitations');
+    Route::get('/user/{id}/profile', 'showProfile')->name('profile.page');
+    Route::get('/user/{id}/edit', 'editShow')->name('profile.edit');
+    Route::get('/user/{id}/invitations', 'showInvitations')->name('profile.invitations');
 });
 
 // User
@@ -93,7 +91,6 @@ Route::controller(UserController::class)->group(function () {
 
 // Admin
 Route::controller(AdminController::class)->group(function () {
-    Route::get('/admin', 'show')->name('admin.show');
     Route::get('/admin/users', 'showUsers')->name('admin.showUsers');
     Route::get('/admin/projects', 'showProjects')->name('admin.showProjects');
     Route::put('/user/{id}/block', 'blockUser')->name('admin.blockUser');

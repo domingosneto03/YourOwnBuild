@@ -5,7 +5,7 @@
             <p class="card-text">{{ $project->description }}</p>
             <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-                <a href="../project/{{ $project->id }}" class="btn btn-sm btn-outline-secondary">View</a>
+                <a href="../project/{{ $project->id }}/tasks" class="btn btn-sm btn-outline-secondary">View</a>
             </div>
             @php
                 $tasksCount = $project->tasks->count();

@@ -25,6 +25,6 @@ class UserController extends Controller
         $user->update($validatedData);
 
         // Redirect the user to the project page after user edition
-        return redirect('/user/' . $user->id);
+        return redirect('/user/' . $user->id . '/profile');
     }
 }

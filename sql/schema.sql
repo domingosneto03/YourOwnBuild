@@ -210,7 +210,7 @@ BEGIN
  IF TG_OP = 'UPDATE' THEN
          IF (NEW.name <> OLD.name OR NEW.description <> OLD.description) THEN
            NEW.tsvectors = (
-             setweight(to_tsvector('english', NEW.description), 'A') ||
+             setweight(to_tsvector('english', NEW.name), 'A') ||
              setweight(to_tsvector('english', NEW.description), 'B')
            );
          END IF;
@@ -246,7 +246,7 @@ BEGIN
  IF TG_OP = 'UPDATE' THEN
          IF (NEW.name <> OLD.name OR NEW.label <> OLD.label) THEN
            NEW.tsvectors = (
-             setweight(to_tsvector('english', NEW.label), 'A') ||
+             setweight(to_tsvector('english', NEW.name), 'A') ||
              setweight(to_tsvector('english', NEW.label), 'B')
            );
          END IF;
@@ -281,7 +281,7 @@ BEGIN
  IF TG_OP = 'UPDATE' THEN
          IF (NEW.name <> OLD.name) THEN
            NEW.tsvectors = (
-             setweight(to_tsvector('english', NEW.label), 'A')
+             setweight(to_tsvector('english', NEW.name), 'A')
            );
          END IF;
  END IF;
@@ -315,7 +315,7 @@ BEGIN
  IF TG_OP = 'UPDATE' THEN
          IF (NEW.content <> OLD.content) THEN
            NEW.tsvectors = (
-             setweight(to_tsvector('english', NEW.label), 'A')
+             setweight(to_tsvector('english', NEW.content), 'A')
            );
          END IF;
  END IF;

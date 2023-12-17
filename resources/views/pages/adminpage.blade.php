@@ -8,13 +8,13 @@
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
-      <a href="#" id="users-admin-btn" class="nav-link active" aria-current="page">
+      <a href="{{ route('admin.showUsers' }}" id="users-admin-btn" class="nav-link active" aria-current="page">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
         Users
       </a>
     </li>
     <li class="nav-item">
-      <a href="#" id="projects-admin-btn" class="nav-link link-body-emphasis">
+      <a href="{{ route('admin.showProjects' }}" id="projects-admin-btn" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
         Projects
       </a>
