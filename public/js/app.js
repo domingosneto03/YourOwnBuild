@@ -182,3 +182,7 @@ function addEventListeners() {
   }
   
   addEventListeners();
+
+function emptyHandler() {
+  console.log('Hello World');
+}
