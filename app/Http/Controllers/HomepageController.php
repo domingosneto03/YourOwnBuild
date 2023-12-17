@@ -46,8 +46,7 @@ class HomepageController extends Controller
         return redirect('/login');
     }
 
-
-    $user =Auth::user();
+    $user = Auth::user();
     $projects = Project::all();
     
         // Use the partials.team template to display the team.
