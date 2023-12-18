@@ -128,7 +128,7 @@ class ProjectController extends Controller
         $project->delete();
 
         // Redirect to the projects list or another appropriate page
-        return response()->json(['message' => 'Project successfully deleted']);
+        return redirect('/homepage/projects/');
     }
 
     // Display team page
@@ -142,12 +142,16 @@ class ProjectController extends Controller
 
         // Get the project.
         $project = Project::findOrFail($id);
+        $teamMembers = $project->members()->paginate(2);
+        $joinRequests = $project->joinRequests()->paginate(1);
 
         $users = User::all();
 
         return view('pages.projectTeam', [
             'project' => $project,
             'users' => $users,
+            'teamMembers' => $teamMembers,
+            'joinRequests' => $joinRequests,
         ]);
     }
 

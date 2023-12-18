@@ -24,14 +24,6 @@ class TaskController extends Controller
         return view('pages.taskpage', ['task' => $task]);
     }
 
-    // Display page to create a task
-    public function create(string $id) : View
-    {
-        // Get the project
-        $project = Project::findOrFail($id);
-        return view('partials.createtask', ['project' => $project]);
-    }
-
     // Store data in database
     public function store(Request $request)
     {
@@ -62,7 +54,7 @@ class TaskController extends Controller
         }
 
         // Redirect the user to the project page after task creation
-        return redirect('/project/' . $task->id_project);
+        return redirect('/project/' . $task->id_project . '/tasks/');
     }
 
     // Update values in database
@@ -128,7 +120,7 @@ class TaskController extends Controller
         $projectId = $task->id_project;
         $task->delete();
 
-        return redirect('/project/' . $projectId)->with('success', 'Task deleted successfully.');
+        return redirect('/project/' . $projectId . '/tasks/')->with('success', 'Task deleted successfully.');
     }
 
 }

@@ -184,7 +184,12 @@ VALUES
   (27, 7),
   (28, 8),
   (29, 9),
-  (30, 10);
+  (2, 5),
+  (2, 6),
+  (2, 7),
+  (2, 8),
+  (2, 9),
+  (2, 10);
 
 INSERT INTO request_join (id_user, id_project)
 VALUES

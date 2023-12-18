@@ -21,7 +21,7 @@ class AdminController extends Controller
         }
 
         // Get all users
-        $users = User::all()->where('is_admin', false)->sortBy('username');
+        $users = User::where('is_admin', false)->orderBy('username')->paginate(7);
 
         // Add authorization logic if needed.
 
@@ -39,7 +39,7 @@ class AdminController extends Controller
         }
 
         // Get all projects
-        $projects = Project::all()->sortBy('name');
+        $projects = Project::orderBy('name')->paginate(7);
 
         // Add authorization logic if needed
 
