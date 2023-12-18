@@ -151,4 +151,12 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function searchProjects(Request $request)
+    {
+        $name = $request->input('name');
+
+        $projects = Project::where('name', 'ilike', '%' . $name . '%')->orderBy('name', 'asc')->get();
+        
+        return response()->json($projects);
+    }
 }

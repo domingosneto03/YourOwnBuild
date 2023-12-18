@@ -59,6 +59,7 @@ Route::controller(ProjectController::class)->group(function () {
     Route::get('/project/{id}/edit', 'showEdit')->name('projects.edit');
     Route::put('/projects/{id}', 'update')->name('projects.update');
     Route::delete('/projects/{id}', 'destroy')->name('projects.destroy');
+    Route::get('/api/search/projects/{name?}', 'searchProjects')->name('project.search');
 });
 
 // Search

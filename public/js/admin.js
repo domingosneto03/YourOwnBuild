@@ -44,7 +44,7 @@ function searchUserHandler() {
         users.forEach(user => {
             // Create elements
             let userCard = document.createElement('div');
-            userCard.className = 'card row';
+            userCard.className = 'card row mt-1';
             let cardBody = document.createElement('div');
             cardBody.className = 'card-body';
 
@@ -87,3 +87,68 @@ function searchUserHandler() {
         console.error('Error parsing JSON:', error);
     }
 }
+
+function searchProject(elem) {
+    let name = elem.value;
+    sendAjaxRequest('get', '/api/search/projects?name=' + name, null, searchProjectHandler);
+}
+
+function searchProjectHandler() {
+    try {
+        let projects = JSON.parse(this.responseText);
+        let projectsContainer = document.getElementById('projectCards');
+        projectsContainer.innerHTML = ''; // Clear existing content
+
+        projects.forEach(project => {
+            // Create elements
+            let projectCard = document.createElement('div');
+            projectCard.className = 'card row mt-1';
+
+            let cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+
+            let cardTitle = document.createElement('h5');
+            cardTitle.className = 'card-title';
+            cardTitle.textContent = project.name;
+
+            let cardSubtitle = document.createElement('h6');
+            cardSubtitle.className = 'card-subtitle mb-2 text-muted';
+            cardSubtitle.textContent = project.is_public ? 'Public project' : 'Private project';
+
+            let cardText = document.createElement('p');
+            cardText.className = 'card-text';
+            cardText.textContent = project.description;
+
+            let btnGroup = document.createElement('div');
+            btnGroup.className = 'btn-group';
+
+            let projectLink = document.createElement('a');
+            projectLink.href = '/project/' + project.id;
+            projectLink.className = 'btn btn-outline-secondary btn-sm';
+            projectLink.textContent = 'Project';
+
+            let deleteButton = document.createElement('button');
+            deleteButton.className = 'btn btn-danger btn-sm';
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', function() {
+                delProjectFunc(this);
+            });
+
+            // Append elements
+            btnGroup.appendChild(projectLink);
+            btnGroup.appendChild(deleteButton);
+
+            cardBody.appendChild(cardTitle);
+            cardBody.appendChild(cardSubtitle);
+            cardBody.appendChild(cardText);
+            cardBody.appendChild(btnGroup);
+
+            projectCard.appendChild(cardBody);
+            projectsContainer.appendChild(projectCard);
+        });
+    } catch (error) {
+        console.error('Error parsing JSON:', error);
+    }
+}
+
+
