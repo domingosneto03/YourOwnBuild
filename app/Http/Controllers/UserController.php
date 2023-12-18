@@ -27,4 +27,13 @@ class UserController extends Controller
         // Redirect the user to the project page after user edition
         return redirect('/user/' . $user->id . '/profile');
     }
+
+    public function searchUsers($name) 
+    {
+        $users = DB::table('users2')
+                ->whereFullText('name', $name)
+                ->get();
+        
+        return $users;
+    }
 }

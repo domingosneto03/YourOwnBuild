@@ -26,7 +26,11 @@
 <!-- Main content -->
 <div id="main-content" class="d-flex bg-body-tertiary flex-grow-1">
     <div class="container">
-        <div class="col">
+      <div class="row">
+        <input class="form-control me-2" type="search" onkeyup="searchUser(this);" placeholder="Search" aria-label="Search">
+      </div>
+      <div class="row">
+        <div id="userCards" class="col">
             @foreach ($users as $user)
                 <div class="card row">
                     <div class="card-body">
@@ -44,6 +48,7 @@
                 </div>
             @endforeach
         </div>
+      </div>
     </div>
 </div>
 

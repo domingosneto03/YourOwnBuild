@@ -29,3 +29,13 @@ function delProjectFunc(elem) {
     // Send a DELETE request to the Laravel route
     sendAjaxRequest('delete', '/admin/project/delete', { id: id }, emptyHandler);
 }
+
+function searchUser(elem) {
+    let name = elem.value;
+    sendAjaxRequest('get', '/api/search/users/', {name: name}, searchUserHandler);
+}
+
+function searchUserHandler() {
+    let item = JSON.parse(this.responseText);
+    document.getElementById('userCards').innerHTML=item;
+}

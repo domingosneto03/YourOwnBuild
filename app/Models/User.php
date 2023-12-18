@@ -121,5 +121,4 @@ class User extends Authenticatable
                     }])
                     ->orderBy('due_date');
     }
-    
 }
