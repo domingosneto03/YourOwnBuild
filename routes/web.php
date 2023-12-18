@@ -87,7 +87,7 @@ Route::controller(ProfilePageController::class)->group(function () {
 // User
 Route::controller(UserController::class)->group(function () {
     Route::put('/user/{id}', 'update')->name('user.update');
-    Route::get('/api/search/users/', 'searchUsers')->name('user.search');
+    Route::get('/api/search/users/{name?}', 'searchUsers')->name('user.search');
 });
 
 // Admin

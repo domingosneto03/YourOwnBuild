@@ -25,14 +25,14 @@
 
 <!-- Main content -->
 <div id="main-content" class="d-flex bg-body-tertiary flex-grow-1">
-    <div class="container">
-      <div class="row">
-        <input class="form-control me-2" type="search" onkeyup="searchUser(this);" placeholder="Search" aria-label="Search">
+    <div class="container w-50">
+      <div class="row my-3">
+        <input class="form-control me-2 mw-30" type="search" onkeyup="searchUser(this);" placeholder="Search user" aria-label="Search">
       </div>
       <div class="row">
         <div id="userCards" class="col">
             @foreach ($users as $user)
-                <div class="card row">
+                <div class="card row mt-1">
                     <div class="card-body">
                         <h5 class="card-title">{{ $user->username }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ $user->name }}</h6>
