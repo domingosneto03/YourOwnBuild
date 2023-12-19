@@ -29,31 +29,29 @@
 
 <!-- Main content -->
 <div id="main-content" class="d-flex bg-body-tertiary flex-grow-1">
-    <div class="d-flex bg-body-tertiary">
-        <!-- Create Project Form -->
-        <div class="container">
-            <h2>Create Project</h2>
-            <form method="post" action="{{ route('projects.store') }}">
-                @csrf
-                <div class="mb-3 col-8">
-                    <label for="name" class="form-label">Project Name:</label>
-                    <input class="form-control" type="text" name="name" id="name" required>
-                </div>
-                <div class="mb-3 col-8">
-                    <label for="description" class="form-label">Description:</label>
-                    <textarea class="form-control" name="description" id="description"></textarea>
-                </div>
-                <div class="mb-3 col-8">
-                    <select class="form-select" aria-label="Privacy" name="is_public">
-                        <option value="0">Private</option>
-                        <option value="1">Public</option>
-                    </select>
-                </div>
-                <div class="col-1">
-                    <button class="btn btn-primary btn-sm" type="submit">Create</button>
-                </div>
-            </form>
-        </div>
+    <!-- Create Project Form -->
+    <div class="container">
+        <h2>Create Project</h2>
+        <form method="post" action="{{ route('projects.store') }}">
+            @csrf
+            <div class="mb-3 col-8">
+                <label for="name" class="form-label">Project Name:</label>
+                <input class="form-control" type="text" name="name" id="name" required>
+            </div>
+            <div class="mb-3 col-8">
+                <label for="description" class="form-label">Description:</label>
+                <textarea class="form-control" name="description" id="description"></textarea>
+            </div>
+            <div class="mb-3 col-8">
+                <select class="form-select" aria-label="Privacy" name="is_public">
+                    <option value="0">Private</option>
+                    <option value="1">Public</option>
+                </select>
+            </div>
+            <div class="col-1">
+                <button class="btn btn-primary btn-sm" type="submit">Create</button>
+            </div>
+        </form>
     </div>
 </div>
 

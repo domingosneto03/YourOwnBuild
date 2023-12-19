@@ -29,17 +29,15 @@
 
 <!-- Main content -->
 <div id="main-content" class="d-flex bg-body-tertiary flex-grow-1">
-    <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                @foreach ($projects as $project)
-                    @include('partials.projectCard')
-                @endforeach
-            </div>
-            <!-- Pagination links -->
-            <div class="mt-3 d-flex justify-content-center">
-                {{ $projects->links() }}
-            </div>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @foreach ($projects as $project)
+                @include('partials.projectCard')
+            @endforeach
+        </div>
+        <!-- Pagination links -->
+        <div class="mt-3 d-flex justify-content-center">
+            {{ $projects->links() }}
         </div>
     </div>
 </div>
