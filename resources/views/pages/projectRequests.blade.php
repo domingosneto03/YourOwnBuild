@@ -50,48 +50,45 @@
         <div class="container">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a href="{{ route('projects.team', ['id' => $project->id]) }}" class="nav-link active" aria-selected="true">My Team</a>
-                    <a href="{{ route('projects.requests', ['id' => $project->id]) }}" class="nav-link"   aria-selected="false">Requests</a>
+                    <a href="{{ route('projects.team', ['id' => $project->id]) }}" class="nav-link" aria-selected="false">My Team</a>
+                    <a href="{{ route('projects.requests', ['id' => $project->id]) }}" class="nav-link active" aria-selected="true">Requests</a>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <!-- Team Tab -->
-                <div class="tab-pane fade show active" id="nav-team" role="tabpanel" aria-labelledby="nav-team-tab">
-                    <div class="mt-2 col-4">
-                        <h5>Invite an user to your team</h5>
-                        <form class="d-flex" method="post">
-                            @csrf
-                            @method('POST')
-                            <input class="form-control" type="text" name="name" placeholder="User name" required>
-                            <button type="submit" class="btn btn-outline-success btn-sm ms-2">Invite</button>
-                        </form>
-                    </div>
-                    <div class="row mt-4">
-                        <h5>My Team</h5>
-                        @foreach($teamMembers as $member)
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title mb-0">{{ $member->name }}</h5>
-                                        @if($member->pivot->role === 'project_member')
-                                            <p class="card-text mb-2">Project Member</p>
-                                        @elseif($member->pivot->role === 'coordinator')
-                                            <p class="card-text mb-2">Coordinator</p>
-                                        @endif
-
-                                        @if($member->id == auth()->id())
-                                            <a href="{{ route('profile.page', $member->id) }}" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
-                                        @else
-                                            <a href="#" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
-                                        @endif
+                <!-- Requests Tab -->
+                <div class="tab-pane fade show active" id="nav-request" role="tabpanel" aria-labelledby="nav-request-tab">
+                    @if ($project->joinRequests->isEmpty())
+                        <div class="alert alert-info mt-4" role="alert">
+                            No requests to join the project at the moment.
+                        </div>
+                    @else
+                        <div class="row mt-4">
+                            @foreach($joinRequests as $request)
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <div class="card-body d-flex justify-content-between align-items-center">
+                                            <h5 class="card-title mb-0">{{ $request->name }}</h5>
+                                            <div class="d-flex">
+                                                <form action="{{ route('requests.accept', ['id_user' => $request->id, 'id_project' => $project->id]) }}" method="post">
+                                                    @csrf
+                                                    @method('POST')
+                                                    <button type="submit" class="btn btn-outline-success btn-sm">Accept</button>
+                                                </form>
+                                                <form action="{{ route('requests.refuse', ['id_user' => $request->id, 'id_project' => $project->id]) }}" method="post">
+                                                    @csrf
+                                                    @method('POST')
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm ms-2">Refuse</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
-                    </div>
+                            @endforeach
+                        </div>
+                    @endif
                     <!-- Pagination links -->
                     <div class="mt-3 d-flex justify-content-center">
-                        {{ $teamMembers->links() }}
+                        {{ $joinRequests->links() }}
                     </div>
                 </div>
             </div>

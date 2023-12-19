@@ -142,15 +142,26 @@ class ProjectController extends Controller
 
         // Get the project.
         $project = Project::findOrFail($id);
-        $teamMembers = $project->members()->paginate(2);
-        $joinRequests = $project->joinRequests()->paginate(1);
+        $teamMembers = $project->members()->paginate(6);
 
-        $users = User::all();
+
 
         return view('pages.projectTeam', [
             'project' => $project,
-            'users' => $users,
             'teamMembers' => $teamMembers,
+        ]);
+    }
+
+    // Display team page
+    public function showRequests(string $id): View
+    {
+    
+        // Get the project.
+        $project = Project::findOrFail($id);
+        $joinRequests = $project->joinRequests()->paginate(12);
+
+        return view('pages.projectRequests', [
+            'project' => $project,
             'joinRequests' => $joinRequests,
         ]);
     }

@@ -53,6 +53,7 @@ Route::controller(HomepageController::class)->group(function () {
 Route::controller(ProjectController::class)->group(function () {
     Route::get('/project/{id}/tasks', 'showTasks')->name('projects.tasks');;
     Route::get('/project/{id}/team', 'showTeam')->name('projects.team');
+    Route::get('/project/{id}/requests', 'showRequests')->name('projects.requests');
     Route::get('/project/{id}/newtask', 'showNewTask')->name('projects.newtask');
     Route::get('/projects/create',  'create')->name('projects.create');
     Route::post('/projects',  'store')->name('projects.store');
