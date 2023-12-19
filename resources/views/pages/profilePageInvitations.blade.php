@@ -36,7 +36,7 @@
 <!-- Main content -->
 <div id="main-content" class="d-flex bg-body-tertiary flex-grow-1">
     <div class="album py-1 bg-body-tertiary flex-grow-1">
-        <div class="container">
+        <div class="container py-5">
             <h3 class="mb-4">Project Invitations</h3>
             @if ($user->invited->isEmpty())
                 <div class="alert alert-info" role="alert">

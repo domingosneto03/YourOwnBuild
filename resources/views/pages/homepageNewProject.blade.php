@@ -28,10 +28,10 @@
 </div>
 
 <!-- Main content -->
-<div id="main-content" class="d-flex bg-body-tertiary flex-grow-1">
+<div id="main-content" class="d-flex bg-body-tertiary flex-grow-1 justify-content-center">
     <!-- Create Project Form -->
-    <div class="container">
-        <h2>Create Project</h2>
+    <div class="container w-70 py-5">
+        <h3 class="mb-4">Create Project</h3>
         <form method="post" action="{{ route('projects.store') }}">
             @csrf
             <div class="mb-3 col-8">

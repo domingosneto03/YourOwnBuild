@@ -34,10 +34,10 @@
 </div>
 
 <!-- Main content -->
-<div id="main-content" class="d-flex bg-body-tertiary flex-grow-1">
+<div id="main-content" class="d-flex bg-body-tertiary flex-grow-1 justify-content-center">
      <!-- Edit User Form -->
-    <div class="container">
-        <h2>Edit Profile</h2>
+    <div class="container w-70 py-5">
+        <h3 class="mb-4">Edit Profile</h3>
         <form method="post" action="{{ route('user.update', $user->id) }}">
             @csrf
             @method('PUT')

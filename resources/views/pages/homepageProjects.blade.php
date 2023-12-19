@@ -33,7 +33,7 @@
     <div class="album py-5 bg-body-tertiary flex-grow-1">
         <div class="container">
             <h3 class="mb-4">My Projects</h3>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="row row-cols-3 g-2">
             @foreach ($projects as $project)
                 @include('partials.projectCard')
             @endforeach
