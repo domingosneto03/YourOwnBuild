@@ -53,6 +53,7 @@ Route::controller(HomepageController::class)->group(function () {
 Route::controller(ProjectController::class)->group(function () {
     Route::get('/project/{id}/tasks', 'showTasks')->name('projects.tasks');;
     Route::get('/project/{id}/team', 'showTeam')->name('projects.team');
+    Route::get('/project/{id}/requests', 'showRequests')->name('projects.requests');
     Route::get('/project/{id}/newtask', 'showNewTask')->name('projects.newtask');
     Route::get('/projects/create',  'create')->name('projects.create');
     Route::post('/projects',  'store')->name('projects.store');
@@ -70,7 +71,6 @@ Route::controller(SearchController::class)->group(function () {
 // Tasks
 Route::controller(TaskController::class)->group(function () {
     Route::get('/task/{id}', 'show')->name('tasks.show');
-    Route::get('/tasks/create/{id}',  'create')->name('tasks.create');
     Route::post('/tasks',  'store')->name('tasks.store');
     Route::put('/task/{id}', 'update')->name('tasks.update');
     Route::delete('/tasks/{id}', 'destroy')->name('tasks.destroy');

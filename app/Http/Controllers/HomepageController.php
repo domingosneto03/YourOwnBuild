@@ -24,7 +24,7 @@ class HomepageController extends Controller
             // The user is logged in.
 
             // Get projects for user ordered by id.
-            $projects = Auth::user()->projects()->get();
+            $projects = Auth::user()->projects()->paginate(9);
 
             // Check if the current user can list the projects.
             // $this->authorize('list', Project::class);
@@ -47,7 +47,7 @@ class HomepageController extends Controller
         }
         else {
             $user = Auth::user();
-            $projects = Project::all();
+            $projects = Project::paginate(9);
             
             // Use the partials.team template to display the team.
             return view('pages.homepageDiscover', [

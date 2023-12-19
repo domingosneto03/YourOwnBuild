@@ -39,6 +39,12 @@
   <hr>
 </div>
 
+<form method="post" action="{{ route('projects.destroy', $project->id) }}" id="delete-form">
+            @csrf
+            @method('DELETE')
+</form>
+
+
 <!-- Main content -->
 <div id="main-content" class="d-flex bg-body-tertiary flex-grow-1 justify-content-center">
     <!-- Edit Project Form -->
@@ -68,5 +74,4 @@
         </form>
     </div>
 </div>
-
 @endsection

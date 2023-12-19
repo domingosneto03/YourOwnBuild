@@ -40,10 +40,10 @@
             </div>
             <div class="mb-3 col-8">
                 <label for="description" class="form-label">Description:</label>
-                <textarea class = "form-control" name="description" id="description"></textarea>
+                <textarea class="form-control" name="description" id="description"></textarea>
             </div>
             <div class="mb-3 col-8">
-                <select class="form-select" aria-label="Privacy" name = "is_public">
+                <select class="form-select" aria-label="Privacy" name="is_public">
                     <option value="0">Private</option>
                     <option value="1">Public</option>
                 </select>

@@ -48,8 +48,10 @@
                 </div>
             @endforeach
         </div>
-      </div>
+        <!-- Pagination links -->
+        <div class="mt-3 d-flex justify-content-center">
+          {{ $users->links() }}
+        </div>
     </div>
 </div>
-
 @endsection
