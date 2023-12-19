@@ -10,7 +10,7 @@
         <li class="nav-item">
             <a href="{{ route('homepage.projects') }}" id="new-project-btn" class="nav-link link-body-emphasis">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-                Homepage
+                My Projects
             </a>
         </li>
         <li>
@@ -31,11 +31,13 @@
 
 <!-- Main content -->
 <div id="main-content" class="d-flex bg-body-tertiary flex-grow-1">
-    <div class="album py-1 bg-body-tertiary flex-grow-1">
+    <div class="album py-5 bg-body-tertiary flex-grow-1">
         <div class="container">
             <h3 class="mb-4">Discover New Projects</h3>
             <div class="row my-3">
-                <input class="form-control me-2 mw-30" type="search" onkeyup="searchProjectDiscover(this);" placeholder="Search project" aria-label="Search">
+                <div class="input-group mb-3">
+                    <input type="search" onkeyup="searchProjectDiscover(this);" placeholder="Search project" aria-label="Search" class="form-control">
+                </div>
             </div>
             <div id="projectCards" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($projects as $project)

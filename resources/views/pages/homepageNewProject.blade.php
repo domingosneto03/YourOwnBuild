@@ -8,7 +8,7 @@
     <li class="nav-item">
       <a href="{{ route('homepage.projects') }}" id="discover-btn" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-        Homepage
+        My Projects
       </a>
     </li>
     <li>
