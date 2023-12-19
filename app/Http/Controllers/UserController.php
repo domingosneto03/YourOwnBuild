@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
 
@@ -26,5 +27,14 @@ class UserController extends Controller
 
         // Redirect the user to the project page after user edition
         return redirect('/user/' . $user->id . '/profile');
+    }
+
+    public function searchUsers(Request $request)
+    {
+        $name = $request->input('name');
+
+        $users = User::where('name', 'ilike', '%' . $name . '%')->orderBy('name', 'asc')->get();
+        
+        return response()->json($users);
     }
 }

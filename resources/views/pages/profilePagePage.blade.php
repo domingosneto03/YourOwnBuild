@@ -35,11 +35,7 @@
 <!-- Main content -->
 <div id="main-content" class="d-flex bg-body-tertiary flex-grow-1">
   <div class="container py-5">
-    <div class="row">
-      <div class="col">
-        <p>User Profile</p>
-      </div>
-    </div>
+    <h3 class="row mb-4">User Profile</h3>
     <div class="row">
       <div class="col-lg-4">
         <div class="card mb-4">

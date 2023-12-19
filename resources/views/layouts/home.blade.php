@@ -19,7 +19,6 @@
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
     <script type="text/javascript" src={{ url('js/app.js') }} defer></script>
-    <script type="text/javascript" src={{ url('js/search.js') }} defer></script>
     <script type="text/javascript" src={{ url('js/drag.js') }} defer></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript" src={{ url('js/comment.js') }} defer></script>
@@ -39,10 +38,6 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('homepage.projects') }}">Home</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
                 <div class="dropdown">
                     @php 
                         $user = Auth::user();

@@ -60,6 +60,7 @@ Route::controller(ProjectController::class)->group(function () {
     Route::get('/project/{id}/edit', 'showEdit')->name('projects.edit');
     Route::put('/projects/{id}', 'update')->name('projects.update');
     Route::delete('/projects/{id}', 'destroy')->name('projects.destroy');
+    Route::get('/api/search/projects/{name?}', 'searchProjects')->name('project.search');
 });
 
 // Search
@@ -87,6 +88,7 @@ Route::controller(ProfilePageController::class)->group(function () {
 // User
 Route::controller(UserController::class)->group(function () {
     Route::put('/user/{id}', 'update')->name('user.update');
+    Route::get('/api/search/users/{name?}', 'searchUsers')->name('user.search');
 });
 
 // Admin
