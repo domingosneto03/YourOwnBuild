@@ -63,7 +63,7 @@
                 </div>
             </div>
         </nav>
-        <main>
+        <main class="d-flex flex-grow-1">
             @yield('content')
         </main>
     </div>
