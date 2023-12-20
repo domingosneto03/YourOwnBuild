@@ -42,6 +42,9 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
+            @if (count($projects) == 0)
+                <p class="fs-3 fw-bold">There are no projects with that name</p>
+            @else
             <div id="projectCards" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($projects as $project)
                     <div class="col">
@@ -64,7 +67,8 @@
                         </div>
                     </div>
                 @endforeach
-        </div>
+            </div>
+            @endif
         <!-- Pagination links -->
         <div class="mt-3 d-flex justify-content-center">
             {{ $projects->links() }}
