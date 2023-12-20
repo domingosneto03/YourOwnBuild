@@ -6,15 +6,21 @@ use Illuminate\Http\Request;
 
 use App\Models\Invited;
 use App\Models\Member;
+use App\Models\User;
 
 class InvitedController extends Controller
 {
-    public function invite($id_user, $id_project)
+    public function invite(Request $request, $id_project)
     {
+        $request->validate([
+            'fullName' => ['required','max:255'], 
+        ]);
 
+        $user = User::where('name', $request->fullName)->firstOrFail();
+        
         // Create a new invited record in the database.
         Invited::create([
-            'id_user' => $id_user,
+            'id_user' => $user->id,
             'id_project' => $id_project,
         ]);
 

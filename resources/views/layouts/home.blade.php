@@ -23,6 +23,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript" src={{ url('js/comment.js') }} defer></script>
     <script type="text/javascript" src={{ url('js/task.js') }} defer></script>
+    <script type="text/javascript" src={{ url('js/invite.js') }} defer></script>
 </head>
 <body class="d-flex flex-column vh-100 m-0">
     <div class="d-flex flex-column flex-grow-1">

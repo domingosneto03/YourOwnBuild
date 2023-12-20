@@ -56,14 +56,15 @@
         <div class="tab-content" id="nav-tabContent">
             <!-- Team Tab -->
             <div class="tab-pane fade show active" id="nav-team" role="tabpanel" aria-labelledby="nav-team-tab">
-                <div class="mt-2 col-4">
+                <div class="mt-3 col-4">
                     <h5>Invite an user to your team</h5>
                     <form class="d-flex" method="post">
                         @csrf
                         @method('POST')
-                        <input class="form-control" type="text" name="name" placeholder="User name" required>
+                        <input class="form-control" type="text" name="fullName" id="fullName" placeholder="Full Name" required autocomplete="off">
                         <button type="submit" class="btn btn-outline-success btn-sm ms-2">Invite</button>
                     </form>
+                    <div id="fullNameList"></div>
                 </div>
                 <div class="row mt-4">
                     <h5>My Team</h5>
