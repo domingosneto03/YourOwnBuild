@@ -35,33 +35,36 @@
         <div class="container">
             <h3 class="mb-4">Discover New Projects</h3>
             <div class="row my-3">
-                <div class="input-group mb-3">
-                    <input type="search" onkeyup="searchProjectDiscover(this);" placeholder="Search project" aria-label="Search" class="form-control">
-                </div>
+                <form class="d-flex form-inline my-2 my-lg-0" action="{{ route('homepage.discover') }}" method="get">
+                    @if (request()->has('query'))
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" value="{{ request()->input('query') }}">
+                    @else
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
+                    @endif
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
             <div id="projectCards" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($projects as $project)
-                    @if (!$project->members->contains('id', $user->id) && $project->is_public)
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $project->name }}</h1>
-                                    <p class="card-text">{{ $project->description }}</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        @if ($project->joinRequests->contains('id', $user->id))
-                                            <button class="btn btn-outline-secondary btn-sm" disabled>Requested</button>
-                                        @else
-                                            <form action="{{ route('project.request', ['id_user' => $user->id, 'id_project' => $project->id]) }}" method="post">
-                                                @csrf
-                                                @method('POST')
-                                                <button type="submit" class="btn btn-outline-success btn-sm">Request to Join</button>
-                                            </form>
-                                        @endif   
-                                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $project->name }}</h1>
+                                <p class="card-text">{{ $project->description }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    @if ($project->joinRequests->contains('id', $user->id))
+                                        <button class="btn btn-outline-secondary btn-sm" disabled>Requested</button>
+                                    @else
+                                        <form action="{{ route('project.request', ['id_user' => $user->id, 'id_project' => $project->id]) }}" method="post">
+                                            @csrf
+                                            @method('POST')
+                                            <button type="submit" class="btn btn-outline-success btn-sm">Request to Join</button>
+                                        </form>
+                                    @endif   
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    </div>
                 @endforeach
         </div>
         <!-- Pagination links -->

@@ -38,7 +38,7 @@ class HomepageController extends Controller
         }
     }
 
-    public function showDiscover(): View
+    public function showDiscover(Request $request): View
     {
         // Check if the user is logged in.
         if (!Auth::check()) {
@@ -47,7 +47,19 @@ class HomepageController extends Controller
         }
         else {
             $user = Auth::user();
-            $projects = Project::paginate(9);
+            $projects;
+
+            if ($request->has('query')) {
+                $query = $request->input('query');
+                $projects = Project::where('name', 'ilike', '%' . $query . '%')
+                    ->where('is_public', true)
+                    ->orderBy('name', 'asc')
+                    ->paginate(6);
+                $projects->appends(['query' => $query]);
+            } else {
+                $projects = Project::orderBy('name', 'asc')
+                    ->paginate(6);
+            }
             
             // Use the partials.team template to display the team.
             return view('pages.homepageDiscover', [
