@@ -61,8 +61,8 @@
                                 </div>
                             </div>
                         </div>
-                @endif
-            @endforeach
+                    @endif
+                @endforeach
         </div>
         <!-- Pagination links -->
         <div class="mt-3 d-flex justify-content-center">
