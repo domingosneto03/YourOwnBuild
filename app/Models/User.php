@@ -121,4 +121,29 @@ class User extends Authenticatable
                     }])
                     ->orderBy('due_date');
     }
+
+    /**
+     * Check if the user is a member of the project.
+     *
+     * @param  int  $projectId
+     * @return bool
+     */
+    public function isProjectMember($projectId)
+    {
+        return $this->projectMemberships()->where('id_project', $projectId)->exists();
+    }
+
+    /**
+     * Check if the user is a coordinator for a specific project.
+     *
+     * @param int $projectId
+     * @return bool
+     */
+    public function isCoordinator($projectId)
+    {
+        return $this->projects()
+            ->where('id', $projectId)
+            ->wherePivot('role', 'coordinator')
+            ->exists();
+    }
 }

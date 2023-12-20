@@ -23,6 +23,11 @@ class UserController extends Controller
         ]);
 
         $user = User::findOrFail($id);
+
+        // Authentication
+        $this->authorize('editProfile', [Auth::user(), $user]);
+
+
         $user->update($validatedData);
 
         // Redirect the user to the project page after user edition

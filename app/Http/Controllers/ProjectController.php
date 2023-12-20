@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 use App\Models\Project;
 use App\Models\User;
+
 
 class ProjectController extends Controller
 {
@@ -19,16 +21,18 @@ class ProjectController extends Controller
         if (!Auth::check()) {
             // Not logged in, redirect to login.
             return redirect('/login');
-
-        } else {
-            // Get the project.
-            $project = Project::findOrFail($id);
-
-            // Use the pages.project template to display the project.
-            return view('pages.projectTasks', [
-                'project' => $project
-            ]);
         }
+
+        // Get the project.
+        $project = Project::findOrFail($id);
+
+        // Authentication
+        $this->authorize('viewProject', $project);
+
+        // Use the pages.project template to display the project.
+        return view('pages.projectTasks', [
+            'project' => $project
+        ]);
     }
     
     public function showNewTask($id): View
@@ -106,8 +110,15 @@ class ProjectController extends Controller
         // Get the project
         $project = Project::findOrFail($id);
 
-        // Check if the current user can update the project.
-        // Add authorization logic if needed.
+        // Check if the user is authorized to update the project
+        $this->authorize('update', $project);
+
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => ['required', 'max:255'],
+            'description' => ['nullable'],
+            'is_public' => ['required', 'boolean'],
+        ]);
 
         // Update the project with the new data
         $project->update($validatedData);
@@ -123,6 +134,7 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
 
         // Add authorization check if needed
+        $this->authorize('deleteProject', $project);
 
         // Delete the project
         $project->delete();
