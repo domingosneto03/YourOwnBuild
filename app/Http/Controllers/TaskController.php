@@ -70,8 +70,9 @@ class TaskController extends Controller
 
         $task = Task::findOrFail($id);
         $task->update($validatedData);
+        
 
-        return redirect()->back()->with('success', 'Updated with success.');
+        return redirect('/project/' . $task->id_project . '/tasks/');
     }
 
     public function updateAssign(Request $request, $id)
@@ -88,7 +89,7 @@ class TaskController extends Controller
         }
         $task->update($validatedData);
 
-        return redirect()->back()->with('success', 'Updated with success.');
+        return redirect('/project/' . $task->id_project . '/tasks/');
     }
 
     public function updateCompletion(Request $request, $id)
@@ -117,10 +118,9 @@ class TaskController extends Controller
     public function destroy($id)
     {
         $task = Task::findOrFail($id);
-        $projectId = $task->id_project;
         $task->delete();
 
-        return redirect('/project/' . $projectId . '/tasks/')->with('success', 'Task deleted successfully.');
+        return redirect('/project/' . $task->id_project . '/tasks/')->with('success', 'Task deleted successfully.');
     }
 
 }
