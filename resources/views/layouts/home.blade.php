@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,7 +43,7 @@
                         $user = Auth::user();
                     @endphp
                     <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('img/profile_pic.jpeg') }}" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <img src="{{ asset('img/profile_pic.jpeg') }}" alt="" width="32" height="32" class="rounded-circle me-2" alt="user avatar">
                         <strong>{{ $user->name }}</strong>
                     </a>
                     <ul class="dropdown-menu text-small shadow">
