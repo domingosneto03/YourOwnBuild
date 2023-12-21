@@ -39,9 +39,9 @@
                         <div class="btn-group">
                             <a href="{{ route('admin.showProfile', ['id' => $user->id]) }}" class="btn btn-outline-secondary btn-sm">Profile</a>
                             @if ($user->is_blocked)
-                                <button onclick="unblockUserFunc(this);" class="btn btn-danger btn-sm">Unblock</button>
+                                <button id="btn-block-{{ $user->id }}" onclick="unblockUserFunc(this);" class="btn btn-danger btn-sm">Unblock</button>
                             @else
-                                <button onclick="blockUserFunc(this);" class="btn btn-danger btn-sm">Block</button>
+                                <button id="btn-block-{{ $user->id }}" onclick="blockUserFunc(this);" class="btn btn-danger btn-sm">Block</button>
                             @endif
                         </div>
                     </div>
