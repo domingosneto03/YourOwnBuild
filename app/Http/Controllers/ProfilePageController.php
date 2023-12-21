@@ -28,6 +28,16 @@ class ProfilePageController extends Controller
         }
     }
 
+    public function showOther(string $id)
+    {   
+        $user = User::findOrFail($id);
+
+        // Use the pages.cards template to display all cards.
+        return view('pages.profilePageOther', [
+            'user' => $user
+        ]);
+    }
+
     public function editShow(string $id)
     {   
         // Check if the user is logged in.

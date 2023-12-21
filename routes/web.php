@@ -81,6 +81,7 @@ Route::controller(TaskController::class)->group(function () {
 // Profile Page
 Route::controller(ProfilePageController::class)->group(function () {
     Route::get('/user/{id}/profile', 'showProfile')->name('profile.page');
+    Route::get('/user/{id}/other', 'showOther')->name('profile.other');
     Route::get('/user/{id}/edit', 'editShow')->name('profile.edit');
     Route::get('/user/{id}/invitations', 'showInvitations')->name('profile.invitations');
 });
@@ -95,6 +96,7 @@ Route::controller(UserController::class)->group(function () {
 // Admin
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/users', 'showUsers')->name('admin.showUsers');
+    Route::get('/admin/users/{id}', 'showUser')->name('admin.showProfile');
     Route::get('/admin/projects', 'showProjects')->name('admin.showProjects');
     Route::get('/admin/projects/{id}', 'showProject')->name('admin.showProject');
     Route::put('/user/{id}/block', 'blockUser')->name('admin.blockUser');

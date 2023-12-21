@@ -43,7 +43,7 @@ class ProjectPolicy
     public function delete(User $user, Project $project)
     {
         // Check if the user is the creator of the project
-        return $user->id === $project->id_creator || $project->members->where('id_user', $user->id)->where('role', 'coordinator')->count() > 0;
+        return $user->id === $project->id_creator || $project->members->where('id_user', $user->id)->where('role', 'coordinator')->count() > 0 || $user->isAdmin();
     }
 
     /**

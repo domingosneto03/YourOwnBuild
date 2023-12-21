@@ -20,6 +20,16 @@ class UserPolicy
         return $user->isAdmin();
     }
 
+    /**
+     * Determine if the given user can block a user.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
+     */
+    public function block(User $user)
+    {
+        return $user->isAdmin();
+    }
 
 
 }

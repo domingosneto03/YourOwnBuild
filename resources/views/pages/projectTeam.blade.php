@@ -85,7 +85,7 @@
                                         <p class="card-text mb-2">Coordinator</p>
                                     @endif
                                     <div class="d-flex justify-content-center">
-                                        <a href="{{ $member->id == auth()->id() ? route('profile.page', $member->id) : '#' }}" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
+                                    <a href="{{ $member->id == auth()->id() ? route('profile.page', $member->id) : route('profile.other', $member->id) }}" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
                                         @can('remove', $project)
                                         <a href="#" class="btn btn-outline-danger btn-sm ms-2">Remove</a>
                                         @endcan

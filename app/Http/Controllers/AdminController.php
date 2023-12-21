@@ -107,4 +107,14 @@ class AdminController extends Controller
             'project' => $project
         ]);
     }
+
+    public function showUser(string $id)
+    {   
+        $user = User::findOrFail($id);
+
+        // Use the pages.cards template to display all cards.
+        return view('pages.profilePageOther', [
+            'user' => $user
+        ]);
+    }
 }

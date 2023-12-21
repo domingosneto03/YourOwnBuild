@@ -37,11 +37,11 @@
                         <h5 class="card-title">{{ $user->username }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ $user->name }}</h6>
                         <div class="btn-group">
-                            <a href="/user/{{ $user->id }}" class="btn btn-outline-secondary btn-sm">Profile</a>
+                            <a href="{{ route('admin.showProfile', ['id' => $user->id]) }}" class="btn btn-outline-secondary btn-sm">Profile</a>
                             @if ($user->is_blocked)
-                                <button onclick="unblockUserFunc(this);" class="btn btn-danger btn-sm">Unblock</a>
+                                <button onclick="unblockUserFunc(this);" class="btn btn-danger btn-sm">Unblock</button>
                             @else
-                                <button onclick="blockUserFunc(this);" class="btn btn-danger btn-sm">Block</a>
+                                <button onclick="blockUserFunc(this);" class="btn btn-danger btn-sm">Block</button>
                             @endif
                         </div>
                     </div>
