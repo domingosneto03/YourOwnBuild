@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 use App\Models\Task;
 use App\Models\Project;
@@ -33,7 +34,7 @@ class TaskController extends Controller
             'label' => ['required', 'max:255'],
             'due_date' => ['required'],
             'priority' => ['required'],
-            'assigned' => ['required', 'array']
+            'assigned' => ['array']
         ]);
 
         // Validate creation data
@@ -46,6 +47,16 @@ class TaskController extends Controller
         //dd(auth()->id()); 
         //dd($validatedData); // Check the entire validatedData array
 
+        if (strtotime($validatedData['due_date']) <= strtotime($validatedData['date_created'])) {
+            Session::flash('error', 'The deadline must be after the present day.');
+            return redirect()->back();
+        }
+
+        if (empty($validatedData['assigned'])) {
+            Session::flash('error', 'Please assign the task to at least one user.');
+            return redirect()->back();
+        }
+
         // Create a new task in the database
         $task = Task::create($validatedData);
 
@@ -53,6 +64,7 @@ class TaskController extends Controller
             $task->responsibleUsers()->attach($userId);
         }
 
+        Session::flash('success', 'Created task with success.');
         // Redirect the user to the project page after task creation
         return redirect('/project/' . $task->id_project . '/tasks/');
     }
@@ -69,16 +81,27 @@ class TaskController extends Controller
         ]);
 
         $task = Task::findOrFail($id);
-        $task->update($validatedData);
 
-        return redirect()->back()->with('success', 'Updated with success.');
+        if (strtotime($validatedData['due_date']) <= strtotime($task->date_created)) {
+            Session::flash('error', 'The deadline must be after the present day.');
+            return redirect()->back();
+        }
+        $task->update($validatedData);
+        
+        Session::flash('success', 'Updated task details with success.');
+        return redirect('/project/' . $task->id_project . '/tasks/');
     }
 
     public function updateAssign(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'assigned' => ['required', 'array'],
+            'assigned' => ['array'],
         ]);
+
+        if (empty($validatedData['assigned'])) {
+            Session::flash('error', 'Please assign the task to at least one user.');
+            return redirect()->back();
+        }
 
         $task = Task::findOrFail($id);
         $task->responsibleUsers()->detach();
@@ -88,7 +111,8 @@ class TaskController extends Controller
         }
         $task->update($validatedData);
 
-        return redirect()->back()->with('success', 'Updated with success.');
+        Session::flash('success', 'Assigned users with success.');
+        return redirect('/project/' . $task->id_project . '/tasks/');
     }
 
     public function updateCompletion(Request $request, $id)
@@ -117,10 +141,10 @@ class TaskController extends Controller
     public function destroy($id)
     {
         $task = Task::findOrFail($id);
-        $projectId = $task->id_project;
         $task->delete();
 
-        return redirect('/project/' . $projectId . '/tasks/')->with('success', 'Task deleted successfully.');
+        Session::flash('success', 'Deleted task with success.');
+        return redirect('/project/' . $task->id_project . '/tasks/');
     }
 
 }

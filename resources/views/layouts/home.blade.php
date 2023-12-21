@@ -23,6 +23,8 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript" src={{ url('js/comment.js') }} defer></script>
     <script type="text/javascript" src={{ url('js/task.js') }} defer></script>
+    <script type="text/javascript" src={{ url('js/invite.js') }} defer></script>
+    <script type="text/javascript" src={{ url('js/alerts.js') }} defer></script>
 </head>
 <body class="d-flex flex-column vh-100 m-0">
     <div class="d-flex flex-column flex-grow-1">
@@ -61,6 +63,17 @@
         <main class="d-flex flex-grow-1">
             @yield('content')
         </main>
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show auto-close position-fixed bottom-0 end-0 p-3 mb-2 me-2" role="alert" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger alert-dismissible fade show auto-close position-fixed bottom-0 end-0 p-3 mb-2 me-2" role="alert" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

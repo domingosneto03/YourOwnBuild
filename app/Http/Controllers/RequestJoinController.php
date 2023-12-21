@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RequestJoin;
 use App\Models\Member;
+use Illuminate\Support\Facades\Session;
 
 
 class RequestJoinController extends Controller
@@ -20,6 +21,7 @@ class RequestJoinController extends Controller
         ]);
 
 
+        Session::flash('success', 'Requested to join the project with success.');
         // Redirect back to the team page or wherever you want.
         return redirect()->back();
     }
@@ -42,7 +44,7 @@ class RequestJoinController extends Controller
 
         // Delete the join request
         $request->delete();
-
+        Session::flash('success', 'Accepted user with success.');
         return redirect()->back();
     }
 
@@ -54,7 +56,7 @@ class RequestJoinController extends Controller
         ])->firstOrFail();
         // Delete the join request
         $request->delete();
-
+        Session::flash('success', 'Refused user with success.');
         return redirect()->back();
     }
 }

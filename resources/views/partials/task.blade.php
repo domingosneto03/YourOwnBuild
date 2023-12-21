@@ -37,14 +37,29 @@
                 <div class="container-fluid" style="flex: 1; display: grid; grid-template-rows: 1fr auto;">
                     <div class="row">
                         <!-- Left Column for Task Info -->
-                        <div class="col-md-4 mt-10">
+                        <div class="col-md-4">
                             <div id="task-info-section-{{ $task->id }}">
-                                <p class="card-text mb-5">Creator Name: {{ $task->creator->name }}</p>
-                                <p class="card-text mb-5">Label: {{ $task->label }}</p>
-                                <p class="card-text mb-5">Date Created: {{ $task->date_created->format('Y-m-d') }}</p>
-                                <p class="card-text mb-5">Deadline: {{ $task->due_date->format('Y-m-d') }}</p>
-                                <p class="card-text">Priority: {{ $task->priority }}</p>
-                                <div class="d-flex my-3">
+                                <div class="mb-4 mt-3">
+                                    <h6 class="card-title">Creator Name:</h6>
+                                    <p class="card-text">{{ $task->creator->name }}</p>
+                                </div>
+                                <div class="mb-4">
+                                    <h6 class="card-title">Label:</h6>
+                                    <p class="card-text">{{ $task->label }}</p>
+                                </div>
+                                <div class="mb-4">
+                                    <h6 class="card-title">Date Created:</h6>
+                                    <p class="card-text">{{ $task->date_created->format('Y-m-d') }}</p>
+                                </div>
+                                <div class="mb-4">
+                                    <h6 class="card-title">Deadline:</h6>
+                                    <p class="card-text">{{ $task->due_date->format('Y-m-d') }}</p>
+                                </div>
+                                <div class="mb-4">
+                                    <h6 class="card-title">Priority:</h6>
+                                    <p class="card-title">{{ $task->priority }}</p>
+                                </div>
+                                <div class="d-flex my-4">
                                     <button class="btn btn-outline-secondary btn-sm" onclick="editTask('{{ $task->id }}')">Edit Task</button> 
                                     <button class="btn btn-outline-danger btn-sm ms-2" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this task?')) document.getElementById('delete-task-form-{{ $task->id}}').submit();">Delete Task</button> 
                                 </div>
@@ -59,7 +74,7 @@
                                     @method('PUT')
                                     <input type="hidden" name="id_project" value="{{ $project->id }}">
 
-                                    <div class="mb-3">
+                                    <div class="my-3">
                                         <label for="name" class="form-label">Task Name:</label>
                                         <input class="form-control form-control-sm" type="text" name="name" id="name" value="{{ $task->name }}" required>
                                     </div>
@@ -97,18 +112,18 @@
                         <!-- Middle Column for Assigned Info -->
                         <div class="col-md-3">
                             <div id="assigned-{{ $task->id }}">
-                                <p class="card-text">Assigned to:</p>
-                                <div class="row" style="max-height: 40vh; overflow-y: auto;">
-                                    @foreach($task->responsibleUsers as $user)
-                                        <div class="pl-1 mb-1 border border-secondary-subtle rounded">
-                                            <p>{{ $user->name }}</p>
-                                        </div>
-                                    @endforeach
+                                <h6 class="card-title my-3">Assigned to:</h6>
+                                <div style="max-height: 40vh; overflow-y: auto;">
+                                    <ul class="list-group">
+                                        @foreach($task->responsibleUsers as $user)
+                                                <li class="list-group-item list-group-item-primary">{{ $user->name }}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                                 <button class="btn btn-outline-secondary btn-sm my-3" onclick="editAssign('{{ $task->id }}')">Reassign</button>
                             </div>
                             <div id="reassign-{{ $task->id }}" style="display: none;">
-                                <p class="card-text">Assigned to:</p>
+                                <h6 class="card-title my-3">Assigned to:</h6>
                                 <form method="post" action="{{ route('tasks.updateAssign', ['id' => $task->id]) }}" class="edit-form">
                                     @csrf
                                     @method('PUT')
@@ -129,8 +144,8 @@
                             <div class="modal-header">
                                 <h5 class="modal-title">Comments</h5>
                             </div>
-                            <div class="modal-body" id="comments-body-{{ $task->id }}" style="max-height: 50vh; overflow-y: auto;">
-                            <!-- Existing comments will be displayed here -->
+                            <div class="modal-body" id="comments-body-{{ $task->id }}" style="max-height: 45vh; min-height: 45vh; overflow-y: auto;">
+                                <!-- Existing comments will be displayed here -->
                                 @foreach($task->comments as $comment)
                                     <div class="card mb-2 position-relative" id="comment-{{ $comment->id }}">
                                         <div class="card-body card-sm mb-0">
@@ -143,12 +158,12 @@
                                     </div>
                                 @endforeach
                             </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Write a comment..." id="comment-input-{{ $task->id }}">
-                            <button class="btn btn-outline-success ms-2" onclick="submitComment('{{ $task->id }}', '{{ auth()->user()->name }}')">Send</button>
+                            <div class="modal-footer">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Write a comment..." id="comment-input-{{ $task->id }}">
+                                    <button class="btn btn-outline-success ms-2" onclick="submitComment('{{ $task->id }}', '{{ auth()->user()->name }}')">Send</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -54,10 +54,8 @@ class ProfilePageController extends Controller
         }
     
         $user = User::findOrFail($id);
-        // Paginate the user's invitations with 5 items per page (you can adjust the number as needed).
         $invitedProjects = $user->invited()->paginate(12);
     
-        // Use the partials.team template to display the team.
         return view('pages.profilePageInvitations', [
             'user' => $user,
             'invitedProjects' => $invitedProjects,
