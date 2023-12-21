@@ -58,13 +58,13 @@
             <div class="tab-pane fade show active" id="nav-team" role="tabpanel" aria-labelledby="nav-team-tab">
                 <div class="mt-3 col-4">
                     <h5>Invite an user to your team</h5>
-                    <form class="d-flex" method="post">
+                    <form class="d-flex" method="post" action="{{ route('project.invite', ['id_project' => $project->id]) }}">
                         @csrf
                         @method('POST')
-                        <input class="form-control" type="text" name="fullName" id="fullName" placeholder="Full Name" required autocomplete="off">
+                        <input class="form-control" type="text" name="fullName" id="fullName" placeholder="Full Name" required autocomplete="off" data-autocomplete-url="{{ route('autocomplete.users') }}">
                         <button type="submit" class="btn btn-outline-success btn-sm ms-2">Invite</button>
                     </form>
-                    <div id="fullNameList"></div>
+                    <ul class="list-group" id="fullNameList"></ul>
                 </div>
                 <div class="row mt-4">
                     <h5>My Team</h5>

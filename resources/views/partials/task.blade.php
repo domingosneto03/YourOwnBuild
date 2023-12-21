@@ -116,7 +116,7 @@
                                 <div style="max-height: 40vh; overflow-y: auto;">
                                     <ul class="list-group">
                                         @foreach($task->responsibleUsers as $user)
-                                                <li class="list-group-item">{{ $user->name }}</li>
+                                                <li class="list-group-item list-group-item-primary">{{ $user->name }}</li>
                                         @endforeach
                                     </ul>
                                 </div>

@@ -37,4 +37,11 @@ class UserController extends Controller
         
         return response()->json($users);
     }
+
+    public function autocomplete(Request $request)
+    {
+        $query = $request->get('query');
+        $users = User::where('name', 'ilike', '%' . $query . '%')->orderBy('name', 'asc')->pluck('name');
+        return view('partials.autocomplete', compact('users'));
+    }
 }
