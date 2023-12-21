@@ -17,24 +17,28 @@
                 Team
             </a>
         </li>
+        @can('edit', $project)
         <li class="nav-item">
             <a href="{{ route('projects.edit', ['id' => $project->id]) }}" id="edit-project-btn" class="nav-link link-body-emphasis">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                 Edit Project
             </a>
         </li>
+        @endcan
         <li class="nav-item">
             <a href="{{ route('projects.newtask', ['id' => $project->id]) }}" id="new-task-btn" class="nav-link link-body-emphasis">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                 New Task
             </a>
         </li>
+        @can('delete', $project)
         <li class="nav-item mt-2">
             <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this project?')) document.getElementById('delete-form').submit();" class="nav-link bg-danger text-light">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
                 Delete Project
             </a>
         </li>
+        @endcan
     </ul>
     <hr>
 </div>
@@ -56,6 +60,7 @@
         <div class="tab-content" id="nav-tabContent">
             <!-- Team Tab -->
             <div class="tab-pane fade show active" id="nav-team" role="tabpanel" aria-labelledby="nav-team-tab">
+                @can('invite', $project)
                 <div class="mt-3 col-4">
                     <h5>Invite an user to your team</h5>
                     <form class="d-flex" method="post" action="{{ route('project.invite', ['id_project' => $project->id]) }}">
@@ -66,6 +71,7 @@
                     </form>
                     <ul class="list-group" id="fullNameList"></ul>
                 </div>
+                @endcan
                 <div class="row mt-4">
                     <h5>My Team</h5>
                     @foreach($teamMembers as $member)
@@ -80,7 +86,9 @@
                                     @endif
                                     <div class="d-flex justify-content-center">
                                         <a href="{{ $member->id == auth()->id() ? route('profile.page', $member->id) : '#' }}" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
+                                        @can('remove', $project)
                                         <a href="#" class="btn btn-outline-danger btn-sm ms-2">Remove</a>
+                                        @endcan
                                     </div>
                                 </div>
                             </div>

@@ -51,5 +51,9 @@
       </div>
     </div>
   </div>
+  <!-- Pagination links -->
+  <div class="mt-3 d-flex justify-content-center">
+    {{ $projects->links() }}
+  </div>
 </div>
 @endsection

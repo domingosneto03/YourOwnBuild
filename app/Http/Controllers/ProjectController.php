@@ -76,17 +76,11 @@ class ProjectController extends Controller
     // Display edit project view for the coordinator
     public function showEdit(string $id): View
     {
-        // Check if the user is logged in.
-        if (!Auth::check()) {
-            // Not logged in, redirect to login.
-            return redirect('/login');
-        }
-
         // Get the project.
         $project = Project::findOrFail($id);
 
-        // Check if the current user can edit the project.
-        // Add authorization logic if needed.
+        // Check if user can edit the project
+        $this->authorize('edit', $project);
 
         // Use the pages.editproject template to display the edit form.
         return view('pages.projectEdit', [
@@ -123,11 +117,14 @@ class ProjectController extends Controller
         // Retrieve the project by ID
         $project = Project::findOrFail($id);
 
-        // Add authorization check if needed
+        // Check if user can delete a project
+        $this->authorize('delete', $project);
 
         // Delete the project
         $project->delete();
+
         Session::flash('success', 'Deleted project with success.');
+
         // Redirect to the projects list or another appropriate page
         return redirect('/homepage/projects/');
     }
