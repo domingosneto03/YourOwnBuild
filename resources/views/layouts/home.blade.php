@@ -25,6 +25,7 @@
     <script type="text/javascript" src={{ url('js/task.js') }} defer></script>
     <script type="text/javascript" src={{ url('js/invite.js') }} defer></script>
     <script type="text/javascript" src={{ url('js/alerts.js') }} defer></script>
+    <script type="text/javascript" src={{ url('js/inputs.js') }} defer></script>
 </head>
 <body class="d-flex flex-column vh-100 m-0">
     <div class="d-flex flex-column flex-grow-1">

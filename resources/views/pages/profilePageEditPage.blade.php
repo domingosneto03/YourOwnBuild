@@ -44,7 +44,7 @@
 
             <div class="mb-3 col-8">
                 <label for="name" class="form-label">User Name:</label>
-                <input class="form-control" type="text" name="name" value="{{ $user->name }}" required>
+                <input class="form-control input-limit-title" type="text" name="name" value="{{ $user->name }}" required>
             </div>
             <div class="mb-3 col-8">
                 <label for="bio" class="form-label">Bio:</label>
@@ -52,11 +52,11 @@
             </div>
             <div class="mb-3 col-8">
                 <label for="job" class="form-label">Job:</label>
-                <textarea class="form-control" name="job">{{ $user->job }}</textarea>
+                <textarea class="form-control input-limit-title" name="job">{{ $user->job }}</textarea>
             </div>
             <div class="mb-3 col-8">
                 <label for="address" class="form-label">Address:</label>
-                <textarea class="form-control" name="address">{{ $user->address }}</textarea>
+                <textarea class="form-control input-limit-title" name="address">{{ $user->address }}</textarea>
             </div>
             <div class="col-1">
                 <button class="btn btn-primary btn-sm" type="submit">Update</button>
