@@ -6,12 +6,22 @@ use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CommentController extends Controller
 {
     public function store(Request $request, $taskId)
     {
+
+        $user = Auth::user();
+
+        if (!$this->authorize('canPerformAction', $user)) {
+            Session::flash('warning', 'You are not authorized to add comments.');
+            return redirect()->back();  // Redirect back to the previous page
+
+        }
+        
         // Validate the request data
         $validatedData = $request->validate([
             'content' => ['required', 'max:255'],

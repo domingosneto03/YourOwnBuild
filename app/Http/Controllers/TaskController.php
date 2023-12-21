@@ -72,6 +72,14 @@ class TaskController extends Controller
     // Update values in database
     public function update(Request $request, $id)
     {
+        $user = Auth::user();
+
+        if (!$this->authorize('canPerformAction', $user)) {
+            Session::flash('warning', 'You are not authorized to edit tasks.');
+            return redirect()->back();  // Redirect back to the previous page
+
+        }
+        
         $validatedData = $request->validate([
             'name' => ['required', 'max:255'],
             'label' => ['required', 'max:255'],
@@ -94,6 +102,14 @@ class TaskController extends Controller
 
     public function updateAssign(Request $request, $id)
     {
+        $user = Auth::user();
+
+        if (!$this->authorize('canPerformAction', $user)) {
+            Session::flash('warning', 'You are not authorized to assign users to tasks.');
+            return redirect()->back();  // Redirect back to the previous page
+
+        }
+
         $validatedData = $request->validate([
             'assigned' => ['array'],
         ]);
@@ -140,6 +156,14 @@ class TaskController extends Controller
     // Delete a task, option only avalible to coordinator
     public function destroy($id)
     {
+        $user = Auth::user();
+
+        if (!$this->authorize('canPerformAction', $user)) {
+            Session::flash('warning', 'You are not authorized to delete tasks.');
+            return redirect()->back();  // Redirect back to the previous page
+
+        }
+
         $task = Task::findOrFail($id);
         $task->delete();
 

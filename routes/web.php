@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RequestJoinController;
 use App\Http\Controllers\InvitedController;
+use App\Http\Controllers\MemberController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -122,4 +123,9 @@ Route::controller(InvitedController::class)->group(function () {
     Route::post('/invite/{id_project}',  'invite')->name('project.invite');
     Route::post('/invite/accept/{id_user}/{id_project}',  'accept')->name('invite.accept');
     Route::post('/invite/refuse/{id_user}/{id_project}',  'refuse')->name('invite.refuse');
+});
+
+// Member
+Route::controller(MemberController::class)->group(function () {
+    Route::post('/member/{id_user}/{id_project}', 'removeMember')->name('member.remove');
 });

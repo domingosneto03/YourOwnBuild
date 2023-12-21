@@ -64,6 +64,12 @@ class ProfilePageController extends Controller
         }
     
         $user = User::findOrFail($id);
+
+        if (!$this->authorize('canPerformAction', $user)) {
+            Session::flash('warning', 'You are not authorized handle invitations.');
+            return redirect()->back();  // Redirect back to the previous page
+
+        }
         $invitedProjects = $user->invited()->paginate(12);
     
         return view('pages.profilePageInvitations', [
