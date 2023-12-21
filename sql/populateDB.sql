@@ -1,8 +1,8 @@
 INSERT INTO users2 (username, password, email, name, bio, job, address, is_admin, is_blocked)
 VALUES
-  ('admin@example.com', '$2y$10$MBqElw8XUaAhaTmBSOm2uOUpAepgHmmxN089heGZ/oFwdg.CUNyTC', 'admin@example.com', 'admin', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porta semper velit, quis fringilla diam bibendum vitae. Nam ut nisl vel justo convallis euismod ac viverra tortor. Sed finibus luctus purus, eu sodales ex posuere viverra. Etiam tristique erat mi, a varius ante consequat ut. Praesent aliquam lectus non nunc finibus blandit. Aenean dignissim gravida semper. Sed nibh libero, dignissim sed felis at, tincidunt sodales ante. Fusce porta tristique pulvinar. Aliquam turpis purus, sodales vel malesuada non, dignissim id leo. Morbi non volutpat lectus. Nulla blandit, nunc ac feugiat feugiat, velit arcu pretium augue, non efficitur sem libero in nisl. Maecenas mattis, nulla quis suscipit porttitor, lacus dui convallis orci, elementum porttitor diam justo nec ipsum. Phasellus id tincidunt nisi. Nunc a ornare orci, nec convallis magna.', 'System Administrator', 'Bay Area, San Francisco, CA', true, false),
-  ('john_doe', '$2y$10$z3NzJjVMhLU4qTXqWv84fecbRmijF4TktrD8rVHWWFDVqsqBky78y', 'john.doe@example.com', 'John Doe', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus, ligula et gravida vehicula, odio augue pulvinar metus, a vulputate est sem consequat felis. Phasellus odio leo, efficitur euismod iaculis sit amet, elementum non lacus. Vivamus dui purus, maximus sit amet laoreet at, dictum hendrerit sapien. Aenean quis bibendum purus. Mauris tempor convallis mauris. Vestibulum rutrum, magna vel tincidunt sollicitudin, nibh erat placerat elit, eget tincidunt ipsum quam eu leo. Cras pharetra quam sed lorem blandit hendrerit. Phasellus non sapien tellus. Quisque sagittis est neque, quis bibendum sapien interdum nec. Nullam vulputate lectus urna, quis scelerisque lectus ullamcorper sit amet. Donec quis varius augue. Vivamus euismod eget eros vitae lobortis. Morbi nec fringilla diam. Aliquam viverra nunc sit amet nunc volutpat congue.', 'A software developer', 'Bay Area, San Francisco, CA', false, false),
-  ('alice_smith', '$2y$10$iav7cVmZ6aQIuS0hWKpk4eu544zhZf7PxIY.XcAZ62cSxqE0/grGy', 'alice.smith@example.com', 'Alice Smith', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a leo in felis tristique rutrum. Cras volutpat ultricies malesuada. Nulla blandit vehicula ex, ac sodales lacus malesuada sed. Vestibulum congue massa sed bibendum semper. Vestibulum eget risus quis quam vestibulum vestibulum sed consectetur justo. Donec ornare nisl id purus fermentum, non tempor elit tempus. Duis a cursus nibh. Donec vitae est vel quam mattis pellentesque id sed nibh. Suspendisse dapibus tempus turpis, sed mollis nibh luctus nec. Sed eleifend augue sapien, in tristique nunc sodales in. In fermentum consectetur tempus. Proin dapibus lectus nisi. Pellentesque blandit fermentum lobortis. Etiam et massa velit. Pellentesque sed sapien tortor. Maecenas pharetra placerat fringilla.', 'A graphic designer', 'Bay Area, San Francisco, CA', false, false),
+  ('admin@example.com', '$2y$10$MBqElw8XUaAhaTmBSOm2uOUpAepgHmmxN089heGZ/oFwdg.CUNyTC', 'admin@example.com', 'admin', 'Driven by a passion for extracting insights from complex datasets, this professional has a knack for turning raw data into actionable business strategies. With a background in cutting-edge technologies, they have contributed to numerous projects that have made significant impacts. Outside the realm of data analytics, this individual loves exploring the latest in technology and mentoring upcoming enthusiasts.', 'System Administrator', 'Bay Area, San Francisco, CA', true, false),
+  ('john_doe', '$2y$10$z3NzJjVMhLU4qTXqWv84fecbRmijF4TktrD8rVHWWFDVqsqBky78y', 'john.doe@example.com', 'John Doe', 'This seasoned software engineer brings years of experience in building scalable and robust applications to the table. Proficient in multiple programming languages and frameworks, they have played pivotal roles in delivering innovative solutions for various industries. Away from the screen, they find solace in hobbies like reading and hiking.', 'A software developer', 'Bay Area, San Francisco, CA', false, false),
+  ('alice_smith', '$2y$10$iav7cVmZ6aQIuS0hWKpk4eu544zhZf7PxIY.XcAZ62cSxqE0/grGy', 'alice.smith@example.com', 'Alice Smith', 'Crafting digital experiences that resonate with users, this UX/UI designer seamlessly blends aesthetics with functionality. With a diverse portfolio that showcases designs across multiple platforms, they have consistently championed user-centric approaches that enhance engagement. Beyond the realm of design, they draw inspiration from diverse interests, enriching their creative process.', 'A graphic designer', 'Bay Area, San Francisco, CA', false, false),
   ('bob_jones', '$2y$10$8ozjjFaEsaMglJr4ulkG..69YZIyG4kBNmR201UOhDDB6NtTHoFsu', 'bob.jones@example.com', 'Bob Jones', '', 'An accountant', 'Bay Area, San Francisco, CA', false, false),
   ('emma_white', '$2y$10$SwarjJndc4CCPxY9CTinmOkFPNhpjhoo.xutSmqNgTrccR34rsBFO', 'emma.white@example.com', 'Emma White', '', 'A marketing specialist', 'Bay Area, San Francisco, CA', false, false),
   ('mike_miller', '$2y$10$.FNoBB2u.yPt6qUs.YssY.Cw7yxLrPq0oMIFMS9wBlwY9nT/R39ae', 'mike.miller@example.com', 'Mike Miller', '', 'A project manager', 'Bay Area, San Francisco, CA', false, false),
@@ -48,7 +48,7 @@ VALUES
 
 INSERT INTO project1 (id_creator, name, description, is_public, date_created)
 VALUES
-  (1, 'Website Overhaul', 'Complete redesign and update of our main website, focusing on user experience and responsive design.', true, '2023-01-15'),
+  (2, 'Website Overhaul', 'Complete redesign and update of our main website, focusing on user experience and responsive design.', true, '2023-01-15'),
   (2, 'App Development Phase 1', 'Initial development phase for our new mobile application, including core feature implementation.', true, '2023-02-20'),
   (3, 'Marketing Campaign Q1', 'Development and execution of the marketing campaign for the first quarter, targeting new customer segments.', true, '2023-03-10'),
   (4, 'Data Migration Project', 'Secure and efficient migration of customer data to the new cloud-based storage platform.', true, '2023-04-05'),
@@ -61,9 +61,6 @@ VALUES
 
 INSERT INTO member (id_user, id_project, role)
 VALUES
-  (1, 2, 'project_member'),
-  (1, 3, 'project_member'),
-  (1, 4, 'project_member'),
   (11, 1, 'project_member'),
   (12, 1, 'project_member'),
   (13, 1, 'project_member'),
@@ -87,11 +84,11 @@ VALUES
 
 INSERT INTO task (id_creator, id_project, name, label, completion, date_created, due_date, priority)
 VALUES
-  (1, 1, 'Design New Homepage', 'Create a modern, user-friendly homepage design.', 'pending', '2023-01-15', '2023-02-01', 'high'),
-  (1, 1, 'Update Content Strategy', 'Revise the content strategy to align with the new website design.', 'pending', '2023-01-18', '2023-02-10', 'medium'),
-  (1, 1, 'Optimize for SEO', 'Implement SEO best practices in all new web pages.', 'in_progress', '2023-01-20', '2023-02-15', 'medium'),
-  (1, 1, 'Finalize Website Layout', 'Complete the final layout design for the new website.', 'completed', '2023-01-22', '2023-02-05', 'high'),
-  (1, 1, 'Implement Feedback Changes', 'Incorporate feedback from the initial design review into the website.', 'completed', '2023-01-25', '2023-02-10', 'medium'),
+  (2, 1, 'Design New Homepage', 'Create a modern, user-friendly homepage design.', 'pending', '2023-01-15', '2023-02-01', 'high'),
+  (2, 1, 'Update Content Strategy', 'Revise the content strategy to align with the new website design.', 'pending', '2023-01-18', '2023-02-10', 'medium'),
+  (2, 1, 'Optimize for SEO', 'Implement SEO best practices in all new web pages.', 'in_progress', '2023-01-20', '2023-02-15', 'medium'),
+  (2, 1, 'Finalize Website Layout', 'Complete the final layout design for the new website.', 'completed', '2023-01-22', '2023-02-05', 'high'),
+  (2, 1, 'Implement Feedback Changes', 'Incorporate feedback from the initial design review into the website.', 'completed', '2023-01-25', '2023-02-10', 'medium'),
   (2, 2, 'Develop Login Feature', 'Implement a secure and easy-to-use login feature.', 'pending', '2023-02-20', '2023-03-15', 'high'),
   (2, 2, 'UI/UX Design for App', 'Design the user interface and experience for the app.', 'in_progress', '2023-02-22', '2023-04-01', 'high'),
   (2, 2, 'Set Up Database', 'Establish the database for app data storage.', 'pending', '2023-02-25', '2023-03-30', 'medium'),
@@ -122,7 +119,7 @@ VALUES
 
 INSERT INTO comment (id_user, id_task, content, date)
 VALUES
-  (1, 1, 'The new homepage design looks great! Can we ensure the call-to-action button is more prominent?', '2023-01-20'),
+  (2, 1, 'The new homepage design looks great! Can we ensure the call-to-action button is more prominent?', '2023-01-20'),
   (12, 4, 'Completed the initial setup for the login feature. Awaiting feedback on the security protocols.', '2023-04-08'),
   (15, 7, 'Market analysis report is ready. Identified some key trends that we can leverage for our campaign.', '2023-07-15'),
   (3, 10, 'Data migration to the cloud completed successfully. No data integrity issues encountered.', '2023-10-25'),
@@ -142,7 +139,6 @@ VALUES
 
 INSERT INTO responsible (id_user, id_task)
 VALUES
-  (1, 1),
   (11, 2),
   (12, 3),
   (13, 4),

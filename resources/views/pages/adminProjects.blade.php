@@ -42,7 +42,7 @@
               @endif
               <p class="card-text">{{ $project->description }}</p>
               <div class="btn-group">
-                <a href="/project/{{ $project->id }}" class="btn btn-outline-secondary btn-sm">Project</a>
+                <a href="{{ route('admin.showProject', ['id' => $project->id]) }}" class="btn btn-outline-secondary btn-sm">Project</a>
                 <button onclick="delProjectFunc(this);" class="btn btn-danger btn-sm">Delete</a>
               </div>
             </div>
@@ -50,10 +50,10 @@
         @endforeach
       </div>
     </div>
-  </div>
-  <!-- Pagination links -->
-  <div class="mt-3 d-flex justify-content-center">
-    {{ $projects->links() }}
+    <!-- Pagination links -->
+    <div class="mt-3 d-flex justify-content-center">
+      {{ $projects->links() }}
+    </div>
   </div>
 </div>
 @endsection

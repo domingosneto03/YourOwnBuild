@@ -51,7 +51,7 @@ Route::controller(HomepageController::class)->group(function () {
 
 // Projects
 Route::controller(ProjectController::class)->group(function () {
-    Route::get('/project/{id}/tasks', 'showTasks')->name('projects.tasks');;
+    Route::get('/project/{id}/tasks', 'showTasks')->name('projects.tasks');
     Route::get('/project/{id}/team', 'showTeam')->name('projects.team');
     Route::get('/project/{id}/requests', 'showRequests')->name('projects.requests');
     Route::get('/project/{id}/newtask', 'showNewTask')->name('projects.newtask');
@@ -96,6 +96,7 @@ Route::controller(UserController::class)->group(function () {
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/users', 'showUsers')->name('admin.showUsers');
     Route::get('/admin/projects', 'showProjects')->name('admin.showProjects');
+    Route::get('/admin/projects/{id}', 'showProject')->name('admin.showProject');
     Route::put('/user/{id}/block', 'blockUser')->name('admin.blockUser');
     Route::put('/user/{id}/unblock', 'unblockUser')->name('admin.unblockUser');
     Route::delete('/admin/project/delete', 'deleteProject')->name('admin.delProject');

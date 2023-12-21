@@ -23,6 +23,21 @@ class TaskPolicy
     }
 
     /**
+     * Determine if the given user can update the task.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Task  $task
+     * @return bool
+     */
+    public function edit(User $user, Task $task)
+    {
+        // If the user is an admin, they cannot update the task
+        if ($user->isAdmin()) {
+            return false;
+        }
+    }
+
+    /**
      * Determine if the given user can reassign an user to a task.
      *
      * @param  \App\Models\User  $user

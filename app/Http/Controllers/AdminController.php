@@ -95,4 +95,16 @@ class AdminController extends Controller
 
         return response()->json(['message' => 'Project successfully deleted']);
     }
+
+    // Display project page
+    public function showProject(string $id): View
+    {   
+        // Get the project.
+        $project = Project::findOrFail($id);
+
+        // Use the pages.project template to display the project.
+        return view('pages.projectTasks', [
+            'project' => $project
+        ]);
+    }
 }

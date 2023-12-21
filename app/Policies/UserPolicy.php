@@ -10,11 +10,14 @@ use Illuminate\Support\Facades\Auth;
 class UserPolicy
 {
     /**
-     * Create a new policy instance.
+     * Determine if the given user can view any projects.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
      */
-    public function __construct()
+    public function viewAnyProjects(User $user)
     {
-        //
+        return $user->isAdmin();
     }
 
 
