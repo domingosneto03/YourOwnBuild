@@ -59,11 +59,11 @@
             <input type="hidden" name="completion" value="pending">
             <div class="mb-3 col-8">
                 <label for="name" class="form-label">Task Name:</label>
-                <input class="form-control" type="text" name="name" id="name" required>
+                <input class="form-control input-limit-title" type="text" name="name" id="name" required>
             </div>
             <div class="mb-3 col-8">
                 <label for="label" class="form-label">Task Label:</label>
-                <textarea class = "form-control" name="label" id="description"></textarea>
+                <textarea class = "form-control input-limit-text" name="label" id="description"></textarea>
             </div>
             <div class="mb-3 col-8">
                 <label for="deadline" class="form-label">Deadline:</label>
