@@ -67,7 +67,7 @@
             </div>
             <div class="mb-3 col-8">
             <label for="priority" class="form-label">Priority:</label>
-            <select class="form-select" aria-label="Priority" name = "priority">
+            <select class="form-select" aria-label="Priority" name = "priority" required>
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>

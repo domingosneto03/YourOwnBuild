@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class CommentController extends Controller
 {
@@ -25,7 +26,6 @@ class CommentController extends Controller
         $validatedData['id_task'] = $taskId;
         $comment = Comment::create($validatedData);
         $task->comments()->save($comment);
-
         // Redirect back or perform other actions as needed
         return redirect()->back()->with('success', 'Comment added successfully.');
     }
@@ -34,6 +34,7 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($id);
         $comment->delete();
+        Session::flash('success', 'Deleted comment with success.');
         return response()->json(['message' => 'Comment deleted successfully']);
     }
 }

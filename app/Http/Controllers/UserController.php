@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 use App\Models\User;
 
@@ -25,6 +26,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update($validatedData);
 
+        Session::flash('success', 'Updated profile with success.');
         // Redirect the user to the project page after user edition
         return redirect('/user/' . $user->id . '/profile');
     }

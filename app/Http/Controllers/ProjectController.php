@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 use App\Models\Project;
 use App\Models\User;
@@ -67,7 +68,7 @@ class ProjectController extends Controller
 
         // Create a new project in the database
         $project = Project::create($validatedData);
-
+        Session::flash('success', 'Created project with success.');
         // Redirect the user to the project page after creation
         return redirect('/project/' . $project->id . '/tasks');
     }
@@ -111,7 +112,7 @@ class ProjectController extends Controller
 
         // Update the project with the new data
         $project->update($validatedData);
-
+        Session::flash('success', 'Updated project with success.');
         // Redirect the user to the project page after update
         return redirect('/project/' . $project->id . '/tasks');
     }
@@ -126,7 +127,7 @@ class ProjectController extends Controller
 
         // Delete the project
         $project->delete();
-
+        Session::flash('success', 'Deleted project with success.');
         // Redirect to the projects list or another appropriate page
         return redirect('/homepage/projects/');
     }

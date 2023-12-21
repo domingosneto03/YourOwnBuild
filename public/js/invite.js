@@ -20,7 +20,7 @@ $(document).ready(function(){
         });
     });
 
-    $(document).on('click', 'li', function(){
+    $('#fullNameList').on('click', 'li', function(){
         $('#fullName').val($(this).text());
         $('#fullNameList').fadeOut();
     });

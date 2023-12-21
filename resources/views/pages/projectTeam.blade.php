@@ -78,12 +78,10 @@
                                     @elseif($member->pivot->role === 'coordinator')
                                         <p class="card-text mb-2">Coordinator</p>
                                     @endif
-
-                                    @if($member->id == auth()->id())
-                                        <a href="{{ route('profile.page', $member->id) }}" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
-                                    @else
-                                        <a href="#" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
-                                    @endif
+                                    <div class="d-flex justify-content-center">
+                                        <a href="{{ $member->id == auth()->id() ? route('profile.page', $member->id) : '#' }}" class="btn btn-outline-secondary btn-sm">Visit Profile</a>
+                                        <a href="#" class="btn btn-outline-danger btn-sm ms-2">Remove</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
