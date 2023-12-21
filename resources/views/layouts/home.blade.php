@@ -35,24 +35,25 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('homepage.projects') }}">Home</a>
-                    </li>
-                </ul>
-                <div class="dropdown">
                     @php 
                         $user = Auth::user();
                     @endphp
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                    @if ($user->is_admin)
+                        <a class="nav-link active" aria-current="page" href="/admin/users">Home</a>
+                    @else
+                        <a class="nav-link active" aria-current="page" href="{{ route('homepage.projects') }}">Home</a>
+                    @endif
+                    </li>
+                </ul>
+                <div class="dropdown">
                     <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{{ asset('img/profile_pic.jpeg') }}" alt="" width="32" height="32" class="rounded-circle me-2" alt="user avatar">
                         <strong>{{ $user->name }}</strong>
                     </a>
                     <ul class="dropdown-menu text-small shadow">
                         <li><a class="dropdown-item" href="/user/{{ $user->id }}/profile">Profile</a></li>
-                        @if ($user->is_admin)
-                            <li><a class="dropdown-item" href="/admin/users">Admin</a></li>
-                        @endif
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{{ route('logout') }}">Sign out</a></li>
                     </ul>

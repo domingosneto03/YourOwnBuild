@@ -20,16 +20,21 @@ class HomepageController extends Controller
             // Not logged in, redirect to login.
             return redirect('/login');
 
-        } else {
+        } else if (Auth::user()->isAdmin()) {
+
+            // Get all users
+            $users = User::where('is_admin', false)->orderBy('username')->paginate(7);
+
+            return view('pages.adminUsers', [
+                'users' => $users
+            ]);
+        }
+        
+        else {
             // The user is logged in.
 
             // Get projects for user ordered by id.
             $projects = Auth::user()->projects()->paginate(9);
-
-            // Check if the current user can list the projects.
-            // $this->authorize('list', Project::class);
-
-            // The current user is authorized to list cards.
 
             // Use the pages.cards template to display all cards.
             return view('pages.homepageProjects', [
