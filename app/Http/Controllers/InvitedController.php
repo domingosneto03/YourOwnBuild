@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Invited;
 use App\Models\Member;
@@ -13,6 +14,14 @@ class InvitedController extends Controller
 {
     public function invite(Request $request, $id_project)
     {
+        $users = Auth::user();
+
+        if (!$this->authorize('canPerformAction', $users)) {
+            Session::flash('warning', 'You are not authorized invite users to projects.');
+            return redirect()->back();  // Redirect back to the previous page
+
+        }
+
         $request->validate([
             'fullName' => ['required','max:255'], 
         ]);

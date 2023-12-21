@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RequestJoinController;
 use App\Http\Controllers\InvitedController;
+use App\Http\Controllers\MemberController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -51,7 +52,7 @@ Route::controller(HomepageController::class)->group(function () {
 
 // Projects
 Route::controller(ProjectController::class)->group(function () {
-    Route::get('/project/{id}/tasks', 'showTasks')->name('projects.tasks');;
+    Route::get('/project/{id}/tasks', 'showTasks')->name('projects.tasks');
     Route::get('/project/{id}/team', 'showTeam')->name('projects.team');
     Route::get('/project/{id}/requests', 'showRequests')->name('projects.requests');
     Route::get('/project/{id}/newtask', 'showNewTask')->name('projects.newtask');
@@ -81,6 +82,7 @@ Route::controller(TaskController::class)->group(function () {
 // Profile Page
 Route::controller(ProfilePageController::class)->group(function () {
     Route::get('/user/{id}/profile', 'showProfile')->name('profile.page');
+    Route::get('/user/{id}/other', 'showOther')->name('profile.other');
     Route::get('/user/{id}/edit', 'editShow')->name('profile.edit');
     Route::get('/user/{id}/invitations', 'showInvitations')->name('profile.invitations');
 });
@@ -95,7 +97,9 @@ Route::controller(UserController::class)->group(function () {
 // Admin
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/users', 'showUsers')->name('admin.showUsers');
+    Route::get('/admin/users/{id}', 'showUser')->name('admin.showProfile');
     Route::get('/admin/projects', 'showProjects')->name('admin.showProjects');
+    Route::get('/admin/projects/{id}', 'showProject')->name('admin.showProject');
     Route::put('/user/{id}/block', 'blockUser')->name('admin.blockUser');
     Route::put('/user/{id}/unblock', 'unblockUser')->name('admin.unblockUser');
     Route::delete('/admin/project/delete', 'deleteProject')->name('admin.delProject');
@@ -119,4 +123,9 @@ Route::controller(InvitedController::class)->group(function () {
     Route::post('/invite/{id_project}',  'invite')->name('project.invite');
     Route::post('/invite/accept/{id_user}/{id_project}',  'accept')->name('invite.accept');
     Route::post('/invite/refuse/{id_user}/{id_project}',  'refuse')->name('invite.refuse');
+});
+
+// Member
+Route::controller(MemberController::class)->group(function () {
+    Route::post('/member/{id_user}/{id_project}', 'removeMember')->name('member.remove');
 });

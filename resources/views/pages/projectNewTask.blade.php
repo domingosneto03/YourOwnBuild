@@ -17,24 +17,28 @@
         Team
       </a>
     </li>
+    @can('edit', $project)
     <li class="nav-item">
       <a href="{{ route('projects.edit', ['id' => $project->id]) }}" id="edit-project-btn" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
         Edit Project
       </a>
     </li>
+    @endcan
     <li class="nav-item">
       <a href="{{ route('projects.newtask', ['id' => $project->id]) }}" id="project-tasks-btn" class="nav-link active" aria-current="page">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
         New Task
       </a>
     </li>
+    @can('delete', $project)
     <li class="nav-item mt-2">
       <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this project?')) document.getElementById('delete-form').submit();" class="nav-link bg-danger text-light">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
         Delete Project
       </a>
     </li>
+    @endcan
   </ul>
   <hr>
 </div>

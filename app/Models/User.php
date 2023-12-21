@@ -121,4 +121,10 @@ class User extends Authenticatable
                     }])
                     ->orderBy('due_date');
     }
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
+
 }

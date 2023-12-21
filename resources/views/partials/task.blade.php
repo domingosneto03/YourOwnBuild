@@ -60,8 +60,12 @@
                                     <p class="card-title">{{ $task->priority }}</p>
                                 </div>
                                 <div class="d-flex my-4">
-                                    <button class="btn btn-outline-secondary btn-sm" onclick="editTask('{{ $task->id }}')">Edit Task</button> 
+                                    @can('reassign', $task)
+                                    <button class="btn btn-outline-secondary btn-sm" onclick="editTask('{{ $task->id }}')">Edit Task</button>
+                                    @endcan 
+                                    @can('delete', $task)
                                     <button class="btn btn-outline-danger btn-sm ms-2" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this task?')) document.getElementById('delete-task-form-{{ $task->id}}').submit();">Delete Task</button> 
+                                    @endcan
                                 </div>
                                 <form method="post" action="{{ route('tasks.destroy', $task->id) }}" id="delete-task-form-{{ $task->id}}">
                                     @csrf
@@ -120,7 +124,9 @@
                                         @endforeach
                                     </ul>
                                 </div>
+                                @can('reassign', $task)
                                 <button class="btn btn-outline-secondary btn-sm my-3" onclick="editAssign('{{ $task->id }}')">Reassign</button>
+                                @endcan
                             </div>
                             <div id="reassign-{{ $task->id }}" style="display: none;">
                                 <h6 class="card-title my-3">Assigned to:</h6>

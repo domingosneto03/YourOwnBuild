@@ -34,10 +34,11 @@ class ProjectController extends Controller
     
     public function showNewTask($id): View
     {   
+        $user = Auth::user();
         // Check if the user is logged in.
-        if (!Auth::check()) {
-            // Not logged in, redirect to login.
-            return redirect('/login');
+        if (!$this->authorize('canPerformAction', $user)) {
+            Session::flash('warning', 'You are not authorized to create a new task.');
+            return redirect()->back();  // Redirect back to the previous page
 
         } else {
             $project = Project::findOrFail($id);
@@ -76,17 +77,15 @@ class ProjectController extends Controller
     // Display edit project view for the coordinator
     public function showEdit(string $id): View
     {
-        // Check if the user is logged in.
-        if (!Auth::check()) {
-            // Not logged in, redirect to login.
-            return redirect('/login');
-        }
-
         // Get the project.
         $project = Project::findOrFail($id);
+        $user = Auth::user();
 
-        // Check if the current user can edit the project.
-        // Add authorization logic if needed.
+        if (!$this->authorize('canPerformAction', $user)) {
+            Session::flash('warning', 'You are not authorized to edit the project.');
+            return redirect()->back();  // Redirect back to the previous page
+
+        }
 
         // Use the pages.editproject template to display the edit form.
         return view('pages.projectEdit', [
@@ -123,11 +122,19 @@ class ProjectController extends Controller
         // Retrieve the project by ID
         $project = Project::findOrFail($id);
 
-        // Add authorization check if needed
+        $user = Auth::user();
+
+        if (!$this->authorize('canPerformAction', $user)) {
+            Session::flash('warning', 'You are not authorized to delete the project.');
+            return redirect()->back();  // Redirect back to the previous page
+
+        }
 
         // Delete the project
         $project->delete();
+
         Session::flash('success', 'Deleted project with success.');
+
         // Redirect to the projects list or another appropriate page
         return redirect('/homepage/projects/');
     }

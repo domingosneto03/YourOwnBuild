@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\RequestJoin;
 use App\Models\Member;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 
 class RequestJoinController extends Controller
@@ -13,6 +14,14 @@ class RequestJoinController extends Controller
 
     public function requestJoin($id_user, $id_project)
     {
+
+        $user = Auth::user();
+
+        if (!$this->authorize('canPerformAction', $user)) {
+            Session::flash('warning', 'You are not authorized to request to join other projects.');
+            return redirect()->back();  // Redirect back to the previous page
+
+        }
 
         // Create a new invited record in the database.
         RequestJoin::create([
@@ -28,6 +37,14 @@ class RequestJoinController extends Controller
 
     public function accept(string $id_user, $id_project)
     {
+        $user = Auth::user();
+
+        if (!$this->authorize('canPerformAction', $user)) {
+            Session::flash('warning', 'You are not authorized handle requests.');
+            return redirect()->back();  // Redirect back to the previous page
+
+        }
+
         $request = RequestJoin::where([
             'id_user' => $id_user,
             'id_project' => $id_project,
@@ -50,6 +67,14 @@ class RequestJoinController extends Controller
 
     public function refuse(string $id_user, $id_project)
     {
+        $user = Auth::user();
+
+        if (!$this->authorize('canPerformAction', $user)) {
+            Session::flash('warning', 'You are not authorized handle requests.');
+            return redirect()->back();  // Redirect back to the previous page
+
+        }
+
         $request = RequestJoin::where([
             'id_user' => $id_user,
             'id_project' => $id_project,

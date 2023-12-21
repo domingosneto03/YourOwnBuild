@@ -17,24 +17,28 @@
                 Team
             </a>
         </li>
+        @can('edit', $project)
         <li class="nav-item">
             <a href="{{ route('projects.edit', ['id' => $project->id]) }}" id="edit-project-btn" class="nav-link link-body-emphasis">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                 Edit Project
             </a>
         </li>
+        @endcan
         <li class="nav-item">
             <a href="{{ route('projects.newtask', ['id' => $project->id]) }}" id="new-task-btn" class="nav-link link-body-emphasis">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                 New Task
             </a>
         </li>
+        @can('delete', $project)
         <li class="nav-item mt-2">
             <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this project?')) document.getElementById('delete-form').submit();" class="nav-link bg-danger text-light">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
                 Delete Project
             </a>
         </li>
+        @endcan
     </ul>
     <hr>
 </div>
@@ -67,6 +71,7 @@
                                 <div class="card">
                                     <div class="card-body d-flex justify-content-between align-items-center">
                                         <h5 class="card-title mb-0">{{ $request->name }}</h5>
+                                        @can('handleRequests', $project)
                                         <div class="d-flex">
                                             <form action="{{ route('requests.accept', ['id_user' => $request->id, 'id_project' => $project->id]) }}" method="post">
                                                 @csrf
@@ -79,6 +84,7 @@
                                                 <button type="submit" class="btn btn-outline-danger btn-sm ms-2">Refuse</button>
                                             </form>
                                         </div>
+                                        @endcan
                                     </div>
                                 </div>
                             </div>
