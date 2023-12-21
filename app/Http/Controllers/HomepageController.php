@@ -62,7 +62,8 @@ class HomepageController extends Controller
                     ->paginate(6);
                 $projects->appends(['query' => $query]);
             } else {
-                $projects = Project::orderBy('name', 'asc')
+                $projects = Project::where('is_public', true)
+                    ->orderBy('name', 'asc')
                     ->paginate(6);
             }
             
